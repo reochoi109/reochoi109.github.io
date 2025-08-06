@@ -31,21 +31,27 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9095477966238012"
      crossorigin="anonymous"></script>
 </head>
-<body class="bg-gray-50 text-gray-900 min-h-screen font-sans flex flex-col">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen font-sans flex flex-col">
   <div id="header-include"></div>
+
   <!-- Main Grid Layout -->
   <div class="grid grid-cols-12 w-full max-w-screen-2xl mx-auto flex-grow gap-6 px-4 py-6">
     <!-- Left Ad -->
-      <div id="side-ads-left" class="hidden lg:block col-span-2"></div>
+    <div id="side-ads-left" class="hidden lg:block col-span-2"></div>
 
     <!-- Main Content -->
-      <main id="page-content" class="col-span-12 lg:col-span-8 bg-white p-6 rounded-xl shadow-md">
-        <!-- render.js가 여기에 도구 내용 주입 -->
-      </main>
+    <main
+      id="page-content"
+      class="col-span-12 lg:col-span-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition"
+    >
+      <!-- render.js가 여기에 도구 내용 주입 -->
+    </main>
 
     <!-- Right Ad -->
-      <div id="side-ads-right" class="hidden lg:block col-span-2"></div>
+    <div id="side-ads-right" class="hidden lg:block col-span-2"></div>
   </div>
+
   <div id="footer-include"></div>
+</body>
 </body>
 </html>
