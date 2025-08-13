@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Converter – Change Text to Uppercase, Lowercase, Sentence Case</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Case Converter – Change Text to Uppercase, Lowercase, Sentence Case",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All",
+      "url": "https://textory.site/case-converter.html",
+      "description": "A fast and free online tool to convert your text into different formats including uppercase, lowercase, capitalized, and sentence case. Ideal for writers, developers, and content editors.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
+  <meta name="description" content="Convert your text to uppercase, lowercase, capitalized, or sentence case. Fast, free, and easy to use.">
+  <meta name="google-adsense-account" content="ca-pub-9095477966238012">
+  
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+  <meta property="og:title" content="Case Converter – Change Text Format Easily">
+  <meta property="og:description" content="Clean up your text formatting in one click. Great for titles, articles, and code.">
+  <meta property="og:url" content="https://textory.site/case-converter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://textory.site/images/case-converter.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case Converter – Online Text Formatter">
+  <meta name="twitter:description" content="Convert text case instantly with this free online tool.">
+  <meta name="twitter:image" content="https://textory.site/images/case-converter.png">
+
+  <link rel="canonical" href="https://textory.site/case-converter.html">
+  <script type="module" src="/src/page-loader.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9095477966238012"
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/src/output.css" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5T9HT496JM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5T9HT496JM');
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans flex flex-col min-h-screen text-base leading-relaxed">
+  <header class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  
+      <!-- 로고 -->
+      <a href="/" class="text-3xl font-extrabold tracking-tight text-indigo-600 dark:text-indigo-400">
+        Textory
+      </a>
+  
+      <!-- 네비게이션 -->
+      <nav class="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6 text-base font-medium text-gray-700 dark:text-gray-200">
+        <a href="/word-counter.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ease-in-out">
+          Word Counter
+        </a>
+        <a href="/case-converter.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ease-in-out">
+          Case Converter
+        </a>
+        <a href="/remove-line-breaks.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ease-in-out">
+          Line Break Remover
+        </a>
+        <a href="/json-formatter.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ease-in-out">
+          JSON Formatter
+        </a>
+      </nav>
+  
+    </div>
+  </header>
+
+
+  <!-- Main Grid Layout -->
+  <div class="grid grid-cols-12 w-full max-w-screen-2xl mx-auto flex-grow gap-6 px-4 py-6">
+    <!-- Left Ad -->
+      <div id="side-ads-left" class="hidden lg:block col-span-2"></div>
+
+    <!-- Main Content -->
+      <main class="col-span-12 lg:col-span-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+
+        <section class="space-y-10">
+          <!-- 제목 + 설명 -->
+          <div class="space-y-2">
+            <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">Case Converter</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+              Convert your text to various text cases in real time.
+            </p>
+          </div>
+        
+          <!-- 변환 모드 선택 -->
+          <section>
+            <label for="mode-select" class="block mb-2 font-semibold text-base text-gray-800 dark:text-gray-200">Select Case</label>
+            <select id="mode-select"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4 text-base bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+              <option value="upper">UPPERCASE</option>
+              <option value="lower">lowercase</option>
+              <option value="capitalize">Capitalize</option>
+              <option value="sentence">Sentence case</option>
+            </select>
+          </section>
+        
+          <!-- 입력 텍스트 -->
+          <section>
+            <label for="input-text" class="block mb-2 font-semibold text-base text-gray-800 dark:text-gray-200">Input Text</label>
+            <textarea id="input-text" rows="10"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-5 text-base bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition resize-y placeholder-gray-400 dark:placeholder-gray-500"
+              placeholder="Type or paste your text here..."></textarea>
+          </section>
+        
+          <!-- 출력 결과 -->
+          <section>
+            <label for="output-text" class="block mb-2 font-semibold text-base text-gray-800 dark:text-gray-200">Converted Text</label>
+            <div class="relative">
+              <textarea id="output-text" rows="8"
+                class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-5 text-base bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 resize-y"
+                readonly></textarea>
+        
+              <div class="mt-3 text-right">
+                <button id="copy-output"
+                  class="text-base font-semibold px-6 py-2.5 rounded-xl transition-all shadow-sm bg-green-600 hover:bg-green-700 text-white focus:ring-2 focus:ring-green-300 active:scale-95">
+                  Copy
+                </button>
+              </div>
+            </div>
+          </section>
+        
+          <details class="mt-10 bg-gray-50 dark:bg-gray-800 p-5 rounded-xl shadow-sm prose dark:prose-invert max-w-none">
+            <summary class="text-lg font-semibold text-indigo-600 cursor-pointer">What does this case converter do?</summary>
+            <div class="mt-3 space-y-3 text-base text-gray-700 dark:text-gray-300">
+              <p>
+                This tool helps you quickly convert your text into different letter cases: uppercase, lowercase, capitalized, and sentence case.
+              </p>
+              <p>
+                It's ideal for writers, editors, and developers who need to normalize text formatting across documents, content, or code.
+              </p>
+              <ul class="list-disc list-inside">
+                <li><strong>UPPERCASE:</strong> Converts all letters to capitals</li>
+                <li><strong>lowercase:</strong> Converts everything to lowercase</li>
+                <li><strong>Capitalize:</strong> Capitalizes the first letter of each word</li>
+                <li><strong>Sentence case:</strong> Capitalizes only the first letter of each sentence</li>
+              </ul>
+              <p>
+                Changes are made instantly in your browser — no upload, no waiting.
+              </p>
+            </div>
+          </details>
+        </section>
+        
+      </main>
+
+    <!-- Right Ad -->
+      <div id="side-ads-right" class="hidden lg:block col-span-2"></div>
+  </div>
+  <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 py-8 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      
+      <!-- Left: Copyright -->
+      <div>
+        &copy; 2025 <span class="font-semibold text-gray-800 dark:text-gray-200">Textory</span>. All rights reserved.
+      </div>
+  
+      <!-- Center: Contact -->
+      <div>
+        Contact: 
+        <a href="mailto:reochoi109@gmail.com" class="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 hover:underline transition-colors duration-200">
+          reochoi109@gmail.com
+        </a>
+      </div>
+  
+      <!-- Right: Links -->
+      <div class="space-x-4">
+        <a href="/privacy.html" class="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 hover:underline transition-colors duration-200">
+          Privacy Policy
+        </a>
+      </div>
+    </div>
+  </footer>
+  
+  
+</body>
+</html>
+
+

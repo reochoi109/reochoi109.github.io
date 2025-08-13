@@ -3,8 +3,6 @@ import { setupJsonFormatter } from "./functions/jsonFormatter.js";
 import { setupRemoveLineBreaks } from "./functions/removeLineBreaks.js";
 import { setupWordCounter } from "./functions/wordCounter.js";
 
-
-
 (async () => {
   const page = window.location.pathname.split("/").pop() || "index.html";
 
@@ -17,14 +15,23 @@ import { setupWordCounter } from "./functions/wordCounter.js";
   };
 
   try {
-    const [header, footer, content, leftAd, rightAd, bottomAd] = await Promise.all([
-      fetch("/src/components/layout/header.html").then((res) => res.text()),
-      fetch("/src/components/layout/footer.html").then((res) => res.text()),
-      fetch(contentMap[page] || "/src/index-content.html").then((res) => res.text()),
-      fetch("/src/components/layout/side-ads-left.html").then((res) => res.text()),
-      fetch("/src/components/layout/side-ads-right.html").then((res) => res.text()),
-      fetch("/src/components/layout/bottom-ad.html").then((res) => res.text()),
-    ]);
+    const [header, footer, content, leftAd, rightAd, bottomAd] =
+      await Promise.all([
+        fetch("/src/components/layout/header.html").then((res) => res.text()),
+        fetch("/src/components/layout/footer.html").then((res) => res.text()),
+        fetch(contentMap[page] || "/src/index-content.html").then((res) =>
+          res.text()
+        ),
+        fetch("/src/components/layout/side-ads-left.html").then((res) =>
+          res.text()
+        ),
+        fetch("/src/components/layout/side-ads-right.html").then((res) =>
+          res.text()
+        ),
+        fetch("/src/components/layout/bottom-ad.html").then((res) =>
+          res.text()
+        ),
+      ]);
 
     // 안전한 DOM 삽입
     injectHTML("header-include", header);
@@ -32,7 +39,7 @@ import { setupWordCounter } from "./functions/wordCounter.js";
     injectHTML("page-content", content);
     injectHTML("side-ads-left", leftAd);
     injectHTML("side-ads-right", rightAd);
-    injectHTML("bottom-ad-include", bottomAd); 
+    injectHTML("bottom-ad-include", bottomAd);
 
     // 다음 frame에서 기능 연결
     requestAnimationFrame(() => {
@@ -43,7 +50,7 @@ import { setupWordCounter } from "./functions/wordCounter.js";
       if (page === "json-formatter.html") {
         setupJsonFormatter();
       }
-            
+
       if (page === "case-converter.html") {
         setupCaseConverter();
       }

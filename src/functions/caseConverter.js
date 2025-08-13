@@ -8,18 +8,25 @@ export function setupCaseConverter() {
   const copyBtn = document.getElementById("copy-output");
 
   const toSentenceCase = (text) =>
-    text.toLowerCase().replace(/(^\s*\w|[.!?\n]\s*\w)/g, match => match.toUpperCase());
+    text
+      .toLowerCase()
+      .replace(/(^\s*\w|[.!?\n]\s*\w)/g, (match) => match.toUpperCase());
 
   const toCapitalize = (text) =>
-    text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 
   const transform = (text, mode) => {
     switch (mode) {
-      case "upper": return text.toUpperCase();
-      case "lower": return text.toLowerCase();
-      case "capitalize": return toCapitalize(text);
-      case "sentence": return toSentenceCase(text);
-      default: return text;
+      case "upper":
+        return text.toUpperCase();
+      case "lower":
+        return text.toLowerCase();
+      case "capitalize":
+        return toCapitalize(text);
+      case "sentence":
+        return toSentenceCase(text);
+      default:
+        return text;
     }
   };
 

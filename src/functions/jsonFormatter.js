@@ -13,7 +13,9 @@ export function setupJsonFormatter() {
   const parseJson = (text) => window.jsonlint.parse(text);
 
   const renderOutput = (json, minify = false) => {
-    const formatted = minify ? JSON.stringify(json) : JSON.stringify(json, null, 2);
+    const formatted = minify
+      ? JSON.stringify(json)
+      : JSON.stringify(json, null, 2);
     output.value = formatted;
   };
 
@@ -28,7 +30,9 @@ export function setupJsonFormatter() {
 
   const updateLineNumbers = () => {
     const lines = input.value.split("\n").length || 1;
-    lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join("<br>");
+    lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join(
+      "<br>"
+    );
   };
 
   const syncScroll = () => {

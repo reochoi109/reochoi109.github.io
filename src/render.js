@@ -11,11 +11,17 @@
   try {
     // 공통 요소 + 콘텐츠 + 광고 fetch
     const [header, footer, content, leftAd, rightAd] = await Promise.all([
-      fetch("/src/components/layout/header.html").then(res => res.text()),
-      fetch("/src/components/layout/footer.html").then(res => res.text()),
-      fetch(contentMap[page] || "/src/index-content.html").then(res => res.text()),
-      fetch("/src/components/layout/side-ads-left.html").then(res => res.text()),
-      fetch("/src/components/layout/side-ads-right.html").then(res => res.text()),
+      fetch("/src/components/layout/header.html").then((res) => res.text()),
+      fetch("/src/components/layout/footer.html").then((res) => res.text()),
+      fetch(contentMap[page] || "/src/index-content.html").then((res) =>
+        res.text()
+      ),
+      fetch("/src/components/layout/side-ads-left.html").then((res) =>
+        res.text()
+      ),
+      fetch("/src/components/layout/side-ads-right.html").then((res) =>
+        res.text()
+      ),
     ]);
 
     // null-safe DOM 삽입
@@ -46,13 +52,14 @@
         const text = textarea.value;
         charCount.textContent = text.length;
         wordCount.textContent = text.trim().split(/\s+/).filter(Boolean).length;
-        sentenceCount.textContent = text.split(/[.!?]+/).filter(s => s.trim()).length;
+        sentenceCount.textContent = text
+          .split(/[.!?]+/)
+          .filter((s) => s.trim()).length;
         paragraphCount.textContent = text.split(/\n+/).filter(Boolean).length;
       });
     }
 
     // 다른 도구 페이지도 아래에 추가 가능
-
   } catch (err) {
     console.error("렌더링 오류:", err);
     const errorTarget = document.getElementById("page-content");
