@@ -51,7 +51,6 @@
   <link rel="stylesheet" href="/src/output.css" />
   <script src="https://cdn.jsdelivr.net/npm/jsonlint@1.6.3/web/jsonlint.js"></script>
   
-  <script type="module" src="/src/page-loader.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9095477966238012"
      crossorigin="anonymous"></script>
 
@@ -209,5 +208,10 @@
     </div>
   </footer>
   
-</body>
+<!-- </body> 태그 바로 앞에 추가 -->
+<script type="module">
+  import { setupJsonFormatter } from "/src/functions/jsonFormatter.js";
+  setupJsonFormatter();
+  </script>
+  </body>
 </html>
