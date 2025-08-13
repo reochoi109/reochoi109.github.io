@@ -141,9 +141,8 @@
       
               <!-- 입력창 -->
               <textarea id="json-input"
-                class="flex-grow w-full p-4 font-mono text-sm focus:outline-none resize-none bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100"
-                placeholder='{ "name": "John", "age": 30 }'
-                onscroll="syncScroll()" oninput="updateLineNumbers()"></textarea>
+              class="flex-grow w-full p-4 font-mono text-sm focus:outline-none resize-none bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100"
+              placeholder='{ "name": "John", "age": 30 }'></textarea>
             </div>
           </div>
       
@@ -209,6 +208,7 @@
   </footer>
   
 <!-- </body> 태그 바로 앞에 추가 -->
+<script type="module" src="/src/page-loader.js"></script>
 <script type="module">
   import { setupJsonFormatter } from "/src/functions/jsonFormatter.js";
   setupJsonFormatter();

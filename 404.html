@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 Not Found – Textory</title>
+  <meta name="description" content="Page not found. Return to Textory's free online text tools including word counter, case converter, and JSON formatter.">
   
   <!-- Tailwind CSS -->
   <link rel="stylesheet" href="/src/output.css" />
@@ -15,27 +16,46 @@
   <link rel="manifest" href="/favicon/site.webmanifest">
   <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
 
-  <meta property="og:title" content="Case Converter – Change Text Format Easily">
-  <meta property="og:description" content="Clean up your text formatting in one click. Great for titles, articles, and code.">
-  <meta property="og:url" content="https://textory.site/case-converter.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="404 Not Found – Textory">
+  <meta property="og:description" content="Page not found. Return to Textory's free online text tools.">
+  <meta property="og:url" content="https://textory.site/404.html">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://textory.site/images/case-converter.png">
+  <meta property="og:image" content="https://textory.site/favicon/android-chrome-512x512.png">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Case Converter – Online Text Formatter">
-  <meta name="twitter:description" content="Convert text case instantly with this free online tool.">
-  <meta name="twitter:image" content="https://textory.site/images/case-converter.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="404 Not Found – Textory">
+  <meta name="twitter:description" content="Page not found. Return to Textory's free online text tools.">
+  <meta name="twitter:image" content="https://textory.site/favicon/android-chrome-512x512.png">
+
+  <!-- Canonical (404 페이지는 일반적으로 canonical 없음) -->
   
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans flex flex-col items-center justify-center min-h-screen text-center px-6">
-  <div class="space-y-6">
+  <div class="space-y-6 max-w-md">
     <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight text-indigo-600 dark:text-indigo-400">404</h1>
     <p class="text-2xl text-gray-700 dark:text-gray-300 font-medium">
-      Oops! The page you’re looking for doesn’t exist.
+      Oops! The page you're looking for doesn't exist.
     </p>
-    <a href="/" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl text-base font-semibold shadow transition active:scale-95">
-      Back to Home
-    </a>
+    <p class="text-base text-gray-600 dark:text-gray-400">
+      Let's get you back to our useful text tools.
+    </p>
+    
+    <div class="space-y-3">
+      <a href="/" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl text-base font-semibold shadow transition active:scale-95">
+        Back to Home
+      </a>
+      
+      <!-- Popular tools shortcuts -->
+      <div class="flex flex-wrap justify-center gap-2 pt-4">
+        <a href="/word-counter.html" class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">Word Counter</a>
+        <span class="text-gray-400">•</span>
+        <a href="/case-converter.html" class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">Case Converter</a>
+        <span class="text-gray-400">•</span>
+        <a href="/json-formatter.html" class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">JSON Formatter</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
