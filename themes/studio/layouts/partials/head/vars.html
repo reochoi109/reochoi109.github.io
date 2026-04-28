@@ -1,0 +1,42 @@
+{{- $highlight := site.Params.highlight -}}
+{{- $color := site.Params.color | default "blue" -}}
+
+{{- $accent := "" -}}
+{{- $accentSoft := "" -}}
+{{- $c := lower $color -}}
+{{- if eq $c "blue" -}}
+  {{- $accent = "#0071e3" -}}
+  {{- $accentSoft = "#f0f7ff" -}}
+{{- else if eq $c "red" -}}
+  {{- $accent = "#ff3b30" -}}
+  {{- $accentSoft = "#fff1f0" -}}
+{{- else if eq $c "pink" -}}
+  {{- $accent = "#ff2d55" -}}
+  {{- $accentSoft = "#fff0f6" -}}
+{{- else if eq $c "green" -}}
+  {{- $accent = "#34c759" -}}
+  {{- $accentSoft = "#f0fff4" -}}
+{{- else if eq $c "purple" -}}
+  {{- $accent = "#af52de" -}}
+  {{- $accentSoft = "#f7f0ff" -}}
+{{- else if eq $c "black" -}}
+  {{- $accent = "#1d1d1f" -}}
+  {{- $accentSoft = "#f5f5f7" -}}
+{{- else -}}
+  {{- $accent = "#0071e3" -}}
+  {{- $accentSoft = "#f0f7ff" -}}
+{{- end -}}
+
+{{- if eq $highlight false -}}
+  {{- $accent = "var(--text-main)" -}}
+  {{- $accentSoft = "var(--border)" -}}
+{{- end -}}
+
+{{- $spacing := site.Params.spacing | default "comfortable" -}}
+{{- $sectionPad := "80px" -}}
+{{- if eq $spacing "compact" -}}
+  {{- $sectionPad = "56px" -}}
+{{- end -}}
+<style>
+  :root { --accent: {{ $accent }}; --accent-soft: {{ $accentSoft }}; --section-pad-y: {{ $sectionPad }}; }
+</style>

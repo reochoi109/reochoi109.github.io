@@ -1,0 +1,22 @@
+<!doctype html>
+<html
+  lang="{{ or site.Language.LanguageCode }}"
+  dir="{{ or site.Language.LanguageDirection `ltr` }}"
+>
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="{{ if eq .RelPermalink "/about/" }}about-page{{ end }}">
+    <header class="site-header">
+      <div class="container header-inner">{{ partial "header.html" . }}</div>
+    </header>
+
+    <main id="content" class="container site-main">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">{{ partial "footer.html" . }}</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+baseURL = '/'
+languageCode = 'en-us'
+defaultContentLanguage = 'en'
+title = 'Studio'
+theme = 'studio'
+enableRobotsTXT = true
+
+[pagination]
+pagerSize = 12
+
+[taxonomies]
+tag = 'tags'
+category = 'categories'
+
+[params]
+description = 'A minimal Hugo theme starter'
+author = ''
+highlight = true
+color = 'blue' # blue | red | pink | green | purple | black
+ogImage = '/images/projects/placeholder.svg'
+brand = '' # Header/footer brand label (defaults to `title`)
+email = '' # Optional: footer email under brand (falls back to data/home.toml)
+spacing = 'comfortable' # comfortable | compact
+showExperience = true
+showSkills = true
+showProjectsDivider = true
+projectsClickable = false
+
+[menu]
+[[menu.main]]
+name = 'Home'
+url = '/'
+weight = 10
+
+[[menu.main]]
+name = 'Projects'
+url = '/projects/'
+weight = 30
+
+[[menu.main]]
+name = 'About'
+url = '/about/'
+weight = 40
+
+[markup]
+  [markup.tableOfContents]
+  endLevel = 3
+  ordered = false
+  startLevel = 2

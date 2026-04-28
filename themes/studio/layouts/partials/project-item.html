@@ -1,0 +1,100 @@
+{{- $page := .page -}}
+{{- $index := .index -}}
+{{- $indexText := "" -}}
+{{- with $page.Params.index -}}
+  {{- $indexText = printf "%02d." (int .) -}}
+{{- else -}}
+  {{- $indexText = printf "%02d." (int $index) -}}
+{{- end -}}
+
+{{- $subtitle := "" -}}
+{{- with $page.Params.subtitle -}}
+  {{- $subtitle = (replace . " | " "<br />") -}}
+  {{- $subtitle = (replace $subtitle "|" "<br />") -}}
+{{- else -}}
+  {{- $parts := slice -}}
+  {{- with $page.Params.org -}}{{- $parts = $parts | append . -}}{{- end -}}
+  {{- with $page.Params.period -}}{{- $parts = $parts | append . -}}{{- end -}}
+  {{- if gt (len $parts) 0 -}}
+    {{- $subtitle = delimit $parts "<br />" -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $summary := "" -}}
+{{- with $page.Params.description -}}
+  {{- $summary = . -}}
+{{- else -}}
+  {{- with $page.Summary -}}
+    {{- $summary = . | plainify -}}
+  {{- end -}}
+{{- end -}}
+
+<section class="project-section">
+  {{- $clickable := site.Params.projectsClickable | default false -}}
+  {{- if $clickable -}}
+    <a class="project-section-link" href="{{ $page.RelPermalink }}" aria-label="{{ $page.LinkTitle }}">
+  {{- else -}}
+    <div class="project-section-link" role="group" aria-label="{{ $page.LinkTitle }}">
+  {{- end -}}
+    <div class="visual-area">
+      {{- with $page.Params.visual_image -}}
+        <img class="visual-img" src="{{ . | relURL }}" alt="{{ $page.LinkTitle }}">
+      {{- else -}}
+        {{- with $page.Params.visual_text -}}
+          {{ . }}
+        {{- else -}}
+          Architecture / Data Flow Diagram
+        {{- end -}}
+      {{- end -}}
+    </div>
+
+    <div class="title"><span>{{ $indexText }}</span> {{ $page.LinkTitle }}</div>
+    {{- with $subtitle -}}<div class="subtitle">{{ . | safeHTML }}</div>{{- end -}}
+    {{- with $summary -}}<p class="project-summary">{{ . }}</p>{{- end -}}
+
+    {{- with $page.Params.tasks -}}
+      <div class="task-desktop">
+        <ul class="task-list">
+          {{- range first 2 . -}}
+            <li class="task-item">
+              {{- with .title -}}<span class="task-title">{{ . }}</span>{{- end -}}
+              {{- with .desc -}}
+                {{- $desc := . | plainify -}}
+                {{- $desc = $desc | replaceRE `(?i)(\b(?:p95|p99)\b)` `<strong class="metric">$1</strong>` -}}
+                {{- $desc = $desc | replaceRE `(?i)(\b[0-9]+(?:\.[0-9]+)?\s*(?:%|ms|s|sec|qps|tps|rps|배|x|gb|mb|kb))($|[^A-Za-z0-9])` `<strong class="metric">$1</strong>$2` -}}
+                <span class="task-desc">{{ $desc | safeHTML }}</span>
+              {{- end -}}
+            </li>
+          {{- end -}}
+        </ul>
+      </div>
+
+      <details class="task-disclosure">
+        <summary>Details</summary>
+        <ul class="task-list">
+          {{- range first 2 . -}}
+            <li class="task-item">
+              {{- with .title -}}<span class="task-title">{{ . }}</span>{{- end -}}
+              {{- with .desc -}}
+                {{- $desc := . | plainify -}}
+                {{- $desc = $desc | replaceRE `(?i)(\b(?:p95|p99)\b)` `<strong class="metric">$1</strong>` -}}
+                {{- $desc = $desc | replaceRE `(?i)(\b[0-9]+(?:\.[0-9]+)?\s*(?:%|ms|s|sec|qps|tps|rps|배|x|gb|mb|kb))($|[^A-Za-z0-9])` `<strong class="metric">$1</strong>$2` -}}
+                <span class="task-desc">{{ $desc | safeHTML }}</span>
+              {{- end -}}
+            </li>
+          {{- end -}}
+        </ul>
+      </details>
+    {{- end -}}
+
+    {{- with $page.Params.stack -}}
+      <div class="tech-tags">
+        {{- range . -}}<span class="tech-tag">{{ . }}</span>{{- end -}}
+      </div>
+    {{- end -}}
+  {{- if $clickable -}}
+    </a>
+  {{- else -}}
+    </div>
+  {{- end -}}
+</section>

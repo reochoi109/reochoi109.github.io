@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <section style="padding-top: 0">
+    <div class="section-label">{{ with .Params.type }}{{ . }}{{ else }}Project{{ end }}</div>
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.visual_image -}}
+      <div class="project-hero">
+        <img class="project-hero-img" src="{{ . | relURL }}" alt="{{ $.Title }}">
+      </div>
+    {{- end -}}
+    {{- with .Params.period -}}
+      <p style="font-size: 1.1rem; color: var(--text-sub)">{{ . }}</p>
+    {{- end -}}
+    {{- with .Params.stack -}}
+      <div class="tag-list">
+        {{- range . -}}<span class="tag">#{{ . }}</span>{{- end -}}
+      </div>
+    {{- end -}}
+    {{- with .Params.highlights -}}
+      <ul class="project-highlights">
+        {{- range . -}}<li>{{ . }}</li>{{- end -}}
+      </ul>
+    {{- end -}}
+    <div class="prose">
+      {{ .Content }}
+    </div>
+  </section>
+{{ end }}
