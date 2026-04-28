@@ -96,6 +96,31 @@ a:hover {
   align-items: center;
 }
 
+.lang-nav {
+  margin-left: 32px;
+}
+
+.lang-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.lang-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  letter-spacing: 0.5px;
+}
+
+.lang-link.is-active {
+  color: var(--text-main);
+}
+
 .theme-toggle {
   display: none;
 }

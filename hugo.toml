@@ -1,6 +1,7 @@
 baseURL = 'https://reochoi109.github.io/'
-languageCode = 'en-us'
-defaultContentLanguage = 'en'
+languageCode = 'ko-kr'
+defaultContentLanguage = 'ko'
+defaultContentLanguageInSubdir = true
 title = 'Reo Blog'
 theme = 'studio'
 enableRobotsTXT = true
@@ -26,21 +27,58 @@ showSkills = true
 showProjectsDivider = true
 projectsClickable = false
 
-[menu]
-[[menu.main]]
-name = 'Home'
-url = '/'
-weight = 10
+[languages]
+  [languages.ko]
+  weight = 1
+  languageName = '한국어'
+  languageCode = 'ko-kr'
+  title = 'Reo Blog'
+  contentDir = 'content/ko'
+    [languages.ko.params]
+    brand = 'Reo'
+    description = 'Backend engineer writing about systems, performance, and product engineering.'
 
-[[menu.main]]
-name = 'Projects'
-url = '/projects/'
-weight = 30
+    [languages.ko.menu]
+      [[languages.ko.menu.main]]
+      name = '홈'
+      pageRef = '/'
+      weight = 10
 
-[[menu.main]]
-name = 'About'
-url = '/about/'
-weight = 40
+      [[languages.ko.menu.main]]
+      name = '프로젝트'
+      pageRef = '/projects'
+      weight = 30
+
+      [[languages.ko.menu.main]]
+      name = '소개'
+      pageRef = '/about'
+      weight = 40
+
+  [languages.en]
+  weight = 2
+  languageName = 'English'
+  languageCode = 'en-us'
+  title = 'Reo Blog'
+  contentDir = 'content/en'
+    [languages.en.params]
+    brand = 'Reo'
+    description = 'Backend engineer writing about systems, performance, and product engineering.'
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+      name = 'Home'
+      pageRef = '/'
+      weight = 10
+
+      [[languages.en.menu.main]]
+      name = 'Projects'
+      pageRef = '/projects'
+      weight = 30
+
+      [[languages.en.menu.main]]
+      name = 'About'
+      pageRef = '/about'
+      weight = 40
 
 [markup]
   [markup.tableOfContents]

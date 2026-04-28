@@ -2,4 +2,25 @@
 <a class="brand-link" href="{{ site.Home.RelPermalink }}">{{ $brand }}</a>
 <div class="header-actions">
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  {{- if gt (len site.Languages) 1 }}
+    <nav class="lang-nav" aria-label="Language">
+      <ul class="lang-list">
+        {{- $page := . }}
+        {{- range site.Languages }}
+          {{- $isCurrent := eq .Lang site.Language.Lang }}
+          {{- $target := site.Home }}
+          {{- if $page.IsTranslated }}
+            {{- with where $page.AllTranslations "Lang" .Lang }}
+              {{- $target = index . 0 }}
+            {{- end }}
+          {{- end }}
+          <li class="lang-item">
+            <a class="lang-link{{ if $isCurrent }} is-active{{ end }}" href="{{ $target.RelPermalink }}">
+              {{ .Lang | upper }}
+            </a>
+          </li>
+        {{- end }}
+      </ul>
+    </nav>
+  {{- end }}
 </div>
