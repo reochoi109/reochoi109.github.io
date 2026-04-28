@@ -1,6 +1,6 @@
 baseURL = 'https://reochoi109.github.io/'
-languageCode = 'ko-kr'
-defaultContentLanguage = 'ko'
+languageCode = 'en-us'
+defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 title = 'Reo Blog'
 theme = 'studio'
@@ -37,20 +37,19 @@ projectsClickable = false
     [languages.ko.params]
     brand = 'Reo'
     description = 'Backend engineer writing about systems, performance, and product engineering.'
-
     [languages.ko.menu]
       [[languages.ko.menu.main]]
-      name = '홈'
+      name = 'Home'
       pageRef = '/'
       weight = 10
 
       [[languages.ko.menu.main]]
-      name = '프로젝트'
+      name = 'Projects'
       pageRef = '/projects'
       weight = 30
 
       [[languages.ko.menu.main]]
-      name = '소개'
+      name = 'About'
       pageRef = '/about'
       weight = 40
 
@@ -63,7 +62,6 @@ projectsClickable = false
     [languages.en.params]
     brand = 'Reo'
     description = 'Backend engineer writing about systems, performance, and product engineering.'
-
     [languages.en.menu]
       [[languages.en.menu.main]]
       name = 'Home'
