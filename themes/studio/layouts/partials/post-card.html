@@ -1,0 +1,22 @@
+{{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" -}}
+{{- $dateHuman := .Date | time.Format ":date_medium" -}}
+<article class="card">
+  <a class="card-link" href="{{ .RelPermalink }}">
+    <div class="card-top">
+      <h3 class="card-title">{{ .LinkTitle }}</h3>
+      {{- if .Date }}
+        <time class="card-date" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+      {{- end }}
+    </div>
+    {{- with .Summary }}
+      <p class="card-summary">{{ . | plainify }}</p>
+    {{- end }}
+    {{- with .Params.tags }}
+      <div class="card-tags">
+        {{- range first 3 . }}
+          <span class="tag">#{{ . }}</span>
+        {{- end }}
+      </div>
+    {{- end }}
+  </a>
+</article>

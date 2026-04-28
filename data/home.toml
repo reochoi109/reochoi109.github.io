@@ -1,0 +1,33 @@
+skills = ["Go", "Python", "TypeScript", "PostgreSQL", "Kafka", "Docker", "AWS"]
+
+[profile]
+handle = ""
+name = "Your Name"
+tagline = "One-line tagline goes here."
+email = "hello@example.com"
+
+[[experience]]
+company = "Company One"
+company_url = "#"
+role = "Backend Engineer"
+period = "2025.01 – Present"
+tags = ["Go", "PostgreSQL", "OpenTelemetry"]
+
+[[experience]]
+company = "Company Two"
+company_url = "#"
+role = "Fullstack Engineer"
+period = "2021.01 – 2023.12"
+tags = ["TypeScript", "React", "Next.js"]
+
+[[social]]
+label = "Blog"
+url = "#"
+
+[[social]]
+label = "GitHub"
+url = "#"
+
+[[social]]
+label = "Email"
+url = "mailto:hello@example.com"

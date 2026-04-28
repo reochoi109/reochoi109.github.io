@@ -1,0 +1,60 @@
+{{- $desc := "" -}}
+{{- if .IsHome -}}
+  {{- $desc = site.Params.description -}}
+{{- else -}}
+  {{- with .Description -}}
+    {{- $desc = . -}}
+  {{- else -}}
+    {{- with .Summary -}}
+      {{- $desc = . | plainify -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $desc -}}
+  {{- $desc = site.Params.description -}}
+{{- end -}}
+{{- with $desc -}}
+  {{- $desc = . | plainify | htmlUnescape | truncate 160 -}}
+{{- end -}}
+{{- if $desc -}}
+  <meta name="description" content="{{ $desc }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+{{- end -}}
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+{{- $code := site.Language.LanguageCode | default "en-us" -}}
+{{- $parts := split $code "-" -}}
+{{- $lang := lower (index $parts 0) -}}
+{{- $region := "" -}}
+{{- if ge (len $parts) 2 -}}
+  {{- $region = upper (index $parts 1) -}}
+{{- end -}}
+<meta property="og:locale" content="{{ if $region }}{{ printf "%s_%s" $lang $region }}{{ else }}{{ $lang }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- $img := "" -}}
+{{- with .Params.images -}}
+  {{- if gt (len .) 0 -}}
+    {{- $img = index . 0 -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- with .Params.visual_image -}}
+    {{- $img = . -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- with site.Params.ogImage -}}
+    {{- $img = . -}}
+  {{- end -}}
+{{- end -}}
+
+<meta name="twitter:card" content="{{ if $img }}summary_large_image{{ else }}summary{{ end }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+{{- if $img -}}
+  <meta property="og:image" content="{{ $img | absURL }}">
+  <meta name="twitter:image" content="{{ $img | absURL }}">
+{{- end -}}

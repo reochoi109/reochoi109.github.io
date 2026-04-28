@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="about-wrap">
+  {{- with .Params.name_line -}}
+    <div class="about-name">{{ . }}</div>
+  {{- else -}}
+    <div class="about-name">About</div>
+  {{- end -}}
+
+  {{- with .Params.intro -}}
+  <div class="about-intro">{{ . | safeHTML }}</div>
+  {{- end -}}
+
+  <div class="about-sections prose">{{ .Content }}</div>
+</div>
+{{ end }}

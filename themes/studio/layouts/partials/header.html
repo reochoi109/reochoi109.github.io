@@ -1,0 +1,5 @@
+{{- $brand := site.Params.brand | default site.Title -}}
+<a class="brand-link" href="{{ site.Home.RelPermalink }}">{{ $brand }}</a>
+<div class="header-actions">
+  {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+</div>
