@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <header class="page-head">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{- with .Content }}
+      <div class="prose">{{ . }}</div>
+    {{- end }}
+  </header>
+
+  {{- $pages := .Pages.ByDate.Reverse -}}
+  {{- $p := .Paginate $pages -}}
+  <div class="card-list">
+    {{ range $p.Pages }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+
+  {{ if gt $p.TotalPages 1 }}
+    <nav class="pager" aria-label="Pagination">
+      {{ with $p.Prev }}<a class="pager-link" href="{{ .URL }}">Prev</a>{{ end }}
+      <span class="pager-meta">{{ $p.PageNumber }} / {{ $p.TotalPages }}</span>
+      {{ with $p.Next }}<a class="pager-link" href="{{ .URL }}">Next</a>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

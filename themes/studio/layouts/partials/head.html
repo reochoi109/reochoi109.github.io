@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{ partial "head/meta.html" . }}
+<script>
+  (() => {
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.dataset.theme = saved;
+      }
+    } catch {}
+  })();
+</script>
+{{ partialCached "head/css.html" . }}
+{{ partial "head/vars.html" . }}
+{{ partialCached "head/js.html" . }}

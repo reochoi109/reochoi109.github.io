@@ -1,0 +1,48 @@
+{{ define "main" }}
+  {{- $home := site.Data.home | default (dict) -}}
+  {{- $profile := $home.profile | default (dict) -}}
+
+  <section class="profile">
+    <h1 class="profile-name">{{ or $profile.name site.Title }}</h1>
+    {{- with $profile.tagline }}<p class="profile-tagline">{{ . }}</p>{{ end -}}
+  </section>
+
+  {{- if site.Params.showExperience -}}
+    {{- with $home.experience -}}
+    <section>
+      <div class="section-head">
+        <div class="section-label">Experience</div>
+        <a class="project-btn" href="{{ (site.GetPage "section" "projects").RelPermalink }}">Projects →</a>
+      </div>
+
+      <div class="exp-list">
+        {{- range . -}}
+          <div class="exp-card">
+            <div class="col-left">{{ .company }}</div>
+            <div class="col-right">
+              <div class="exp-title">{{ .role }}</div>
+              <div class="exp-date">{{ .period }}</div>
+              {{- with .tags -}}
+                <div class="tag-list">
+                  {{- range . -}}<span class="tag">{{ . }}</span>{{- end -}}
+                </div>
+              {{- end -}}
+            </div>
+          </div>
+        {{- end -}}
+      </div>
+    </section>
+    {{- end -}}
+  {{- end -}}
+
+  {{- if site.Params.showSkills -}}
+    {{- with $home.skills -}}
+    <section style="padding-top: 0">
+      <div class="section-label">Skills</div>
+      <div class="skill-list">
+        {{- range . -}}<span class="skill-chip">{{ . }}</span>{{- end -}}
+      </div>
+    </section>
+    {{- end -}}
+  {{- end -}}
+{{ end }}

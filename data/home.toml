@@ -1,0 +1,33 @@
+skills = ["Go", "Python", "TypeScript", "PostgreSQL", "Kafka", "Docker", "AWS"]
+
+[profile]
+handle = ""
+name = "Sinuk Choi"
+tagline = "Reo"
+email = "reochoi109@gmail.com"
+
+[[experience]]
+company = "Company One"
+company_url = "#"
+role = "Backend Engineer"
+period = "2025.01 – Present"
+tags = ["Go", "PostgreSQL", "OpenTelemetry"]
+
+[[experience]]
+company = "Company Two"
+company_url = "#"
+role = "Fullstack Engineer"
+period = "2021.01 – 2023.12"
+tags = ["TypeScript", "React", "Next.js"]
+
+[[social]]
+label = "Blog"
+url = "https://reo-tech.tistory.com/"
+
+[[social]]
+label = "GitHub"
+url = "https://github.com/reochoi109"
+
+[[social]]
+label = "Email"
+url = "mailto:reochoi109@gmail.com"

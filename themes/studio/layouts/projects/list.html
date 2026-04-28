@@ -1,0 +1,27 @@
+{{ define "main" }}
+  {{- with .Content }}
+    <section style="padding-top: 0">
+      <div class="prose">{{ . }}</div>
+    </section>
+  {{- end }}
+
+  {{- $pages := .Pages.ByDate.Reverse -}}
+  {{- $p := .Paginate $pages -}}
+  <section style="padding-top: 0">
+    {{- $total := len $p.Pages -}}
+    {{ range $i, $page := $p.Pages }}
+      {{ partial "project-item.html" (dict "page" $page "index" (add $i 1)) }}
+      {{- if and site.Params.showProjectsDivider (lt (add $i 1) $total) -}}
+        <div class="projects-divider" aria-hidden="true">...</div>
+      {{- end -}}
+    {{ end }}
+  </section>
+
+  {{ if gt $p.TotalPages 1 }}
+    <nav class="pager" aria-label="Pagination">
+      {{ with $p.Prev }}<a class="pager-link" href="{{ .URL }}">Prev</a>{{ end }}
+      <span class="pager-meta">{{ $p.PageNumber }} / {{ $p.TotalPages }}</span>
+      {{ with $p.Next }}<a class="pager-link" href="{{ .URL }}">Next</a>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}
