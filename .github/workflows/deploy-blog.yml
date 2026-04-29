@@ -30,6 +30,9 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Add README to publish dir
+        run: cp README.blog.md public/README.md
+
       - name: Deploy to blog branch
         uses: peaceiris/actions-gh-pages@v4
         with:
