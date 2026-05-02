@@ -4,23 +4,27 @@
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
   {{- if gt (len site.Languages) 1 }}
     <nav class="lang-nav" aria-label="Language">
-      <ul class="lang-list">
-        {{- $page := . }}
-        {{- range site.Languages }}
-          {{- $isCurrent := eq .Lang site.Language.Lang }}
-          {{- $target := site.Home }}
-          {{- if $page.IsTranslated }}
-            {{- with where $page.AllTranslations "Lang" .Lang }}
-              {{- $target = index . 0 }}
-            {{- end }}
-          {{- end }}
-          <li class="lang-item">
-            <a class="lang-link{{ if $isCurrent }} is-active{{ end }}" href="{{ $target.RelPermalink }}">
-              {{ .Lang | upper }}
-            </a>
-          </li>
-        {{- end }}
-      </ul>
+      {{- $page := . -}}
+      <label class="lang-select-label" for="lang-select">Language</label>
+      <select
+        id="lang-select"
+        class="lang-select"
+        aria-label="Select language"
+        onchange="window.location.href=this.value"
+      >
+        {{- range site.Languages -}}
+          {{- $isCurrent := eq .Lang site.Language.Lang -}}
+          {{- $target := site.Home -}}
+          {{- if $page.IsTranslated -}}
+            {{- with where $page.AllTranslations "Lang" .Lang -}}
+              {{- $target = index . 0 -}}
+            {{- end -}}
+          {{- end -}}
+          <option value="{{ $target.RelPermalink }}" {{ if $isCurrent }}selected{{ end }}>
+            {{ .Lang | upper }}
+          </option>
+        {{- end -}}
+      </select>
     </nav>
   {{- end }}
 </div>
