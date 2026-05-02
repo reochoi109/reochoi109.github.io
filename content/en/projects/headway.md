@@ -5,8 +5,8 @@ type = "Web"
 period = "2026.01 - 2026.04"
 org = "Traffic Signal Analytics (Internal)"
 subtitle = "Traffic Signal Analytics | 2026.01 - 2026.04"
-description = "Computed lane-level Headway/GAP KPIs from detection events, aggregated them per signal cycle, and published to a shared analytics DB for signal operations."
-index = 1
+description = "Built a KPI pipeline that computes lane-level Headway/GAP and aggregates per signal cycle, publishing metrics that support day-to-day signal operations."
+index = 2
 visual_text = ""
 visual_image = [
   "/images/projects/1_headway/en/headway-flow.svg",
@@ -14,8 +14,9 @@ visual_image = [
 ]
 
 tasks = [
-  { title = "End-to-end pipeline", desc = "Detection events → lane pairing → Headway/GAP computation → cycle aggregation." },
-  { title = "Quality & validation", desc = "Phase constraints + outlier/consistency filtering to suppress noise, validated at ≥95% correctness (thresholds not disclosed)." },
+  { title = "KPI computation & aggregation", desc = "Paired detection events per lane to compute Headway/GAP, then aggregated per signal cycle for operational reporting." },
+  { title = "Quality stabilization", desc = "Applied phase-aware constraints and outlier/consistency filtering to remove physically impossible noise and stabilize metrics." },
+  { title = "Validation & publishing", desc = "Validated at ≥95% correctness via sampling and published cycle-level KPIs to a shared Tibero analytics DB." },
 ]
 stack = ["Go", "SQL", "ODBC", "Tibero (shared RDB)"]
 tags = ["project", "data-pipeline", "traffic"]

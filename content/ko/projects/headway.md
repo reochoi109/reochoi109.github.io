@@ -5,17 +5,18 @@ type = "Web"
 period = "2026.01 - 2026.04"
 org = "교통 신호 분석(내부)"
 subtitle = "교통 신호 분석 | 2026.01 - 2026.04"
-description = "차량 검지 이벤트로부터 차로 단위 Headway/GAP KPI를 산출하고 사이클 단위로 집계해 공용 분석 DB에 적재, 신호 운영 지표로 활용 가능하게 만들었습니다."
-index = 1
+description = "차량 검지 이벤트로부터 Headway/GAP KPI를 산출하고 사이클 단위로 집계·적재해, 신호 운영 개선에 바로 쓰이는 지표 파이프라인을 구축했습니다."
+index = 2
 visual_text = ""
 visual_image = [
   "/images/projects/1_headway/ko/headway-flow.svg",
-  "/images/projects/1_headway/en/headway.png",
+  "/images/projects/1_headway/ko/headway.png",
 ]
 
 tasks = [
-  { title = "파이프라인 구축", desc = "차량 검지 이벤트 → 차로 페어링 → Headway/GAP 산출 → 사이클 집계까지 end-to-end로 구성했습니다." },
-  { title = "품질/검증", desc = "현시(Phase) 제약 + 이상치/일관성 필터링으로 노이즈를 억제하고, 샘플링 검증에서 정확도 95%+를 확인했습니다." },
+  { title = "KPI 산출/집계", desc = "차량 검지 이벤트를 차로 단위로 페어링하고 Headway/GAP를 산출한 뒤, 사이클 단위로 집계해 운영 지표로 제공했습니다." },
+  { title = "품질 안정화", desc = "현시(Phase) 기반 제약 + 이상치/일관성 필터링으로 물리적으로 불가능한 노이즈를 제거해 지표 안정성을 높였습니다." },
+  { title = "검증/적재", desc = "샘플링 검증 기준 정확도 95%+를 확인하고, 공용 분석 DB(Tibero)에 적재해 조직 내 재사용이 가능하도록 했습니다." },
 ]
 stack = ["Go", "SQL", "ODBC", "Tibero(공용 RDB)"]
 tags = ["project", "data-pipeline", "traffic"]

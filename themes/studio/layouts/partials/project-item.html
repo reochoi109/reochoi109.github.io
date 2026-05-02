@@ -36,18 +36,26 @@
   {{- else -}}
     <div class="project-section-link" role="group" aria-label="{{ $page.LinkTitle }}">
   {{- end -}}
-    <div class="visual-area">
-      {{- $images := slice -}}
-      {{- with $page.Params.visual_images -}}
+    {{- $images := slice -}}
+    {{- with $page.Params.visual_images -}}
+      {{- if reflect.IsSlice . -}}
+        {{- $images = . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if eq (len $images) 0 -}}
+      {{- with $page.Params.visual_image -}}
         {{- if reflect.IsSlice . -}}
           {{- $images = . -}}
+        {{- else -}}
+          {{- $images = slice -}}
         {{- end -}}
       {{- end -}}
+    {{- end -}}
+
+    <div class="visual-area{{ if gt (len $images) 0 }} visual-area--slider{{ end }}">
       {{- if eq (len $images) 0 -}}
         {{- with $page.Params.visual_image -}}
-          {{- if reflect.IsSlice . -}}
-            {{- $images = . -}}
-          {{- else -}}
+          {{- if not (reflect.IsSlice .) -}}
             <img class="visual-img" src="{{ . | relURL }}" alt="{{ $page.LinkTitle }}">
           {{- end -}}
         {{- end -}}
@@ -83,16 +91,16 @@
     {{- with $subtitle -}}<div class="subtitle">{{ . | safeHTML }}</div>{{- end -}}
     {{- with $summary -}}<p class="project-summary">{{ . }}</p>{{- end -}}
 
-    {{- with $page.Params.highlights -}}
-      <ul class="project-highlights project-highlights--compact">
-        {{- range first 2 . -}}<li>{{ . }}</li>{{- end -}}
-      </ul>
+    {{- with $page.Params.tags -}}
+      <div class="meta-tags" aria-label="Tags">
+        {{- range . -}}<span class="meta-tag">#{{ . }}</span>{{- end -}}
+      </div>
     {{- end -}}
 
     {{- with $page.Params.tasks -}}
       <div class="task-desktop">
         <ul class="task-list">
-          {{- range first 2 . -}}
+          {{- range first 3 . -}}
             <li class="task-item">
               {{- with .title -}}<span class="task-title">{{ . }}</span>{{- end -}}
               {{- with .desc -}}
@@ -105,23 +113,6 @@
           {{- end -}}
         </ul>
       </div>
-
-      <details class="task-disclosure">
-        <summary>Details</summary>
-        <ul class="task-list">
-          {{- range first 2 . -}}
-            <li class="task-item">
-              {{- with .title -}}<span class="task-title">{{ . }}</span>{{- end -}}
-              {{- with .desc -}}
-                {{- $desc := . | plainify -}}
-                {{- $desc = $desc | replaceRE `(?i)(\b(?:p95|p99)\b)` `<strong class="metric">$1</strong>` -}}
-                {{- $desc = $desc | replaceRE `(?i)(\b[0-9]+(?:\.[0-9]+)?\s*(?:%|ms|s|sec|qps|tps|rps|배|x|gb|mb|kb))($|[^A-Za-z0-9])` `<strong class="metric">$1</strong>$2` -}}
-                <span class="task-desc">{{ $desc | safeHTML }}</span>
-              {{- end -}}
-            </li>
-          {{- end -}}
-        </ul>
-      </details>
     {{- end -}}
 
     {{- with $page.Params.stack -}}

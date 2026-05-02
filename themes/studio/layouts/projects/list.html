@@ -5,7 +5,7 @@
     </section>
   {{- end }}
 
-  {{- $pages := .Pages.ByDate.Reverse -}}
+  {{- $pages := sort .Pages "Params.index" -}}
   {{- $p := .Paginate $pages -}}
   <section style="padding-top: 0">
     {{- $total := len $p.Pages -}}
