@@ -1,24 +1,17 @@
-skills = ["Go", "Python", "TypeScript", "PostgreSQL", "Kafka", "Docker", "AWS"]
+skills = ["Go", "Python", "PostgreSQL", "Kafka", "Docker"]
 
 [profile]
 handle = ""
-name = "Sinuk Choi"
-tagline = "Reo"
+name = "최신욱"
+tagline = "Sinuk Choi ( Reo Choi )"
 email = "reochoi109@gmail.com"
 
 [[experience]]
-company = "Company One"
-company_url = "#"
+company = "Raon Load"
+company_url = "https://www.laonroad.com/"
 role = "Backend Engineer"
-period = "2025.01 – Present"
-tags = ["Go", "PostgreSQL", "OpenTelemetry"]
-
-[[experience]]
-company = "Company Two"
-company_url = "#"
-role = "Fullstack Engineer"
-period = "2021.01 – 2023.12"
-tags = ["TypeScript", "React", "Next.js"]
+period = "2023.05 – 2025.08"
+tags = ["Go", "Python", "PostgreSQL", "Kafka", "Docker"]
 
 [[social]]
 label = "Blog"
