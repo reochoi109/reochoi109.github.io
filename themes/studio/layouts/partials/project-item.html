@@ -37,8 +37,39 @@
     <div class="project-section-link" role="group" aria-label="{{ $page.LinkTitle }}">
   {{- end -}}
     <div class="visual-area">
-      {{- with $page.Params.visual_image -}}
-        <img class="visual-img" src="{{ . | relURL }}" alt="{{ $page.LinkTitle }}">
+      {{- $images := slice -}}
+      {{- with $page.Params.visual_images -}}
+        {{- if reflect.IsSlice . -}}
+          {{- $images = . -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if eq (len $images) 0 -}}
+        {{- with $page.Params.visual_image -}}
+          {{- if reflect.IsSlice . -}}
+            {{- $images = . -}}
+          {{- else -}}
+            <img class="visual-img" src="{{ . | relURL }}" alt="{{ $page.LinkTitle }}">
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- if gt (len $images) 0 -}}
+        <div class="slider" data-slider role="group" aria-label="Image slider">
+          <div class="slider-viewport">
+            <div class="slider-track" data-slider-track>
+              {{- range $images -}}
+                {{- $src := . -}}
+                {{- $url := cond (or (hasPrefix $src "http://") (hasPrefix $src "https://")) $src ($src | relURL) -}}
+                <div class="slider-slide" data-slider-slide>
+                  <img src="{{ $url }}" alt="{{ $page.LinkTitle }}">
+                </div>
+              {{- end -}}
+            </div>
+          </div>
+          <button class="slider-btn prev" type="button" data-slider-prev aria-label="Previous slide">‹</button>
+          <button class="slider-btn next" type="button" data-slider-next aria-label="Next slide">›</button>
+          <div class="slider-dots" data-slider-dots aria-label="Slide selector"></div>
+        </div>
       {{- else -}}
         {{- with $page.Params.visual_text -}}
           {{ . }}
@@ -51,6 +82,12 @@
     <div class="title"><span>{{ $indexText }}</span> {{ $page.LinkTitle }}</div>
     {{- with $subtitle -}}<div class="subtitle">{{ . | safeHTML }}</div>{{- end -}}
     {{- with $summary -}}<p class="project-summary">{{ . }}</p>{{- end -}}
+
+    {{- with $page.Params.highlights -}}
+      <ul class="project-highlights project-highlights--compact">
+        {{- range first 2 . -}}<li>{{ . }}</li>{{- end -}}
+      </ul>
+    {{- end -}}
 
     {{- with $page.Params.tasks -}}
       <div class="task-desktop">

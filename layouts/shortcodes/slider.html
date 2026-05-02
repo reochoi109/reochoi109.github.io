@@ -1,0 +1,35 @@
+{{- $lines := split (trim .Inner "\n\r\t ") "\n" -}}
+{{- $items := slice -}}
+{{- range $lines -}}
+  {{- $line := trim . " \t\r" -}}
+  {{- if $line -}}
+    {{- $items = $items | append $line -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if lt (len $items) 2 -}}
+  {{- /* Fallback: render inner content as-is when there aren't multiple slides. */ -}}
+  {{- .Inner | markdownify -}}
+{{- else -}}
+  <div class="slider" data-slider role="group" aria-label="Image slider">
+    <div class="slider-viewport">
+      <div class="slider-track" data-slider-track>
+        {{- range $i, $raw := $items -}}
+          {{- $parts := split $raw "|" -}}
+          {{- $src := trim (index $parts 0) " " -}}
+          {{- $alt := "" -}}
+          {{- if ge (len $parts) 2 -}}
+            {{- $alt = trim (index $parts 1) " " -}}
+          {{- end -}}
+          {{- $url := cond (or (hasPrefix $src "http://") (hasPrefix $src "https://")) $src ($src | relURL) -}}
+          <div class="slider-slide" data-slider-slide>
+            <img src="{{ $url }}" alt="{{ $alt }}">
+          </div>
+        {{- end -}}
+      </div>
+    </div>
+    <button class="slider-btn prev" type="button" data-slider-prev aria-label="Previous slide">‹</button>
+    <button class="slider-btn next" type="button" data-slider-next aria-label="Next slide">›</button>
+    <div class="slider-dots" data-slider-dots aria-label="Slide selector"></div>
+  </div>
+{{- end -}}

@@ -43,7 +43,22 @@
 {{- end -}}
 {{- if not $img -}}
   {{- with .Params.visual_image -}}
-    {{- $img = . -}}
+    {{- if reflect.IsSlice . -}}
+      {{- if gt (len .) 0 -}}
+        {{- $img = index . 0 -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $img = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- with .Params.visual_images -}}
+    {{- if reflect.IsSlice . -}}
+      {{- if gt (len .) 0 -}}
+        {{- $img = index . 0 -}}
+      {{- end -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- if not $img -}}
