@@ -9,8 +9,7 @@ description = "Built real-time backend capabilities for a video analytics servic
 index = 3
 visual_text = ""
 visual_image = [
-  "/images/projects/odin/en/odin-architecture.svg",
-  "/images/projects/odin/en/odin-flows.svg",
+  "/images/odin.jpg",
 ]
 
 tasks = [

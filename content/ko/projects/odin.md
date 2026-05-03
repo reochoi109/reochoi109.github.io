@@ -9,8 +9,7 @@ description = "영상 분석 서비스 운영을 위해 이벤트 알림, BBox �
 index = 3
 visual_text = ""
 visual_image = [
-  "/images/projects/odin/ko/odin-architecture.svg",
-  "/images/projects/odin/ko/odin-flows.svg",
+  "/images/odin.jpg",
 ]
 
 tasks = [
