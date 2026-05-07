@@ -2,9 +2,9 @@
 title = "신호 운영용 Headway/GAP KPI 파이프라인"
 date = 2026-04-28T00:00:00+09:00
 type = "Web"
-period = "2023.07 - 2023.08"
+period = "2024.07 - 2024.09"
 org = "교통 신호 분석(내부)"
-subtitle = "교통 신호 분석 | 2023.07 - 2023.08"
+subtitle = "교통 신호 분석 | 2024.07 - 2024.09"
 description = "차량 검지 이벤트로부터 Headway/GAP KPI를 산출하고 사이클 단위로 집계·적재해, 신호 운영 개선에 바로 쓰이는 지표 파이프라인을 구축했습니다."
 index = 2
 visual_text = ""

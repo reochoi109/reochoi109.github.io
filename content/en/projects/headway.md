@@ -2,9 +2,9 @@
 title = "Headway/GAP KPI Pipeline for Signal Ops"
 date = 2026-04-28T00:00:00+09:00
 type = "Web"
-period = "2023.07 - 2023.08"
+period = "2024.07 - 2024.09"
 org = "Traffic Signal Analytics (Internal)"
-subtitle = "Traffic Signal Analytics | 2023.07 - 2023.08"
+subtitle = "Traffic Signal Analytics | 2024.07 - 2024.09"
 description = "Built a KPI pipeline that computes lane-level Headway/GAP and aggregates per signal cycle, publishing metrics that support day-to-day signal operations."
 index = 2
 visual_text = ""
