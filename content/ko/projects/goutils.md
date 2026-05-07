@@ -2,9 +2,9 @@
 title = "GOUTILS: 사내 공용 Go 유틸 라이브러리"
 date = 2025-01-02T00:00:00+09:00
 type = "Web"
-period = "2025.01 - 2026.01"
+period = "2025.01 - 2025.07"
 org = "Backend Platform (Internal)"
-subtitle = "Backend Platform | 2025.01 - 2026.01"
+subtitle = "Backend Platform | 2025.01 - 2025.07"
 description = "서비스마다 반복되던 인프라 코드를 공용 Go 모듈로 표준화해, 로깅/검증/DB풀/HTTP/Kafka/WebSocket/RTSP 등 재사용 가능한 패키지로 제공했습니다."
 index = 4
 visual_text = ""

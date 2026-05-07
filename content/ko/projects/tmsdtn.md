@@ -2,9 +2,9 @@
 title = "디지털 트윈 시뮬레이션 데이터 스트리밍 중계 서버"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
-period = "2025.03 - 2025.06"
+period = "2024.09 - 2024.12"
 org = "Traffic Digital Twin (Project)"
-subtitle = "Traffic Digital Twin | 2025.03 - 2025.06"
+subtitle = "Traffic Digital Twin | 2024.09 - 2024.12"
 description = "대용량 시뮬레이션 시계열 데이터를 안정적으로 수집·저장·검증하고, 다중 사용자에게 스트리밍/리플레이로 제공하는 중계 서버를 개발했습니다."
 index = 1
 visual_text = ""

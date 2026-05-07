@@ -2,9 +2,9 @@
 title = "ODIN Sentinel Server (Realtime Events, BBox, Streaming)"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
-period = "2026.01 - 2026.04"
+period = "2025.01 - 2025.04"
 org = "Video Analytics Platform (Internal)"
-subtitle = "Video Analytics Platform | 2026.01 - 2026.04"
+subtitle = "Video Analytics Platform | 2025.01 - 2025.04"
 description = "Built real-time backend capabilities for a video analytics service: event notifications, BBox overlays, RTSP-to-WebSocket relay, and snapshot retention."
 index = 3
 visual_text = ""

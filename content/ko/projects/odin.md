@@ -2,9 +2,9 @@
 title = "ODIN Sentinel 서버(실시간 이벤트·BBox·스트리밍)"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
-period = "2026.01 - 2026.04"
+period = "2025.01 - 2025.04"
 org = "영상 분석 플랫폼(내부)"
-subtitle = "영상 분석 플랫폼 | 2026.01 - 2026.04"
+subtitle = "영상 분석 플랫폼 | 2025.01 - 2025.04"
 description = "영상 분석 서비스 운영을 위해 이벤트 알림, BBox 오버레이, RTSP→WebSocket 릴레이를 구축하고, 스냅샷 보관 정책과 상태 점검까지 포함한 실시간 백엔드 기능을 개발했습니다."
 index = 3
 visual_text = ""

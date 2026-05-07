@@ -2,9 +2,9 @@
 title = "Digital Twin Simulation Streaming Relay Server"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
-period = "2025.03 - 2025.06"
+period = "2024.09 - 2024.12"
 org = "Digital Twin Platform (Project)"
-subtitle = "Digital Twin Platform | 2025.03 - 2025.06"
+subtitle = "Digital Twin Platform | 2024.09 - 2024.12"
 description = "Built a relay server to ingest, store, validate, and deliver large-scale simulation time-series data via streaming/replay for multiple users."
 index = 1
 visual_text = ""
