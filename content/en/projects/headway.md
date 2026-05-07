@@ -9,8 +9,7 @@ description = "Built a KPI pipeline that computes lane-level Headway/GAP and agg
 index = 2
 visual_text = ""
 visual_image = [
-  "/images/projects/1_headway/en/headway-flow.svg",
-  "/images/projects/1_headway/en/headway.png",
+  "/images/headway-flow.svg",
 ]
 
 tasks = [

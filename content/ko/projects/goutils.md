@@ -9,9 +9,9 @@ description = "서비스마다 반복되던 인프라 코드를 공용 Go 모듈
 index = 4
 visual_text = ""
 visual_image = [
-  "/images/projects/goutils/ko/goutils-overview.svg",
-  "/images/projects/goutils/ko/goutils-packages.svg",
+  "/images/goutils-infographicp.png",
 ]
+
 
 tasks = [
   { title = "표준화 패키지 제공", desc = "로깅(logrus+lumberjack), 입력 검증(validator), 공통 API 응답/에러 포맷, gin middleware 등 서비스 공통 규격을 패키지로 정리했습니다." },

@@ -9,8 +9,7 @@ description = "차량 검지 이벤트로부터 Headway/GAP KPI를 산출하고 
 index = 2
 visual_text = ""
 visual_image = [
-  "/images/projects/1_headway/ko/headway-flow.svg",
-  "/images/projects/1_headway/ko/headway.png",
+  "/images/headway-flow.svg",
 ]
 
 tasks = [

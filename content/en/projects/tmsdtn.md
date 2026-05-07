@@ -9,8 +9,7 @@ description = "Built a relay server to ingest, store, validate, and deliver larg
 index = 1
 visual_text = ""
 visual_image = [
-  "/images/projects/tmsdtn/en/tmsdtn-architecture.svg",
-  "/images/projects/tmsdtn/en/tmsdtn-sequence.svg",
+  "/images/tmsdtn.jpg",
 ]
 
 tasks = [

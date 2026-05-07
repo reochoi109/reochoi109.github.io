@@ -9,8 +9,7 @@ description = "Standardized recurring infra code into a shared Go module: loggin
 index = 4
 visual_text = ""
 visual_image = [
-  "/images/projects/goutils/en/goutils-overview.svg",
-  "/images/projects/goutils/en/goutils-packages.svg",
+  "/images/goutils-infographicp.png",
 ]
 
 tasks = [
