@@ -9,7 +9,7 @@ description = "서비스마다 반복되던 인프라 코드를 공용 Go 모듈
 index = 4
 visual_text = ""
 visual_image = [
-  "/images/goutils-infographicp.png",
+  "/images/goutils-infographic.png",
 ]
 
 

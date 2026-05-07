@@ -9,7 +9,7 @@ description = "대용량 시뮬레이션 시계열 데이터를 안정적으로 
 index = 1
 visual_text = ""
 visual_image = [
-  "/images/tmsdtn.jpg",
+  "/images/tmsdtn.png",
 ]
 
 tasks = [
