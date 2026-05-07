@@ -2,9 +2,9 @@
 title = "Starter Project"
 date = 2026-04-28T00:00:00+09:00
 type = "Web"
-period = "2026.01 - 2026.04"
+period = "2023.07 - 2023.08"
 org = "Collaboration Platform"
-subtitle = "Collaboration Platform | 2026.01 - 2026.04"
+subtitle = "Collaboration Platform | 2023.07 - 2023.08"
 description = "Template project for validating the list card layout, metrics highlighting, and tech tags."
 index = 1
 visual_text = "Architecture / Data Flow Diagram"

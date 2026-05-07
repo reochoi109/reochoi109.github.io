@@ -2,9 +2,9 @@
 title = "GOUTILS: Internal Go Shared Utilities"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
-period = "2023.05 - 2025.08"
+period = "2025.05 - 2025.08"
 org = "Backend Platform (Internal)"
-subtitle = "Backend Platform | 2023.05 - 2025.08"
+subtitle = "Backend Platform | 2025.05 - 2025.08"
 description = "Standardized recurring infra code into a shared Go module: logging, validation, DB pools, HTTP clients, Kafka/WebSocket/RTSP utilities, and operational helpers."
 index = 4
 visual_text = ""

@@ -18,7 +18,14 @@
       <div class="exp-list">
         {{- range . -}}
           <div class="exp-card">
-            <div class="col-left">{{ .company }}</div>
+            <div class="col-left">
+              {{- $company := .company -}}
+              {{- with .company_url -}}
+                <a class="exp-company" href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $company }}</a>
+              {{- else -}}
+                {{ $company }}
+              {{- end -}}
+            </div>
             <div class="col-right">
               <div class="exp-title">{{ .role }}</div>
               <div class="exp-date">{{ .period }}</div>
