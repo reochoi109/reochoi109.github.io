@@ -5,6 +5,11 @@
   <section class="profile">
     <h1 class="profile-name">{{ or $profile.name site.Title }}</h1>
     {{- with $profile.tagline }}<p class="profile-tagline">{{ . }}</p>{{ end -}}
+    {{- $bio := $profile.bio_en -}}
+    {{- if eq site.Language.Lang "ko" -}}
+      {{- $bio = $profile.bio_ko -}}
+    {{- end -}}
+    {{- with $bio }}<p class="profile-bio">{{ . }}</p>{{ end -}}
   </section>
 
   {{- if site.Params.showExperience -}}

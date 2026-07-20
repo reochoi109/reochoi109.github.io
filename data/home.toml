@@ -5,6 +5,8 @@ handle = ""
 name = "최신욱"
 tagline = "Sinuk Choi ( Reo Choi )"
 email = "reochoi109@gmail.com"
+bio_ko = "Go 기반 실시간 데이터 처리와 시스템 안정성에 강점을 가진 백엔드 엔지니어입니다. 최근에는 AI를 활용해 다양한 서비스 아이디어를 기획하고 구현·배포하며 제품 개발 전반의 경험을 넓혀가고 있습니다."
+bio_en = "I am a backend engineer specializing in Go-based real-time data processing and system reliability. Recently, I have been using AI to plan, build, and deploy a variety of service ideas while broadening my experience across the product development lifecycle."
 
 [[experience]]
 company = "Raon Load"

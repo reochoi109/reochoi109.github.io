@@ -103,4 +103,5 @@ $RECYCLE.BIN/
 
 .projects
 .md
+/.not-deploy/
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,hugo,go
