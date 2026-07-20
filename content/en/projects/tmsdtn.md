@@ -1,11 +1,11 @@
 +++
-title = "Digital Twin Simulation Streaming Relay Server"
+title = "Digital Twin Road Simulation Relay Server"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
 period = "2024.09 - 2024.12"
-org = "Digital Twin Platform (Project)"
-subtitle = "Digital Twin Platform | 2024.09 - 2024.12"
-description = "Built a relay server to ingest, store, validate, and deliver large-scale simulation time-series data via streaming/replay for multiple users."
+org = "Laon Road"
+subtitle = "Backend Project | 2024.09 - 2024.12"
+description = "Designed and built a Go relay server that asynchronously processes simulation requests and results and delivers generated traffic data to clients."
 index = 1
 visual_text = ""
 visual_image = [
@@ -13,57 +13,40 @@ visual_image = [
 ]
 
 tasks = [
-  { title = "Eliminated drops", desc = "Replaced WebSocket-based ingest with a Kafka queue to absorb producer/consumer skew and reduced data loss to ~0%." },
-  { title = "Integrity + memory reduction", desc = "Agreed on a 9,000-chunk transmission contract to detect missing indices and cut peak memory usage by ~90% via streaming writes." },
-  { title = "Storage & delivery optimization", desc = "Serialized data to binary and compressed in chunks (up to 7GB → ~700MB), and removed client sync errors with an explicit handshake." },
+  { title = "End-to-end backend ownership", desc = "Designed and implemented the REST APIs, Kafka request/result flow, data storage, and WebSocket delivery." },
+  { title = "Memory handling improvement", desc = "Changed the 9,000-point result flow from in-memory accumulation to write-on-receive processing." },
+  { title = "Result storage and delivery", desc = "Generated JSON result files, compressed them as tar.gz, and streamed stored results to multiple users over WebSocket." },
 ]
-stack = ["Go", "Gin", "Kafka", "WebSocket", "chunked compression (tar.gz)", "serialization & integrity checks"]
+stack = ["Go", "Gin", "Kafka", "PostgreSQL", "WebSocket", "Docker", "Swagger/OpenAPI"]
 tags = ["project", "digital-twin", "traffic", "backend", "simulation"]
 +++
 
-## Goal
+## Overview
 
-Build a reliable **digital twin service** that controls and visualizes a traffic simulation derived from **real-world traffic data**. The backend sits between the **simulation server** and the **front-end viewer**, providing a stable API contract and twin-ready data.
+This backend relay service sits between the simulation server and its clients. It handles analysis requests, progress and result collection, traffic-data transformation, and delivery. I designed and implemented the entire backend.
 
-## What I built
+## Responsibilities
 
-- **Backend orchestrator layer** between front-end and simulation server:
-  - Front-end uses a single domain API surface, without directly depending on simulation-specific protocols or schemas.
-- **Simulation control APIs** (domainized):
-  - Create/run/stop simulation jobs, query status/progress, and fetch results.
-  - Normalize simulation server responses into stable client contracts (success/failure/progress).
-- **Twin data delivery**:
-  - Collect simulation outputs and expose **digital-twin entities/events** (e.g., road network elements, vehicles, signals, incidents).
-  - Transform raw outputs into **viewer-ready DTOs** (unit/coordinate normalization, field selection, ordering/filtering).
-- **Long-running job management**:
-  - Manage job lifecycle as `queued → running → (failed|completed)`.
-  - Provide consistent state queries; support safe cancellation/stop flows where the simulation server allows it.
-- **Reliability & error handling**:
-  - Timeout handling, conditional retries, idempotency/deduplication, and error mapping to user-facing codes/messages.
+- Built REST APIs and a shared response format for analysis requests, progress, and results
+- Exposed simulation outputs such as traffic volume, level of service (LOS), and carbon emissions
+- Used Kafka and per-job IDs to process long-running simulation requests and results asynchronously
+- Received and stored generated traffic-analysis results and transformed them into client-facing responses
+- Streamed stored results to multiple users over WebSocket and synchronized start/end states
 
-## Architecture (concept)
+## Data processing improvement
 
-```mermaid
-flowchart LR
-  FE[Front / Digital Twin Viewer] -->|Sim Control + Twin APIs| BE[Backend API / Orchestrator]
-  BE -->|REST/RPC| SIM[Simulation Server]
-  SIM -->|Status + Result| BE
-  BE -->|Twin DTO / State| FE
-  BE <--> DB[(DB: jobs, sessions, snapshots)]
-```
+A 15-minute simulation result arrives as 9,000 time-point records. The previous approach kept every record in memory until reception completed and then generated the file in one batch, which increased memory usage.
 
-## Key challenge (contract & change management)
+I changed the flow to append each record to a file as it arrived and remove the recorded data from memory immediately. This kept only the record currently being processed in memory instead of the entire result set.
 
-Simulation servers tend to evolve quickly (parameter changes, schema additions, new error modes). The main challenge was keeping the front-end productive by:
+The completed result was stored as JSON and compressed as tar.gz for storage and delivery.
 
-- absorbing simulation-side changes in the backend,
-- stabilizing the API contract via DTO/schema normalization,
-- and making error/status handling predictable for long-running workloads.
+## Architecture
 
-## Validation (non-numeric)
+![](/images/projects/tmsdtn/ko/tmsdtn-architecture.svg)
 
-Post-release stability was ensured through scenario-based integration checks (happy path + failure modes such as timeouts, invalid parameters, and partial results). Quantitative KPIs are not disclosed/available after leaving the company.
+![](/images/projects/tmsdtn/ko/tmsdtn-sequence.svg)
 
-## Why it matters
+## Scope
 
-By centralizing simulation control and twin-data transformation in the backend, the front-end can focus on visualization/UX while the simulation team can evolve their implementation without breaking client integrations.
+This was a new backend service built from the ground up. I owned the full flow from API contracts and asynchronous messaging to data storage and real-time delivery.

@@ -40,7 +40,7 @@
   <text x="1120" y="152" class="title">필터·집계·적재</text>
   <text x="1120" y="178" class="desc">이상치 제거(노이즈/불일치)</text>
   <text x="1120" y="202" class="desc">사이클 단위 평균/합계</text>
-  <text x="1120" y="226" class="desc">신호 운영 KPI 저장</text>
+  <text x="1120" y="226" class="desc">차량 간격 분석 결과 저장</text>
 
   <!-- Arrows -->
   <path class="arrow" d="M270 180 L320 180" marker-end="url(#arrowhead)"/>

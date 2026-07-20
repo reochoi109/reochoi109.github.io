@@ -1,11 +1,11 @@
 +++
-title = "GOUTILS: Internal Go Shared Utilities"
+title = "GOUTILS: Internal Shared Go Module"
 date = 2026-05-02T00:00:00+09:00
 type = "Web"
 period = "2025.01 - 2025.07"
-org = "Backend Platform (Internal)"
-subtitle = "Backend Platform | 2025.01 - 2025.07"
-description = "Standardized recurring infra code into a shared Go module: logging, validation, DB pools, HTTP clients, Kafka/WebSocket/RTSP utilities, and operational helpers."
+org = "Laon Road"
+subtitle = "Backend Module | 2025.01 - 2025.07"
+description = "Packaged recurring and inconsistent backend implementations into a shared Go module, then versioned, distributed, and documented it for internal services."
 index = 4
 visual_text = ""
 visual_image = [
@@ -13,15 +13,34 @@ visual_image = [
 ]
 
 tasks = [
-  { title = "Standard libraries", desc = "Packaged shared conventions such as logging (logrus+lumberjack), request validation, common API error/response formats, and Gin middleware." },
-  { title = "Infra helpers", desc = "Modularized DB/DB pools (Postgres/MySQL), HTTP client wrappers (resty), scheduling/batch helpers, and file compression/cleanup utilities." },
-  { title = "Realtime/network modules", desc = "Provided reusable patterns for Kafka, WebSockets, RTSP (client/server), and TCP servers (gnet)." },
+  { title = "Shared module design", desc = "Modularized recurring backend functions such as database access, logging, messaging, real-time communication, and validation." },
+  { title = "Versioning and distribution", desc = "Managed versions with Git tags in Bitbucket and let each service reference the required version from go.mod." },
+  { title = "Documentation and adoption", desc = "Documented package usage and release notes in Confluence and applied the module to production services." },
 ]
 
-stack = ["Go", "logrus+lumberjack", "pgx/mysql", "resty", "kafka-go", "gorilla/websocket", "gortsplib"]
-tags = ["project", "platform", "golang", "library", "backend"]
+stack = ["Go", "go.mod", "Bitbucket", "Confluence"]
+tags = ["project", "platform", "golang", "module", "backend"]
 +++
 
-## Summary
+## Overview
 
-A shared Go module that reduces repeated infra code and helps new services adopt consistent patterns quickly.
+Existing services repeated backend infrastructure code such as database access, logging, messaging, and real-time communication. Implementations and versions also differed by project. I designed and built **goutils** to provide these functions as a shared module.
+
+## Included functionality
+
+- Database connections and pool management
+- Logging and input validation
+- Kafka message processing
+- Real-time communication including WebSocket
+- HTTP integration and shared API responses
+- Shared file-processing and operational helpers
+
+## Distribution and documentation
+
+The module was maintained in a private Bitbucket repository. Versions were identified by Git tags, and each service referenced the required version from its go.mod file.
+
+I documented package usage and release notes in Confluence. The module was used by internal services, including the digital twin relay server.
+
+## Scope
+
+I owned the module structure, implementation, versioning approach, internal distribution, and documentation.
