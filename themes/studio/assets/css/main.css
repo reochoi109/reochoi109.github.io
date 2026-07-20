@@ -605,6 +605,23 @@ h1 {
   max-width: 62ch;
 }
 
+.side-project-section .project-summary {
+  margin-bottom: 16px;
+}
+
+.side-project-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+}
+
+.side-project-url:hover {
+  border-bottom-color: currentColor;
+}
+
 .project-highlights {
   margin: 0 0 22px;
   padding-left: 18px;

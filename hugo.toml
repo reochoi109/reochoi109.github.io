@@ -44,9 +44,14 @@ projectsClickable = false
       weight = 10
 
       [[languages.ko.menu.main]]
-      name = 'Projects'
+      name = 'Backend Projects'
       pageRef = '/projects'
       weight = 30
+
+      [[languages.ko.menu.main]]
+      name = 'Side Projects'
+      pageRef = '/side-projects'
+      weight = 35
 
       [[languages.ko.menu.main]]
       name = 'About'
@@ -69,9 +74,14 @@ projectsClickable = false
       weight = 10
 
       [[languages.en.menu.main]]
-      name = 'Projects'
+      name = 'Backend Projects'
       pageRef = '/projects'
       weight = 30
+
+      [[languages.en.menu.main]]
+      name = 'Side Projects'
+      pageRef = '/side-projects'
+      weight = 35
 
       [[languages.en.menu.main]]
       name = 'About'
