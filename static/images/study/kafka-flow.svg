@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">Kafka 메시지 흐름</title>
+  <desc id="desc">Producer가 Topic Partition에 메시지를 기록하고 Consumer Group이 Partition을 나누어 읽는 구조</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0l9 3-9 3z" fill="#4979dc"/></marker></defs>
+  <rect width="900" height="430" rx="28" fill="#f6f8fb"/>
+  <text x="52" y="58" fill="#172033" font-family="sans-serif" font-size="25" font-weight="700">Kafka · publish, store, consume</text>
+  <g font-family="sans-serif">
+    <rect x="54" y="164" width="150" height="92" rx="18" fill="#e8f2ff" stroke="#3978e6" stroke-width="2"/>
+    <text x="129" y="202" text-anchor="middle" fill="#1769d2" font-size="18" font-weight="700">PRODUCER</text>
+    <text x="129" y="227" text-anchor="middle" fill="#68758a" font-size="13">key + message</text>
+    <path d="M208 210h92" stroke="#4979dc" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="312" y="88" width="278" height="254" rx="22" fill="#fff" stroke="#aab5c5" stroke-width="2"/>
+    <text x="451" y="122" text-anchor="middle" fill="#172033" font-size="17" font-weight="700">TOPIC · events</text>
+    <g font-size="13" font-weight="700">
+      <rect x="342" y="146" width="218" height="46" rx="10" fill="#eafaf2" stroke="#27a66b"/><text x="358" y="174" fill="#197849">P0</text>
+      <text x="402" y="174" fill="#59677a">0</text><text x="448" y="174" fill="#59677a">1</text><text x="494" y="174" fill="#59677a">2</text><text x="540" y="174" fill="#59677a">3</text>
+      <rect x="342" y="207" width="218" height="46" rx="10" fill="#eafaf2" stroke="#27a66b"/><text x="358" y="235" fill="#197849">P1</text>
+      <text x="402" y="235" fill="#59677a">0</text><text x="448" y="235" fill="#59677a">1</text><text x="494" y="235" fill="#59677a">2</text>
+      <rect x="342" y="268" width="218" height="46" rx="10" fill="#eafaf2" stroke="#27a66b"/><text x="358" y="296" fill="#197849">P2</text>
+      <text x="402" y="296" fill="#59677a">0</text><text x="448" y="296" fill="#59677a">1</text><text x="494" y="296" fill="#59677a">2</text>
+    </g>
+    <path d="M594 169h92M594 230h92M594 291h92" stroke="#4979dc" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="699" y="126" width="150" height="72" rx="17" fill="#fff4e8" stroke="#e8872f" stroke-width="2"/>
+    <rect x="699" y="233" width="150" height="72" rx="17" fill="#fff4e8" stroke="#e8872f" stroke-width="2"/>
+    <text x="774" y="157" text-anchor="middle" fill="#a95a14" font-size="16" font-weight="700">CONSUMER A</text>
+    <text x="774" y="178" text-anchor="middle" fill="#7f6b59" font-size="12">P0 · P1</text>
+    <text x="774" y="264" text-anchor="middle" fill="#a95a14" font-size="16" font-weight="700">CONSUMER B</text>
+    <text x="774" y="285" text-anchor="middle" fill="#7f6b59" font-size="12">P2</text>
+    <text x="774" y="344" text-anchor="middle" fill="#68758a" font-size="13" font-weight="700">same consumer group</text>
+  </g>
+</svg>
