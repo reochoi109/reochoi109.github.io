@@ -6,6 +6,7 @@ type = "page"
 standalone = true
 index = 2
 robots = "noindex, nofollow, noarchive"
+theory_source = "assets/study-notes/data-structures.md"
 
 [build]
 list = "local"

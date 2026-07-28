@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+  <title id="title">Hash 충돌과 해결 방식</title>
+  <desc id="desc">서로 다른 Key가 같은 Bucket에 충돌했을 때 Separate Chaining과 Open Addressing으로 저장하는 방식</desc>
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0l8 3-8 3z" fill="#3978e6"/></marker></defs>
+  <rect width="1000" height="520" rx="30" fill="#f6f8fb"/>
+  <g font-family="sans-serif">
+    <text x="52" y="60" fill="#172033" font-size="27" font-weight="700">Hash collision</text><text x="52" y="88" fill="#66758a" font-size="15">서로 다른 Key가 같은 Bucket 후보에 도착할 수 있다</text>
+    <rect x="70" y="130" width="170" height="54" rx="13" fill="#e8f2ff" stroke="#3978e6"/><text x="155" y="163" text-anchor="middle" fill="#1769d2" font-size="15" font-weight="700">hash(key) % 5</text>
+    <text x="70" y="222" fill="#172033" font-size="17" font-weight="700">Separate chaining</text>
+    <g text-anchor="middle" font-size="14" font-weight="700"><rect x="70" y="246" width="96" height="48" rx="10" fill="#fff" stroke="#9467d8"/><text x="118" y="276" fill="#7140b5">bucket 2</text><rect x="230" y="246" width="110" height="48" rx="10" fill="#f5edff" stroke="#9467d8"/><text x="285" y="276" fill="#7140b5">reo</text><rect x="396" y="246" width="110" height="48" rx="10" fill="#f5edff" stroke="#9467d8"/><text x="451" y="276" fill="#7140b5">choi</text><rect x="562" y="246" width="110" height="48" rx="10" fill="#f5edff" stroke="#9467d8"/><text x="617" y="276" fill="#7140b5">study</text></g>
+    <path d="M166 270h48M340 270h40M506 270h40" stroke="#3978e6" stroke-width="3" marker-end="url(#a)"/>
+    <text x="70" y="356" fill="#172033" font-size="17" font-weight="700">Open addressing · linear probing example</text>
+    <g text-anchor="middle" font-size="14" font-weight="700"><rect x="70" y="382" width="120" height="64" rx="10" fill="#fff" stroke="#aab5c5"/><rect x="190" y="382" width="120" height="64" fill="#fff" stroke="#aab5c5"/><rect x="310" y="382" width="120" height="64" fill="#e8f2ff" stroke="#3978e6"/><rect x="430" y="382" width="120" height="64" fill="#fff4e8" stroke="#e8872f"/><rect x="550" y="382" width="120" height="64" rx="10" fill="#eafaf2" stroke="#27a66b"/><text x="130" y="407" fill="#66758a">0</text><text x="250" y="407" fill="#66758a">1</text><text x="370" y="407" fill="#1769d2">2 · reo</text><text x="490" y="407" fill="#a95a14">3 · choi</text><text x="610" y="407" fill="#197849">4 · study</text><text x="370" y="432" fill="#66758a" font-size="11">home</text><text x="490" y="432" fill="#66758a" font-size="11">next empty</text><text x="610" y="432" fill="#66758a" font-size="11">next empty</text></g>
+    <text x="720" y="402" fill="#66758a" font-size="14">Load Factor가 커지면</text><text x="720" y="428" fill="#172033" font-size="15" font-weight="700">탐사 길이와 충돌 증가</text>
+  </g>
+</svg>

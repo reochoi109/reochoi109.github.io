@@ -6,6 +6,7 @@ type = "page"
 standalone = true
 index = 4
 robots = "noindex, nofollow, noarchive"
+theory_source = "assets/study-notes/operating-system.md"
 
 [build]
 list = "local"

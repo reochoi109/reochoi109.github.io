@@ -6,6 +6,7 @@ type = "page"
 standalone = true
 index = 3
 robots = "noindex, nofollow, noarchive"
+theory_source = "assets/study-notes/network.md"
 
 [build]
 list = "local"
@@ -98,4 +99,34 @@ answer = "클라이언트는 지수 백오프와 무작위 지연을 사용해 �
 explanation = "연결이 끊긴 정확한 시점을 양쪽이 다르게 인식할 수 있어 중복 수신도 발생합니다. 따라서 클라이언트 처리는 이벤트 ID를 기준으로 멱등해야 합니다. 모든 이벤트 복구가 필요하지 않은 화면 갱신이라면 최신 스냅샷만 다시 받는 전략이 더 단순할 수 있습니다."
 points = ["재연결 폭주를 막기 위해 백오프와 jitter를 사용한다.", "순번으로 누락과 중복을 판별한다.", "이벤트 재생과 최신 상태 재조회 중 요구사항에 맞게 선택한다."]
 terms = [{ name = "지수 백오프", description = "재시도 간격을 매번 일정 배수로 늘려 서버 부담을 낮추는 방식입니다." }, { name = "Jitter", description = "여러 클라이언트의 재시도 시점이 겹치지 않도록 대기 시간에 무작위 값을 더하는 기법입니다." }, { name = "멱등 처리", description = "같은 이벤트를 중복 처리해도 최종 결과가 한 번 처리한 것과 같도록 만드는 방식입니다." }]
+
+[[cards]]
+subcategory = "인증 상태"
+difficulty = "초급"
+question = "Cookie와 Session은 각각 어떤 역할을 하나요?"
+answer = "Cookie는 브라우저가 저장하고 조건에 맞는 HTTP 요청에 자동으로 포함하는 작은 데이터입니다. Session 방식에서는 서버가 로그인 상태를 저장하고 브라우저 Cookie에는 그 상태를 찾기 위한 무작위 Session ID만 둡니다."
+explanation = "Cookie는 상태 전달 수단이고 Session은 서버 측 상태 관리 방식이므로 둘은 경쟁 기술이 아닙니다. 인증 Cookie에는 Secure, HttpOnly, SameSite와 적절한 만료를 설정하고 로그인 후 Session ID를 재발급해 Session Fixation을 막습니다."
+points = ["Cookie와 Session의 역할을 구분한다.", "Session ID는 예측하기 어렵고 만료 가능해야 한다.", "Cookie 속성과 CSRF 방어를 함께 설계한다."]
+terms = [{ name = "Cookie", description = "브라우저가 저장하고 Domain, Path, SameSite 등의 조건에 맞춰 요청에 첨부하는 데이터입니다." }, { name = "Session", description = "여러 요청을 하나의 사용자 문맥으로 연결하기 위해 서버가 관리하는 상태입니다." }, { name = "Session Fixation", description = "공격자가 정한 Session ID를 피해자가 로그인 후에도 쓰게 만들어 Session을 탈취하는 공격입니다." }]
+image = "/images/study/auth-state-flow.svg"
+image_alt = "Session ID를 서버 저장소에서 조회하는 방식과 JWT를 검증하는 방식"
+image_caption = "Cookie는 전달 수단이며 Session과 JWT는 상태를 표현하는 서로 다른 설계입니다."
+
+[[cards]]
+subcategory = "인증 상태"
+difficulty = "중급"
+question = "Session 기반 인증과 JWT 기반 인증의 장단점을 비교해보세요."
+answer = "Session은 서버 저장소 조회가 필요하지만 상태 삭제로 즉시 폐기하기 쉽습니다. Self-contained JWT는 서명과 Claim을 로컬에서 검증할 수 있어 분산 환경에 유리할 수 있지만 Token이 크고 만료 전 즉시 폐기하려면 별도 상태나 정책이 필요합니다."
+explanation = "JWT가 항상 Stateless인 것은 아닙니다. Denylist, Token Version, Refresh Token Rotation을 사용하면 서버 상태가 생깁니다. 반대로 Session도 공용 저장소와 적절한 분산 설계로 확장할 수 있습니다. 일반 Web Login에서는 단순하고 폐기가 쉬운 Session이 더 적합할 수 있습니다."
+points = ["상태 위치와 즉시 폐기 가능성을 비교한다.", "JWT를 쓰면 자동으로 확장성과 보안이 해결되는 것은 아니다.", "서비스 요구사항으로 선택한다."]
+terms = [{ name = "Self-contained Token", description = "검증에 필요한 Claim을 Token 자체에 포함한 형식입니다." }, { name = "Denylist", description = "아직 만료되지 않았지만 더 이상 허용하지 않을 Token 식별자를 저장한 목록입니다." }, { name = "Refresh Token Rotation", description = "Refresh Token 사용 시 새 Token으로 교체하고 이전 Token 재사용을 탐지하는 방식입니다." }]
+
+[[cards]]
+subcategory = "인증 상태"
+difficulty = "고급"
+question = "JWT를 사용하는 인증 시스템을 안전하게 설계할 때 무엇을 검증해야 하나요?"
+answer = "허용 Algorithm과 Key를 서버 설정으로 제한하고 Signature, issuer, audience, subject, expiry를 검증해야 합니다. Access Token은 짧게 유지하고 Refresh Token은 안전하게 저장하며 Rotation과 재사용 탐지를 적용합니다."
+explanation = "Signed JWT Payload는 암호문이 아니므로 민감 정보를 넣지 않습니다. Browser 저장 위치에 따라 HttpOnly Cookie는 CSRF, JavaScript 접근 가능한 저장소는 XSS 위험을 중점적으로 다뤄야 합니다. 서로 다른 종류의 JWT에는 명확한 type과 별도 검증 규칙을 사용해 Token 혼동 공격을 막습니다."
+points = ["Token의 alg 값을 그대로 신뢰하지 않는다.", "Signature와 Claim Validation을 모두 수행한다.", "저장 위치에 따른 XSS·CSRF 위협을 구분한다."]
+terms = [{ name = "Claim", description = "JWT Payload에 담기는 발급자, 대상, 만료 시각 등의 정보입니다." }, { name = "Audience", description = "Token을 사용하도록 의도된 수신자를 나타내는 aud Claim입니다." }, { name = "Token Confusion", description = "용도가 다른 Token을 잘못된 검증 규칙으로 받아들이는 보안 문제입니다." }]
 +++

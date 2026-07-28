@@ -14,7 +14,7 @@ CONTENT_DIR = ROOT / "content" / "ko" / "etc" / "memo" / "reo"
 DECKS = {
     "development-languages.md": {"Go", "Python", "Gin", "FastAPI", "Django"},
     "data-structures-algorithms.md": {"선형 자료구조", "해시", "복잡도"},
-    "network.md": {"HTTP", "TCP/IP", "WebSocket"},
+    "network.md": {"HTTP", "TCP/IP", "WebSocket", "인증 상태"},
     "operating-system.md": {"프로세스와 스레드", "메모리", "동기화"},
     "database.md": {"데이터 모델링", "인덱스", "트랜잭션"},
     "backend-technologies.md": {"Kafka", "PostgreSQL", "WebSocket"},
@@ -109,8 +109,8 @@ def main() -> int:
                         f"coverage: {filename} / {subtopic} / {difficulty} has {count}; expected 1"
                     )
 
-    if total != 60:
-        errors.append(f"card count is {total}; expected 60")
+    if total != 63:
+        errors.append(f"card count is {total}; expected 63")
 
     if errors:
         print("Interview content validation failed:")
@@ -118,7 +118,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print("Validated 60 interview cards: coverage, uniqueness, explanations, and terms OK")
+    print("Validated 63 interview cards: coverage, uniqueness, explanations, and terms OK")
     return 0
 
 

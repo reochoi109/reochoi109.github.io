@@ -6,6 +6,7 @@ type = "page"
 standalone = true
 index = 5
 robots = "noindex, nofollow, noarchive"
+theory_source = "assets/study-notes/database.md"
 
 [build]
 list = "local"

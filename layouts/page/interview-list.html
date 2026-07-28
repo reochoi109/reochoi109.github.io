@@ -24,6 +24,28 @@
       </div>
     </header>
 
+    <section class="study-quick-access" aria-labelledby="study-quick-title">
+      <div class="study-quick-head">
+        <div>
+          <p class="interview-eyebrow">Theory library</p>
+          <h2 id="study-quick-title">이론 학습 바로가기</h2>
+        </div>
+        <p>정리된 노트를 읽고 같은 과목의 면접 카드로 복습하세요.</p>
+      </div>
+      <div class="study-quick-grid">
+        {{- range $decks }}
+          {{- if .Params.theory_source }}
+            <a href="{{ .RelPermalink }}?view=theory">
+              <span>{{ printf "%02d" (.Params.index | default 0) }}</span>
+              <strong>{{ .Title }}</strong>
+              <small>이론 노트 열기</small>
+              <i aria-hidden="true">→</i>
+            </a>
+          {{- end }}
+        {{- end }}
+      </div>
+    </section>
+
     <div class="study-legend" aria-label="난이도 표시">
       <span><i class="difficulty-dot is-beginner"></i>초급</span>
       <span><i class="difficulty-dot is-intermediate"></i>중급</span>
@@ -52,9 +74,16 @@
               <h2 class="study-topic-title">{{ .Title }}</h2>
               {{- with .Description }}<p class="study-topic-description">{{ . }}</p>{{ end }}
             </div>
-            <a class="study-topic-all" href="{{ .RelPermalink }}">
-              전체 {{ len $cards }}개 학습 <span aria-hidden="true">→</span>
-            </a>
+            <div class="study-topic-actions">
+              <a class="study-topic-all" href="{{ .RelPermalink }}">
+                카드 {{ len $cards }}개 <span aria-hidden="true">→</span>
+              </a>
+              {{- if .Params.theory_source }}
+                <a class="study-topic-theory" href="{{ .RelPermalink }}?view=theory">
+                  이론 학습 <span aria-hidden="true">→</span>
+                </a>
+              {{- end }}
+            </div>
           </div>
 
           <div class="study-topic-summary">

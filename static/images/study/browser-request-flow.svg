@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
+  <title id="title">브라우저 URL 요청 흐름</title>
+  <desc id="desc">URL 입력 후 DNS 조회, 연결과 TLS 협상, HTTP 요청, 서버 처리, HTTP 응답과 브라우저 렌더링으로 이어지는 흐름</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7f9fc"/>
+      <stop offset="1" stop-color="#edf3fb"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0 0l9 3-9 3z" fill="#3978e6"/>
+    </marker>
+  </defs>
+  <rect width="1120" height="470" rx="30" fill="url(#bg)"/>
+  <g font-family="sans-serif">
+    <text x="52" y="58" fill="#172033" font-size="27" font-weight="700">URL → Pixels</text>
+    <text x="52" y="86" fill="#66758a" font-size="15">주소 입력부터 화면 렌더링까지</text>
+
+    <g text-anchor="middle">
+      <rect x="54" y="146" width="162" height="104" rx="18" fill="#e8f2ff" stroke="#3978e6" stroke-width="2"/>
+      <text x="135" y="184" fill="#1769d2" font-size="17" font-weight="700">1 · URL 해석</text>
+      <text x="135" y="212" fill="#66758a" font-size="13">scheme · host</text>
+      <text x="135" y="232" fill="#66758a" font-size="13">port · path</text>
+
+      <rect x="272" y="146" width="162" height="104" rx="18" fill="#f5edff" stroke="#9467d8" stroke-width="2"/>
+      <text x="353" y="184" fill="#7140b5" font-size="17" font-weight="700">2 · DNS</text>
+      <text x="353" y="212" fill="#66758a" font-size="13">domain name</text>
+      <text x="353" y="232" fill="#66758a" font-size="13">→ IP address</text>
+
+      <rect x="490" y="146" width="162" height="104" rx="18" fill="#fff4e8" stroke="#e8872f" stroke-width="2"/>
+      <text x="571" y="184" fill="#a95a14" font-size="17" font-weight="700">3 · 연결 + TLS</text>
+      <text x="571" y="212" fill="#66758a" font-size="13">TCP or QUIC</text>
+      <text x="571" y="232" fill="#66758a" font-size="13">인증 · 키 합의</text>
+
+      <rect x="708" y="146" width="162" height="104" rx="18" fill="#eafaf2" stroke="#27a66b" stroke-width="2"/>
+      <text x="789" y="184" fill="#197849" font-size="17" font-weight="700">4 · 서버 처리</text>
+      <text x="789" y="212" fill="#66758a" font-size="13">cache · app</text>
+      <text x="789" y="232" fill="#66758a" font-size="13">database · API</text>
+
+      <rect x="926" y="146" width="162" height="104" rx="18" fill="#e8f2ff" stroke="#3978e6" stroke-width="2"/>
+      <text x="1007" y="184" fill="#1769d2" font-size="17" font-weight="700">5 · 렌더링</text>
+      <text x="1007" y="212" fill="#66758a" font-size="13">DOM · CSSOM</text>
+      <text x="1007" y="232" fill="#66758a" font-size="13">layout · paint</text>
+    </g>
+
+    <g fill="none" stroke="#3978e6" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M220 198h35"/>
+      <path d="M438 198h35"/>
+      <path d="M656 198h35"/>
+      <path d="M874 198h35"/>
+    </g>
+
+    <path d="M587 291C690 350 822 350 926 276" fill="none" stroke="#27a66b" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="760" y="347" text-anchor="middle" fill="#197849" font-size="14" font-weight="700">HTTP response</text>
+    <path d="M490 276C405 354 270 354 216 276" fill="none" stroke="#9467d8" stroke-width="2" stroke-dasharray="7 7"/>
+    <text x="353" y="382" text-anchor="middle" fill="#7140b5" font-size="14" font-weight="700">캐시와 연결을 재사용하면 일부 단계 생략</text>
+
+    <g font-size="13" font-weight="700">
+      <circle cx="85" cy="419" r="6" fill="#3978e6"/>
+      <text x="100" y="424" fill="#66758a">브라우저</text>
+      <circle cx="210" cy="419" r="6" fill="#9467d8"/>
+      <text x="225" y="424" fill="#66758a">이름 해석</text>
+      <circle cx="345" cy="419" r="6" fill="#e8872f"/>
+      <text x="360" y="424" fill="#66758a">네트워크·보안</text>
+      <circle cx="512" cy="419" r="6" fill="#27a66b"/>
+      <text x="527" y="424" fill="#66758a">백엔드</text>
+    </g>
+  </g>
+</svg>

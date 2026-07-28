@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+  <title id="title">Min Heap과 Binary Search Tree 비교</title>
+  <desc id="desc">Min Heap은 부모가 자식보다 작고 배열로 표현되며 BST는 왼쪽이 작고 오른쪽이 큰 정렬 규칙을 가짐</desc>
+  <rect width="1000" height="560" rx="30" fill="#f6f8fb"/>
+  <g font-family="sans-serif" text-anchor="middle">
+    <text x="500" y="58" fill="#172033" font-size="27" font-weight="700">Heap property ≠ Search order</text>
+    <text x="255" y="112" fill="#1769d2" font-size="19" font-weight="700">MIN HEAP</text><text x="745" y="112" fill="#7140b5" font-size="19" font-weight="700">BINARY SEARCH TREE</text>
+    <g stroke-width="3" fill="none"><path d="M255 168L155 253M255 168l100 85M155 253l-55 85M155 253l55 85M355 253l-55 85M355 253l55 85" stroke="#3978e6"/><path d="M745 168L645 253M745 168l100 85M645 253l-55 85M645 253l55 85M845 253l-55 85M845 253l55 85" stroke="#9467d8"/></g>
+    <g font-size="17" font-weight="700"><g fill="#e8f2ff" stroke="#3978e6"><circle cx="255" cy="168" r="34"/><circle cx="155" cy="253" r="34"/><circle cx="355" cy="253" r="34"/><circle cx="100" cy="338" r="34"/><circle cx="210" cy="338" r="34"/><circle cx="300" cy="338" r="34"/><circle cx="410" cy="338" r="34"/></g><g fill="#1769d2"><text x="255" y="174">1</text><text x="155" y="259">4</text><text x="355" y="259">3</text><text x="100" y="344">9</text><text x="210" y="344">7</text><text x="300" y="344">8</text><text x="410" y="344">6</text></g>
+    <g fill="#f5edff" stroke="#9467d8"><circle cx="745" cy="168" r="34"/><circle cx="645" cy="253" r="34"/><circle cx="845" cy="253" r="34"/><circle cx="590" cy="338" r="34"/><circle cx="700" cy="338" r="34"/><circle cx="790" cy="338" r="34"/><circle cx="900" cy="338" r="34"/></g><g fill="#7140b5"><text x="745" y="174">8</text><text x="645" y="259">4</text><text x="845" y="259">12</text><text x="590" y="344">2</text><text x="700" y="344">6</text><text x="790" y="344">10</text><text x="900" y="344">14</text></g></g>
+    <rect x="72" y="410" width="366" height="78" rx="15" fill="#fff" stroke="#3978e6"/><text x="255" y="443" fill="#1769d2" font-size="15" font-weight="700">[1, 4, 3, 9, 7, 8, 6]</text><text x="255" y="468" fill="#66758a" font-size="13">root min O(1) · push/pop O(log n)</text>
+    <rect x="562" y="410" width="366" height="78" rx="15" fill="#fff" stroke="#9467d8"/><text x="745" y="443" fill="#7140b5" font-size="15" font-weight="700">left &lt; node &lt; right</text><text x="745" y="468" fill="#66758a" font-size="13">balanced search O(log n)</text>
+  </g>
+</svg>

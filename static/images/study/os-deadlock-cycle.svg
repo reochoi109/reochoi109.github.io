@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Operating System Deadlock 순환 대기</title>
+  <desc id="desc">Thread 1과 Thread 2가 Lock A와 Lock B를 각각 보유하고 상대 Lock을 기다리는 순환 구조와 해결 원칙</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0l9 3-9 3z" fill="#d9556b"/></marker></defs>
+  <rect width="900" height="520" rx="30" fill="#f6f8fb"/>
+  <g font-family="sans-serif" text-anchor="middle">
+    <text x="450" y="58" fill="#172033" font-size="27" font-weight="700">Circular wait</text>
+    <circle cx="220" cy="180" r="76" fill="#e8f2ff" stroke="#3978e6" stroke-width="2"/><text x="220" y="174" fill="#1769d2" font-size="18" font-weight="700">THREAD 1</text><text x="220" y="202" fill="#66758a" font-size="13">holds Lock A</text>
+    <circle cx="680" cy="180" r="76" fill="#f5edff" stroke="#9467d8" stroke-width="2"/><text x="680" y="174" fill="#7140b5" font-size="18" font-weight="700">THREAD 2</text><text x="680" y="202" fill="#66758a" font-size="13">holds Lock B</text>
+    <circle cx="450" cy="364" r="76" fill="#fff4e8" stroke="#e8872f" stroke-width="2"/><text x="450" y="357" fill="#a95a14" font-size="17" font-weight="700">NO PROGRESS</text><text x="450" y="384" fill="#66758a" font-size="13">cycle never breaks</text>
+    <path d="M290 145C410 78 500 78 610 145" fill="none" stroke="#d9556b" stroke-width="4" marker-end="url(#a)"/><text x="450" y="96" fill="#c13f55" font-size="14" font-weight="700">waits for Lock B</text>
+    <path d="M628 234C580 278 540 304 518 324" fill="none" stroke="#d9556b" stroke-width="4" marker-end="url(#a)"/><path d="M382 324C350 298 312 272 272 234" fill="none" stroke="#d9556b" stroke-width="4" marker-end="url(#a)"/><text x="676" y="300" fill="#c13f55" font-size="14" font-weight="700">waits for Lock A</text>
+    <rect x="166" y="462" width="568" height="38" rx="12" fill="#eafaf2"/><text x="450" y="487" fill="#197849" font-size="14" font-weight="700">global lock order · short critical section · timeout / detection</text>
+  </g>
+</svg>

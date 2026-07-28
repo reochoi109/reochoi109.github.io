@@ -174,7 +174,10 @@ function initFlashcards() {
       if (counter) counter.textContent = `${cards.length === 0 ? 0 : index + 1} / ${cards.length}`;
       if (sessionTitle) {
         const labels = [selectedSubtopic, selectedDifficulty].filter(Boolean);
-        sessionTitle.textContent = labels.length > 0 ? labels.join(' · ') : '전체 문제';
+        const cardTitle = labels.length > 0 ? labels.join(' · ') : '전체 문제';
+        sessionTitle.dataset.cardTitle = cardTitle;
+        const cardPanel = session.querySelector('[data-study-panel="cards"]');
+        if (!cardPanel || !cardPanel.hidden) sessionTitle.textContent = cardTitle;
       }
 
       if (prev) prev.disabled = cards.length < 2;
@@ -219,6 +222,61 @@ function initFlashcards() {
 
     render();
   }
+}
+
+function initInterviewStudyModes() {
+  document.querySelectorAll('[data-study-mode-switch]').forEach((switcher) => {
+    const session = switcher.closest('.interview-session');
+    if (!session) return;
+
+    const buttons = Array.from(switcher.querySelectorAll('[data-study-mode]'));
+    const panels = Array.from(session.querySelectorAll('[data-study-panel]'));
+    const title = session.querySelector('[data-session-title]');
+    const counter = session.querySelector('[data-flashcard-counter]');
+    const params = new URLSearchParams(window.location.search);
+
+    function selectMode(mode, updateUrl = true) {
+      const selectedMode = mode === 'theory' ? 'theory' : 'cards';
+
+      buttons.forEach((button) => {
+        const selected = button.dataset.studyMode === selectedMode;
+        button.classList.toggle('is-active', selected);
+        button.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.studyPanel !== selectedMode;
+      });
+
+      if (counter) counter.hidden = selectedMode === 'theory';
+      if (title) {
+        title.textContent =
+          selectedMode === 'theory' ? '이론 학습' : title.dataset.cardTitle ?? '전체 문제';
+      }
+
+      if (updateUrl) {
+        const next = new URL(window.location.href);
+        if (selectedMode === 'theory') next.searchParams.set('view', 'theory');
+        else next.searchParams.delete('view');
+        window.history.replaceState({}, '', next);
+      }
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => selectMode(button.dataset.studyMode ?? 'cards'));
+    });
+
+    session.querySelector('[data-theory-top]')?.addEventListener('click', () => {
+      session.querySelector('[data-study-panel="theory"]')?.scrollIntoView({
+        behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth',
+        block: 'start',
+      });
+    });
+
+    selectMode(params.get('view') ?? 'cards', false);
+  });
 }
 
 function initCodingStudy() {
@@ -320,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initSliders();
   initFlashcards();
+  initInterviewStudyModes();
   initCodingStudy();
   initCodingLibrary();
 });

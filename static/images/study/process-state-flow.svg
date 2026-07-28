@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+  <title id="title">Process 상태 전이</title>
+  <desc id="desc">New Ready Running Waiting Terminated 상태와 admit dispatch preempt I/O wait wakeup exit 전이</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0l9 3-9 3z" fill="#3978e6"/></marker></defs>
+  <rect width="1000" height="500" rx="30" fill="#f6f8fb"/>
+  <g font-family="sans-serif" text-anchor="middle">
+    <text x="500" y="58" fill="#172033" font-size="27" font-weight="700">Process lifecycle</text>
+    <g font-size="17" font-weight="700"><rect x="58" y="174" width="150" height="72" rx="18" fill="#f5edff" stroke="#9467d8" stroke-width="2"/><text x="133" y="216" fill="#7140b5">NEW</text><rect x="278" y="174" width="150" height="72" rx="18" fill="#e8f2ff" stroke="#3978e6" stroke-width="2"/><text x="353" y="216" fill="#1769d2">READY</text><rect x="526" y="174" width="150" height="72" rx="18" fill="#eafaf2" stroke="#27a66b" stroke-width="2"/><text x="601" y="216" fill="#197849">RUNNING</text><rect x="790" y="174" width="150" height="72" rx="18" fill="#fff4e8" stroke="#e8872f" stroke-width="2"/><text x="865" y="216" fill="#a95a14">TERMINATED</text><rect x="526" y="348" width="150" height="72" rx="18" fill="#fff" stroke="#d9556b" stroke-width="2"/><text x="601" y="390" fill="#c13f55">WAITING</text></g>
+    <g fill="none" stroke="#3978e6" stroke-width="3" marker-end="url(#a)"><path d="M214 210h48"/><path d="M434 210h76"/><path d="M684 210h90"/><path d="M576 254v76"/><path d="M626 346V264"/><path d="M526 190C482 126 408 126 373 158"/></g>
+    <g fill="#66758a" font-size="12" font-weight="700"><text x="238" y="198">admit</text><text x="471" y="198">dispatch</text><text x="730" y="198">exit</text><text x="545" y="298">I/O wait</text><text x="662" y="304">wakeup</text><text x="453" y="124">preempt</text></g>
+    <text x="500" y="466" fill="#66758a" font-size="14">Ready는 CPU를 기다리고 Waiting은 Event나 I/O 완료를 기다린다</text>
+  </g>
+</svg>
