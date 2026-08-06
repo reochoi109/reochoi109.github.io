@@ -6,7 +6,7 @@
   <head>
     {{ partial "head.html" . }}
   </head>
-  <body class="{{ if eq .Layout "about" }}about-page{{ end }}">
+  <body class="{{ if .IsHome }}home-page{{ end }}{{ if eq .Layout "about" }} about-page{{ end }}{{ with .Section }} section-{{ . }}{{ end }}">
     <header class="site-header">
       <div class="container header-inner">{{ partial "header.html" . }}</div>
     </header>

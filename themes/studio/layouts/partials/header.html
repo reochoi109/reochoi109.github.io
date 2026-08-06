@@ -1,5 +1,7 @@
 {{- $brand := site.Params.brand | default site.Title -}}
-<a class="brand-link" href="{{ site.Home.RelPermalink }}">{{ $brand }}</a>
+<a class="brand-link" href="{{ site.Home.RelPermalink }}" aria-label="{{ $brand }} home">
+  <span class="brand-wordmark" aria-hidden="true">Reo</span>
+</a>
 <div class="header-actions">
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
   {{- if gt (len site.Languages) 1 }}

@@ -1,8 +1,6 @@
 +++
 title = "Home"
-description = "Notes and projects"
+description = "A portfolio focused on growth problems through technical and data experience"
 +++
 
-Hello! This is an example site for the theme.
-
-Replace this content with your own intro, links, and highlights.
+I am extending experience in engineering, independent products, and online retail into growth and performance marketing.

@@ -1,19 +1,72 @@
-skills = ["Go", "Python", "PostgreSQL", "Kafka", "Docker"]
+skills_ko = ["SEO를 고려한 사이트 구조", "웹 분석", "제품 기획·개발", "데이터·SQL", "업무 자동화"]
+skills_en = ["SEO-aware Site Structure", "Web Analytics", "Product Planning & Development", "Data & SQL", "Workflow Automation"]
+
+[[proof]]
+value = "2년+"
+value_en = "2 yrs 4 mos"
+label_ko = "백엔드 개발 실무"
+label_en = "Backend engineering"
+
+[[proof]]
+value = "3개"
+value_en = "3"
+label_ko = "직접 출시한 웹 서비스"
+label_en = "Launched web products"
+
+[[proof]]
+value = "1개"
+value_en = "1"
+label_ko = "실무 요청 자동화 도구"
+label_en = "Workflow automation tool"
+
+[[proof]]
+value = "1회"
+value_en = "1"
+label_ko = "온라인 판매 채널 운영"
+label_en = "Online store operated"
 
 [profile]
-handle = ""
+handle = "Technology · Data · Growth"
 name = "최신욱"
-tagline = "Sinuk Choi ( Reo Choi )"
+name_en = "Sinuk Choi"
+tagline = "From development to growth marketing."
 email = "reochoi109@gmail.com"
-bio_ko = "Go 기반 실시간 데이터 처리와 시스템 안정성에 강점을 가진 백엔드 엔지니어입니다. 최근에는 AI를 활용해 다양한 서비스 아이디어를 기획하고 구현·배포하며 제품 개발 전반의 경험을 넓혀가고 있습니다."
-bio_en = "I am a backend engineer specializing in Go-based real-time data processing and system reliability. Recently, I have been using AI to plan, build, and deploy a variety of service ideas while broadening my experience across the product development lifecycle."
+eyebrow_ko = "TECHNOLOGY · DATA · GROWTH"
+eyebrow_en = "TECHNOLOGY · DATA · GROWTH"
+headline_ko = "기술을 이해하고,\n데이터로 성장을 고민합니다."
+headline_en = "Understanding technology,\nthinking about growth through data."
+bio_ko = "백엔드 개발, SEO를 고려한 개인 웹 서비스 제작, 온라인 판매 채널 운영을 경험했습니다. 기술과 데이터를 다뤄온 강점을 바탕으로 그로스·퍼포먼스 마케팅으로 전문 영역을 넓혀가고 있습니다."
+bio_en = "My experience spans backend engineering, building web products with SEO in mind, and operating an online sales channel. I am extending that technical and data-driven foundation into growth and performance marketing."
+availability_ko = "GROWTH · PERFORMANCE MARKETING"
+availability_en = "GROWTH · PERFORMANCE MARKETING"
+
+[[focus]]
+number = "01"
+title_ko = "개발 실무 경험"
+title_en = "Engineering experience"
+desc_ko = "백엔드 개발을 통해 논리적으로 문제를 나누고 데이터와 기술 도구를 다루는 데 익숙합니다."
+desc_en = "Backend work made me comfortable breaking down problems and working with data and technical tools."
+
+[[focus]]
+number = "02"
+title_ko = "개인 서비스 제작"
+title_en = "Independent products"
+desc_ko = "세 개의 웹 서비스를 직접 기획·제작하면서 검색 노출과 사이트 구조를 함께 고민했습니다."
+desc_en = "I planned and built three web products while considering search visibility and site structure."
+
+[[focus]]
+number = "03"
+title_ko = "온라인 판매 경험"
+title_en = "Online retail experience"
+desc_ko = "과거 과일 스마트스토어를 운영하며 상품 등록, 판매와 고객 접점의 기본 흐름을 경험했습니다."
+desc_en = "I previously ran an online fruit store and experienced the basic flow of listing, selling, and customer contact."
 
 [[experience]]
 company = "Raon Load"
 company_url = "https://www.laonroad.com/"
 role = "Backend Engineer"
 period = "2023.05 – 2025.08"
-tags = ["Go", "Python", "PostgreSQL", "Kafka", "Docker"]
+tags = ["Product Systems", "Data", "Cross-functional Delivery"]
 
 [[social]]
 label = "Blog"
@@ -22,6 +75,10 @@ url = "https://reo-tech.tistory.com/"
 [[social]]
 label = "GitHub"
 url = "https://github.com/reochoi109"
+
+[[social]]
+label = "LinkedIn"
+url = "https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/"
 
 [[social]]
 label = "Email"

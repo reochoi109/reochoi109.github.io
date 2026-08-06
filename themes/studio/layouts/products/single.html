@@ -1,0 +1,41 @@
+{{ define "main" }}
+  {{- $isKo := eq site.Language.Lang "ko" -}}
+  <article class="product-detail">
+    <a class="product-detail-back" href="{{ (site.GetPage "/products").RelPermalink }}">← {{ if $isKo }}제품과 도구{{ else }}Products & tools{{ end }}</a>
+
+    <header class="product-detail-head">
+      <span class="product-status">{{ .Params.status_label }}</span>
+      <p class="overline">PRODUCT EXPERIMENT · 01</p>
+      <h1>{{ .Title }}</h1>
+      <p class="product-detail-subtitle">{{ .Params.subtitle }}</p>
+      <p class="product-detail-summary">{{ .Description }}</p>
+    </header>
+
+    {{- with .Params.facts }}
+      <dl class="product-facts">
+        {{- range . }}
+          <div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>
+        {{- end }}
+      </dl>
+    {{- end }}
+
+    {{- with .Params.visual_image }}
+      <figure class="product-detail-hero">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }} {{ if $isKo }}첫 화면{{ else }}landing page hero{{ end }}">
+      </figure>
+    {{- end }}
+
+    {{- with .Params.stack }}
+      <section class="product-stack" aria-label="Technology stack">
+        <span>BUILD</span>
+        <ul>{{- range . }}<li>{{ . }}</li>{{- end }}</ul>
+      </section>
+    {{- end }}
+
+    <div class="product-detail-body case-body">{{ .Content }}</div>
+
+    <footer class="product-detail-footer">
+      <a href="{{ (site.GetPage "/products").RelPermalink }}">← {{ if $isKo }}제품과 도구로 돌아가기{{ else }}Back to products & tools{{ end }}</a>
+    </footer>
+  </article>
+{{ end }}

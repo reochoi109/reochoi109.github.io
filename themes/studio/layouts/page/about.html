@@ -1,73 +1,92 @@
 {{ define "main" }}
-<div class="about-wrap">
-  {{- with .Params.name_line -}}
-    <div class="about-name">{{ . }}</div>
-  {{- else -}}
-    <div class="about-name">About</div>
-  {{- end -}}
+  {{- $isKo := eq site.Language.Lang "ko" -}}
+  <section class="collection-hero collection-hero--about">
+    <p class="overline">ABOUT</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ if $isKo }}경험의 흐름과 현재의 방향, 확인 가능한 공식 이력을 정리했습니다.{{ else }}A record of my experience, current direction, and verifiable professional background.{{ end }}</p>
+  </section>
 
-  {{- with .Params.intro -}}
-  {{- $raw := . -}}
-  {{- if reflect.IsSlice $raw -}}
-    <div class="about-intro">
-      {{- range $i, $line := $raw -}}
-        {{- if gt $i 0 -}}<br />{{- end -}}
-        {{- $line | safeHTML -}}
-      {{- end -}}
+  {{ partial "profile-hero.html" (dict "page" . "context" "about") }}
+
+  <section class="about-facts" aria-label="Profile highlights">
+    {{- range .Params.facts -}}
+      <div><span>{{ .label }}</span><strong>{{ .value }}</strong></div>
+    {{- end -}}
+  </section>
+
+  <section class="about-records" aria-labelledby="about-records-title">
+    <header class="about-records-head">
+      <p class="overline">OFFICIAL RECORD</p>
+      <h2 id="about-records-title">{{ if $isKo }}경력과 공식 이력{{ else }}Career and official record{{ end }}</h2>
+      <p>{{ if $isKo }}확인 가능한 공식 이력의 기간과 명칭을 기준으로 정리했습니다.{{ else }}Listed using the names and periods available in official records.{{ end }}</p>
+    </header>
+
+    <div class="about-records-grid">
+      <div class="about-records-column">
+        {{- with .Params.career }}
+          <section class="about-record-group" aria-labelledby="career-title">
+            <h3 id="career-title">{{ if $isKo }}경력{{ else }}Career{{ end }}</h3>
+            <ol class="about-record-list">
+              {{- range . }}
+                <li>
+                  <time>{{ .period }}</time>
+                  <div>
+                    <strong>{{ .company }}</strong>
+                    <p>{{ .role }}{{ with .duration }}<span> · {{ . }}</span>{{ end }}</p>
+                    {{- with .note }}<small>{{ . }}</small>{{ end }}
+                  </div>
+                </li>
+              {{- end }}
+            </ol>
+          </section>
+        {{- end }}
+
+        {{- with .Params.education }}
+          <section class="about-record-group" aria-labelledby="education-title">
+            <h3 id="education-title">{{ if $isKo }}학력{{ else }}Education{{ end }}</h3>
+            <ol class="about-record-list">
+              {{- range . }}
+                <li>
+                  <time>{{ .period }}</time>
+                  <div>
+                    <strong>{{ .school }}</strong>
+                    <p>{{ .major }}{{ with .duration }}<span> · {{ . }}</span>{{ end }}</p>
+                  </div>
+                </li>
+              {{- end }}
+            </ol>
+          </section>
+        {{- end }}
+      </div>
+
+      {{- with .Params.credentials }}
+        <section class="about-record-group about-record-group--credentials" aria-labelledby="credentials-title">
+          <h3 id="credentials-title">{{ if $isKo }}교육 · 자격 · 수상{{ else }}Education · Certifications · Awards{{ end }}</h3>
+          <ol class="about-record-list">
+            {{- range . }}
+              <li>
+                <time>{{ .date }}</time>
+                <div>
+                  <span class="about-record-category">{{ .category }}</span>
+                  <strong>{{ .title }}</strong>
+                  {{- with .details }}
+                    <ul class="about-record-details">{{- range . }}<li>{{ . }}</li>{{- end }}</ul>
+                  {{- else }}
+                    <p>{{ .description }}</p>
+                  {{- end }}
+                </div>
+              </li>
+            {{- end }}
+          </ol>
+        </section>
+      {{- end }}
     </div>
-  {{- else -}}
-    {{- $intro := $raw -}}
-    {{- $intro = $intro | replaceRE `\\r?\\n+` `<br />` -}}
-    {{- $intro = $intro | replaceRE `\\.\\s+` `.<br />` -}}
-    <div class="about-intro">{{ $intro | safeHTML }}</div>
-  {{- end -}}
-  {{- end -}}
+  </section>
 
-  {{- $links := .Params.links | default (slice) -}}
-  {{- if eq (len $links) 0 -}}
-    {{- $home := site.Data.home | default (dict) -}}
-    {{- $links = $home.social | default (slice) -}}
-  {{- end -}}
-  {{- if gt (len $links) 0 -}}
-    <nav class="about-links" aria-label="Links">
-      {{- range $links -}}
-        {{- $label := lower (.label | default "") -}}
-        {{- $url := .url | default "" -}}
-        {{- $isMail := or (hasPrefix $url "mailto:") (in $label "mail") (in $label "email") -}}
-        {{- $isGithub := or (in $label "github") (in (lower $url) "github.com") -}}
-        {{- $isLinkedIn := or (in $label "linkedin") (in (lower $url) "linkedin.com") -}}
-        {{- $isBlog := (in $label "blog") -}}
-        <a
-          class="footer-icon-link"
-          href="{{ $url }}"
-          {{- if not $isMail }} target="_blank" rel="noreferrer"{{- end -}}
-          aria-label="{{ .label }}"
-          title="{{ .label }}"
-        >
-          {{- if $isGithub -}}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.38-3.37-1.38-.46-1.2-1.11-1.52-1.11-1.52-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.2 9.2 0 0 1 5 0c1.9-1.33 2.74-1.05 2.74-1.05.56 1.42.21 2.46.11 2.72.64.72 1.02 1.63 1.02 2.75 0 3.95-2.34 4.82-4.57 5.07.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.59.69.48A10.16 10.16 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
-            </svg>
-          {{- else if $isLinkedIn -}}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.814 20.452H3.861V9h2.953v11.452z" />
-            </svg>
-          {{- else if $isMail -}}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z" />
-            </svg>
-          {{- else if $isBlog -}}
-            <span class="footer-text-icon" aria-hidden="true">Blog</span>
-          {{- else -}}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 17.93V20h-2v-.07A8.001 8.001 0 0 1 4.07 13H4v-2h.07A8.001 8.001 0 0 1 11 4.07V4h2v.07A8.001 8.001 0 0 1 19.93 11H20v2h-.07A8.001 8.001 0 0 1 13 19.93Z"/>
-            </svg>
-          {{- end -}}
-        </a>
-      {{- end -}}
-    </nav>
-  {{- end -}}
+  <section class="about-story prose">{{ .Content }}</section>
 
-  <div class="about-sections prose">{{ .Content }}</div>
-</div>
+  <section class="about-links-panel">
+    <p>{{ if $isKo }}기술과 데이터를 바탕으로 성장 문제를 함께 풀 기회를 찾고 있습니다.{{ else }}I am looking for opportunities to solve growth problems through technology and data.{{ end }}</p>
+    <a href="mailto:reochoi109@gmail.com" aria-label="Email">{{ if $isKo }}이야기 나누기{{ else }}Let's talk{{ end }} <span>↗</span></a>
+  </section>
 {{ end }}

@@ -1,0 +1,84 @@
+{{ define "main" }}
+  <section class="collection-hero collection-hero--products">
+    <p class="overline">PRODUCTS · TOOLS</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p>{{ . }}</p>{{ end -}}
+  </section>
+  {{- with .Content }}
+    <section style="padding-top: 0">
+      <div class="prose">{{ . }}</div>
+    </section>
+  {{- end }}
+
+  {{- $pages := sort .Pages "Params.index" -}}
+  {{- $launched := where $pages "Params.status" "ne" "unreleased" -}}
+  {{- $experiments := where $pages "Params.status" "eq" "unreleased" -}}
+  {{- $p := .Paginate $launched -}}
+  <section class="collection-group" aria-labelledby="launched-products-title">
+    <div class="collection-group-head">
+      <p class="overline">01 · LAUNCHED PRODUCTS</p>
+      <h2 id="launched-products-title">{{ if eq site.Language.Lang "ko" }}1. 출시한 제품{{ else }}1. Launched products{{ end }}</h2>
+    </div>
+    <div class="product-project-list">
+    {{ range $i, $page := $p.Pages }}
+      {{ partial "product-item.html" (dict "page" $page "index" (add $i 1)) }}
+    {{ end }}
+    </div>
+  </section>
+
+  {{- with $experiments }}
+    <section class="product-experiments" aria-labelledby="product-experiments-title">
+      <div class="collection-group-head">
+        <p class="overline">02 · UNRELEASED PRODUCT</p>
+        <h2 id="product-experiments-title">{{ if eq site.Language.Lang "ko" }}2. 출시하지 못한 제품{{ else }}2. Unreleased product{{ end }}</h2>
+        <p>{{ if eq site.Language.Lang "ko" }}완성한 기능보다 검증 과정과 출시 판단을 중심으로 기록했습니다.{{ else }}A record centered on validation and the launch decision, not just completed features.{{ end }}</p>
+      </div>
+      {{- range . }}
+        <a class="product-experiment-card" href="{{ .RelPermalink }}">
+          <div class="product-experiment-image">
+            <img src="{{ .Params.visual_image | relURL }}" alt="{{ .Title }}">
+          </div>
+          <div class="product-experiment-copy">
+            <span class="product-status">{{ .Params.status_label }}</span>
+            <h3>{{ .Title }}</h3>
+            <p class="product-experiment-subtitle">{{ .Params.subtitle }}</p>
+            <p>{{ .Description }}</p>
+            <span class="product-experiment-link">{{ if eq site.Language.Lang "ko" }}기획과 판단 보기{{ else }}View planning and decisions{{ end }} <i>→</i></span>
+          </div>
+        </a>
+      {{- end }}
+    </section>
+  {{- end }}
+
+  {{- with .Params.tools }}
+    <section id="tools" class="work-tools" aria-labelledby="work-tools-title">
+      <div class="work-tools-head">
+        <p class="overline">03 · TOOLS FOR WORK</p>
+        <h2 id="work-tools-title">{{ if eq site.Language.Lang "ko" }}3. 도구{{ else }}3. Tools{{ end }}</h2>
+      </div>
+
+      {{- range . }}
+        <article class="work-tool-card work-tool-card--simple">
+          <div class="work-tool-copy work-tool-copy--simple">
+            <h3>{{ .title }}</h3>
+            <p>{{ .description }}</p>
+            <p>{{ .impact }}</p>
+          </div>
+          {{- with .demo_image }}
+            <figure class="work-tool-demo">
+              <img src="{{ . | relURL }}" alt="{{ if eq site.Language.Lang "ko" }}검색어와 판매처를 입력해 노출 순위를 확인하는 실제 사용 화면{{ else }}Actual workflow for entering keywords and sellers to check visibility rank{{ end }}" loading="lazy">
+            </figure>
+          {{- end }}
+        </article>
+      {{- end }}
+    </section>
+  {{- end }}
+
+  {{ if gt $p.TotalPages 1 }}
+    <nav class="pager" aria-label="Pagination">
+      {{ with $p.Prev }}<a class="pager-link" href="{{ .URL }}">Prev</a>{{ end }}
+      <span class="pager-meta">{{ $p.PageNumber }} / {{ $p.TotalPages }}</span>
+      {{ with $p.Next }}<a class="pager-link" href="{{ .URL }}">Next</a>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

@@ -1,60 +1,81 @@
 {{ define "main" }}
   {{- $home := site.Data.home | default (dict) -}}
-  {{- $profile := $home.profile | default (dict) -}}
+  {{- $isKo := eq site.Language.Lang "ko" -}}
 
-  <section class="profile">
-    <h1 class="profile-name">{{ or $profile.name site.Title }}</h1>
-    {{- with $profile.tagline }}<p class="profile-tagline">{{ . }}</p>{{ end -}}
-    {{- $bio := $profile.bio_en -}}
-    {{- if eq site.Language.Lang "ko" -}}
-      {{- $bio = $profile.bio_ko -}}
+  {{ partial "profile-hero.html" (dict "page" . "context" "home") }}
+
+  <section class="home-proof" aria-label="{{ if $isKo }}주요 경험 요약{{ else }}Experience summary{{ end }}">
+    {{- range $home.proof -}}
+      <article>
+        <strong>{{ if $isKo }}{{ .value }}{{ else }}{{ .value_en }}{{ end }}</strong>
+        <span>{{ if $isKo }}{{ .label_ko }}{{ else }}{{ .label_en }}{{ end }}</span>
+      </article>
     {{- end -}}
-    {{- with $bio }}<p class="profile-bio">{{ . }}</p>{{ end -}}
   </section>
 
-  {{- if site.Params.showExperience -}}
-    {{- with $home.experience -}}
-    <section>
-      <div class="section-head">
-        <div class="section-label">Experience</div>
-        <a class="project-btn" href="{{ (site.GetPage "section" "projects").RelPermalink }}">Projects →</a>
+  {{- $products := site.GetPage "/products" -}}
+  {{- with $products -}}
+    {{- $photoAI := site.GetPage "/products/photoai" -}}
+    <section class="featured-cases home-selected-work">
+      <div class="editorial-head">
+        <div>
+          <p class="overline">SELECTED WORK</p>
+          <h2>{{ if $isKo }}작업물{{ else }}Selected work<br>worth seeing first{{ end }}</h2>
+        </div>
+        <a href="{{ .RelPermalink }}">{{ if $isKo }}제품과 도구 전체 보기{{ else }}All products & tools{{ end }} <span>→</span></a>
       </div>
 
-      <div class="exp-list">
-        {{- range . -}}
-          <div class="exp-card">
-            <div class="col-left">
-              {{- $company := .company -}}
-              {{- with .company_url -}}
-                <a class="exp-company" href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $company }}</a>
-              {{- else -}}
-                {{ $company }}
-              {{- end -}}
-            </div>
-            <div class="col-right">
-              <div class="exp-title">{{ .role }}</div>
-              <div class="exp-date">{{ .period }}</div>
-              {{- with .tags -}}
-                <div class="tag-list">
-                  {{- range . -}}<span class="tag">{{ . }}</span>{{- end -}}
-                </div>
-              {{- end -}}
-            </div>
+      <div class="home-work-grid">
+        <a class="home-work-card home-work-card--lead" href="{{ .RelPermalink }}#tools">
+          <div class="home-work-visual"><img src="{{ "/images/tools/search-rank-demo.gif" | relURL }}" alt=""></div>
+          <div class="home-work-copy">
+            <p>WORKFLOW AUTOMATION</p>
+            <h3>{{ if $isKo }}검색 노출 순위 확인 도구{{ else }}Search Visibility Rank Checker{{ end }}</h3>
+            <span>{{ if $isKo }}광고 상품의 노출 여부와 순위를 반복 검색하던 실무를 자동화했습니다.{{ else }}Automated the repetitive work of checking ad-product visibility and rank.{{ end }}</span>
           </div>
-        {{- end -}}
+        </a>
+
+        {{- with $photoAI }}
+          <a class="home-work-card" href="{{ .RelPermalink }}">
+            <div class="home-work-visual"><img src="{{ .Params.visual_image | relURL }}" alt=""></div>
+            <div class="home-work-copy">
+              <p>PRODUCT DECISION</p>
+              <h3>PhotoAI</h3>
+              <span>{{ if $isKo }}제품 전체를 구현한 뒤 핵심 품질 기준에 따라 출시를 보류한 기록입니다.{{ else }}A completed product whose launch was paused against its core quality threshold.{{ end }}</span>
+            </div>
+          </a>
+        {{- end }}
+
+        <a class="home-work-card" href="{{ .RelPermalink }}">
+          <div class="home-work-visual"><img src="{{ "/images/molru.png" | relURL }}" alt=""></div>
+          <div class="home-work-copy">
+            <p>INDEPENDENT PRODUCTS</p>
+            <h3>{{ if $isKo }}직접 출시한 웹 서비스 3개{{ else }}Three launched web products{{ end }}</h3>
+            <span>{{ if $isKo }}Slow Mind, SchemaPad, Molru를 직접 기획하고 개발해 운영했습니다.{{ else }}Planned, built, and operated Slow Mind, SchemaPad, and Molru.{{ end }}</span>
+          </div>
+        </a>
       </div>
     </section>
-    {{- end -}}
   {{- end -}}
 
-  {{- if site.Params.showSkills -}}
-    {{- with $home.skills -}}
-    <section style="padding-top: 0">
-      <div class="section-label">Skills</div>
-      <div class="skill-list">
-        {{- range . -}}<span class="skill-chip">{{ . }}</span>{{- end -}}
+  <section class="career-bridge">
+    <div class="bridge-label">BACKGROUND</div>
+    <div class="bridge-copy">
+      <h2>{{ if $isKo }}기술, 제품, 판매를<br>직접 경험했습니다.{{ else }}Hands-on experience across<br>technology, products, and sales.{{ end }}</h2>
+      <p>{{ if $isKo }}개발자로 문제를 구조화하고, 개인 서비스를 만들며 사용자의 유입을 고민하고, 온라인 판매 채널을 운영하며 실제 고객 접점을 경험했습니다. 자세한 전환 배경은 소개에, 기술 기록은 개발 아카이브에 분리했습니다.{{ else }}I structured problems as an engineer, considered acquisition while building independent products, and experienced real customer touchpoints through online retail. The full career story and technical archive are kept on their respective pages.{{ end }}</p>
+      <div class="bridge-links">
+        <a href="{{ (site.GetPage "/about").RelPermalink }}">{{ if $isKo }}경험과 방향 보기{{ else }}Experience & direction{{ end }} →</a>
+        <a href="{{ (site.GetPage "/engineering").RelPermalink }}">{{ if $isKo }}개발 경험 보기{{ else }}Engineering archive{{ end }} →</a>
       </div>
-    </section>
-    {{- end -}}
-  {{- end -}}
+    </div>
+  </section>
+
+  <section class="toolkit-section">
+    <p class="overline">CAPABILITIES & INTERESTS</p>
+    <h2>{{ if $isKo }}다룰 수 있는 것과<br>확장하고 있는 영역{{ else }}Capabilities in use<br>and areas in progress{{ end }}</h2>
+    <div class="toolkit-row">
+      {{- range (cond $isKo $home.skills_ko $home.skills_en) -}}<span>{{ . }}</span>{{- end -}}
+    </div>
+    <p class="toolkit-note">{{ if $isKo }}직접 다뤄본 역량과 현재 확장하고 있는 관심 영역을 함께 정리했습니다.{{ else }}A concise view of hands-on capabilities and the areas I am actively expanding into.{{ end }}</p>
+  </section>
 {{ end }}

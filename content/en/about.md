@@ -1,29 +1,96 @@
 +++
 title = "About"
-date = 2026-04-28T00:00:00+09:00
+date = 2026-08-06T00:00:00+09:00
 layout = "about"
-name_line = "Sinuk Choi · Backend Engineer"
+robots = "index, follow, noimageindex, max-image-preview:none"
+name_line = "Sinuk Choi · Growth & Performance Marketing"
+display_name = "Sinuk Choi"
+role_from = "Backend Engineering"
+role_to = "Growth & Performance Marketing"
+hero_title = "Extending technical and data experience\ninto marketing capability."
 intro = [
-  "Backend engineer with experience building Go APIs and Kafka-based asynchronous data-processing systems.",
-  "I have designed a new backend service from the ground up and maintained existing traffic-analysis services while adding new features.",
-  "I also built a shared Go module for recurring backend functions and documented its usage and releases.",
+  "I am extending the technical and data fluency I built in backend engineering into growth and performance marketing.",
+  "Designing search-friendly product structures and operating an online sales channel led me to focus more deeply on acquisition and conversion."
+]
+status = "Growth · Performance Marketing"
+location = "Seoul, Korea"
+strengths = ["Technical adaptability", "Logical problem solving", "Hands-on building"]
+facts = [
+  { label = "Background", value = "2 years 4 months in server engineering" },
+  { label = "Products", value = "3 independent web products" },
+  { label = "Commerce", value = "Operated an online fruit store" },
+  { label = "Direction", value = "Growth · Performance" },
 ]
 links = [
   { label = "Email", url = "mailto:reochoi109@gmail.com" },
+  { label = "LinkedIn", url = "https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/" },
   { label = "GitHub", url = "https://github.com/reochoi109" },
   { label = "Blog", url = "https://reo-tech.tistory.com/" },
 ]
+
+[[career]]
+company = "Raon Road"
+role = "Server Developer · Manager"
+period = "2023.05 – 2025.08"
+duration = "2 years 4 months"
+
+[[career]]
+company = "Beyond J Co., Ltd."
+role = "Artist · Lighting work"
+period = "2021.11 – 2022.02"
+duration = ""
+note = "The period shown follows the official social-insurance record."
+
+[[education]]
+school = "Daekyeung University"
+major = "Department of Theatre"
+period = "2015.03 – 2020.08"
+duration = "5 years 6 months"
+
+[[credentials]]
+title = "Advanced Data Analytics Semi-Professional (ADsP)"
+date = "2026.03"
+description = "Certification administered by the Korea Data Agency"
+category = "Certification"
+
+[[credentials]]
+title = "Taekwondo 1st Dan"
+date = "2025.06"
+description = "Kukkiwon 1st Dan certification"
+category = "Certification"
+
+[[credentials]]
+title = "Sparta Coding Club (Tomorrow Learning Camp)"
+date = "2022.09"
+description = "Completed the government-funded backend developer program"
+category = "Education"
+
+[[credentials]]
+title = "Best Actor, Geochang National University Theater Festival"
+date = "2019.08"
+details = ["Individual Best Actor award", "Cast member in 《무정해협》, winner of the production grand prize", "(Deputy Prime Minister and Minister of Education Award)"]
+category = "Award"
+
+[[credentials]]
+title = "Production Grand Prize (Team), Geochang National University Theater Festival"
+date = "2015.10"
+details = ["Participated as a cast member in 《빨간시》 · production grand prize", "Minister of Education Award"]
+category = "Award"
 +++
 
-## Core experience
+## How the interest started
 
-- Designed and implemented the REST APIs, Kafka request/result flow, data storage, and WebSocket delivery for a digital twin relay server
-- Changed a 9,000-point, 15-minute result flow to write each record on arrival and remove it from memory immediately
-- Compared camera footage with vehicle-detection results, adjusted per-intersection correction values, and implemented vehicle passage-interval analysis
-- Designed and built an internal shared Go module, distributed it through Git tags/go.mod, and documented it in Confluence
+I worked as a backend engineer building APIs and data pipelines, then planned and built Molru, SchemaPad, and Slow Mind as personal projects. They did not begin as marketing experiments. My interest grew while considering site structure, search visibility, and SEO during development.
 
-## How I work
+I also previously operated an online store selling fruit. The business is now closed, and I do not present it as a paid-media success story, but it gave me direct experience operating an online sales channel.
 
-- I verify code and data first and document only results I can explain and support.
-- Before changing an existing service, I study its structure and data flow to avoid disrupting operations.
-- I turn recurring implementations into shared components and document them for other developers.
+## Strengths I bring from engineering
+
+- I am comfortable learning unfamiliar tools and technical environments.
+- I am used to breaking problems down and checking cause and effect logically.
+- I understand web services and data flows and can implement when needed.
+- I do not exaggerate advertising results or marketing outcomes I have not produced.
+
+## Areas I am expanding into
+
+I am expanding my experience into paid-media operations, conversion tracking, performance analysis, and optimization. I aim to bring an engineering-informed perspective to growth and performance marketing, communicate smoothly with technical teams, and use data and tools with confidence.

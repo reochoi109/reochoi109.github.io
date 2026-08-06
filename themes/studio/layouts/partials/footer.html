@@ -19,7 +19,7 @@
 <div class="footer-inner">
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="footer-title">{{ $brand }}</div>
+      <div class="footer-title" aria-label="{{ $brand }}"><span class="footer-wordmark" aria-hidden="true">Reo</span></div>
       {{- with $email -}}
         <div class="footer-email">
           <a href="mailto:{{ . }}">{{ . }}</a>
@@ -55,7 +55,9 @@
               <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z" />
             </svg>
           {{- else if $isBlog -}}
-            <span class="footer-text-icon" aria-hidden="true">Blog</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm6.92 6h-3.04a15.7 15.7 0 0 0-1.38-3.56A8.06 8.06 0 0 1 18.92 8ZM12 4c.83 1.2 1.47 2.54 1.83 4h-3.66A13.7 13.7 0 0 1 12 4ZM4.26 14a7.8 7.8 0 0 1 0-4h3.39a16.4 16.4 0 0 0 0 4H4.26Zm.82 2h3.04a15.7 15.7 0 0 0 1.38 3.56A8.06 8.06 0 0 1 5.08 16Zm3.04-8H5.08A8.06 8.06 0 0 1 9.5 4.44 15.7 15.7 0 0 0 8.12 8ZM12 20a13.7 13.7 0 0 1-1.83-4h3.66A13.7 13.7 0 0 1 12 20Zm2.22-6H9.78a14.1 14.1 0 0 1 0-4h4.44a14.1 14.1 0 0 1 0 4Zm.28 5.56A15.7 15.7 0 0 0 15.88 16h3.04a8.06 8.06 0 0 1-4.42 3.56ZM16.35 14a16.4 16.4 0 0 0 0-4h3.39a7.8 7.8 0 0 1 0 4h-3.39Z"/>
+            </svg>
           {{- else -}}
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 17.93V20h-2v-.07A8.001 8.001 0 0 1 4.07 13H4v-2h.07A8.001 8.001 0 0 1 11 4.07V4h2v.07A8.001 8.001 0 0 1 19.93 11H20v2h-.07A8.001 8.001 0 0 1 13 19.93Z"/>
@@ -68,7 +70,7 @@
 
   <div class="footer-bottom">
     <div class="footer-meta">
-      © {{ now.Year }}. {{ with $profile.name }}{{ . }}{{ else }}{{ site.Title }}{{ end }}. All rights reserved.
+      © {{ now.Year }}. {{ if and (eq site.Language.Lang "en") $profile.name_en }}{{ $profile.name_en }}{{ else }}{{ with $profile.name }}{{ . }}{{ else }}{{ site.Title }}{{ end }}{{ end }}. All rights reserved.
     </div>
   </div>
 </div>

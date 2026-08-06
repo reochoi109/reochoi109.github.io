@@ -128,7 +128,18 @@ function initSliders() {
   }
 }
 
+function initProtectedImages() {
+  const images = document.querySelectorAll('[data-protected-image]');
+  for (const image of images) {
+    image.addEventListener('dragstart', (event) => event.preventDefault());
+    image.closest('.about-photo-wrap, .home-profile-photo')?.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initSliders();
+  initProtectedImages();
 });
