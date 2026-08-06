@@ -16,7 +16,7 @@ status = "Growth · Performance Marketing"
 location = "Seoul, Korea"
 strengths = ["Technical adaptability", "Logical problem solving", "Hands-on building"]
 facts = [
-  { label = "Background", value = "2 years 4 months in server engineering" },
+  { label = "Background", value = "2 years+ in server engineering" },
   { label = "Products", value = "3 independent web products" },
   { label = "Commerce", value = "Operated an online fruit store" },
   { label = "Direction", value = "Growth · Performance" },
@@ -32,7 +32,7 @@ links = [
 company = "Raon Road"
 role = "Server Developer · Manager"
 period = "2023.05 – 2025.08"
-duration = "2 years 4 months"
+duration = "2 years+"
 
 [[career]]
 company = "Beyond J Co., Ltd."
@@ -45,7 +45,6 @@ note = "The period shown follows the official social-insurance record."
 school = "Daekyeung University"
 major = "Department of Theatre"
 period = "2015.03 – 2020.08"
-duration = "5 years 6 months"
 
 [[credentials]]
 title = "Advanced Data Analytics Semi-Professional (ADsP)"
