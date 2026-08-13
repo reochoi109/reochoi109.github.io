@@ -1,0 +1,28 @@
+{{- $product := .Get "product" -}}
+{{- $isKo := eq site.Language.Lang "ko" -}}
+{{- with index site.Data.wireframes $product -}}
+  {{- $items := sort . "image" -}}
+  <figure class="product-gallery product-wireframes" data-slider aria-label="{{ if $isKo }}{{ $product }} 와이어프레임{{ else }}{{ $product }} wireframes{{ end }}">
+    <div class="product-gallery-head">
+      <figcaption>{{ if $isKo }}전체 화면 설계{{ else }}Complete screen design{{ end }}</figcaption>
+      <span>{{ len $items }} WIREFRAMES</span>
+    </div>
+    <div class="product-gallery-frame">
+      <div class="product-gallery-track" data-slider-track>
+        {{- range $items }}
+          <figure class="product-gallery-item" data-slider-slide>
+            <img src="{{ .image | relURL }}" alt="{{ .title }} {{ if $isKo }}와이어프레임{{ else }}wireframe{{ end }}" loading="lazy" decoding="async" data-product-zoom tabindex="0" role="button" aria-label="{{ .title }} {{ if $isKo }}크게 보기{{ else }}view larger{{ end }}">
+            <figcaption class="product-wireframe-caption">
+              <strong>{{ .title }}</strong>
+              {{- with .route }}<code>{{ . }}</code>{{- end }}
+            </figcaption>
+          </figure>
+        {{- end }}
+      </div>
+      {{- if gt (len $items) 1 }}
+        <button class="product-gallery-arrow product-gallery-arrow--prev" type="button" data-slider-prev aria-label="{{ if $isKo }}이전 이미지{{ else }}Previous image{{ end }}">←</button>
+        <button class="product-gallery-arrow product-gallery-arrow--next" type="button" data-slider-next aria-label="{{ if $isKo }}다음 이미지{{ else }}Next image{{ end }}">→</button>
+      {{- end }}
+    </div>
+  </figure>
+{{- end -}}

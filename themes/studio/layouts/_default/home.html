@@ -1,166 +1,119 @@
 {{ define "main" }}
   {{- $isKo := eq site.Language.Lang "ko" -}}
   {{- $products := site.GetPage "/products" -}}
+  {{- $career := site.GetPage "/career" -}}
   {{- $about := site.GetPage "/about" -}}
+  {{- $searchRank := site.GetPage "/products/search-rank" -}}
+  {{- $careerPages := sort $career.Pages "Params.index" -}}
+  {{- $productPages := where (sort $products.Pages "Params.index") "Params.project_group" "ne" "work-improvement" -}}
 
   <nav class="home-deck-nav" aria-label="{{ if $isKo }}홈 섹션 바로가기{{ else }}Home sections{{ end }}">
-    <a href="#intro" aria-label="{{ if $isKo }}소개{{ else }}Introduction{{ end }}"><span>01</span></a>
-    <a href="#strengths" aria-label="{{ if $isKo }}강점{{ else }}Strengths{{ end }}"><span>02</span></a>
-    <a href="#case" aria-label="{{ if $isKo }}대표 사례{{ else }}Featured case{{ end }}"><span>03</span></a>
-    <a href="#evidence" aria-label="{{ if $isKo }}경험 근거{{ else }}Evidence{{ end }}"><span>04</span></a>
-    <a href="#contact" aria-label="{{ if $isKo }}연락하기{{ else }}Contact{{ end }}"><span>05</span></a>
+    <a href="#intro" aria-label="{{ if $isKo }}프로필{{ else }}Profile{{ end }}"><span>01</span></a>
+    <a href="#career" aria-label="{{ if $isKo }}경력{{ else }}Career{{ end }}"><span>02</span></a>
+    <a href="#projects" aria-label="{{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}"><span>03</span></a>
+    <a href="#case" aria-label="{{ if $isKo }}업무 개선 사례{{ else }}Workflow case{{ end }}"><span>04</span></a>
+    <a href="#contact" aria-label="{{ if $isKo }}지원 방향과 연락처{{ else }}Direction and contact{{ end }}"><span>05</span></a>
   </nav>
 
   <div class="home-deck">
     <section id="intro" class="home-slide home-slide--intro" aria-labelledby="home-intro-title">
       <div class="home-slide-index" aria-hidden="true">01 / 05</div>
       <div class="home-intro-copy">
-        <p class="home-slide-kicker">PERFORMANCE MARKETER PORTFOLIO</p>
-        <h1 id="home-intro-title">
-          {{ if $isKo }}기술을 이해하고,<br><em>데이터로 성과를<br class="home-mobile-only"> 봅니다.</em>{{ else }}Technical fluency,<br><em>focused on performance.</em>{{ end }}
-        </h1>
-        <p class="home-slide-lead">
-          {{ if $isKo }}백엔드 개발 2년+, 직접 만든 웹 서비스 3개, 온라인 판매 채널 운영 경험을 퍼포먼스 마케팅 역량으로 연결하고 있습니다.{{ else }}I connect 2+ years of backend engineering, three launched web products, and hands-on online retail experience to performance marketing.{{ end }}
-        </p>
+        <p class="home-slide-kicker">{{ if $isKo }}최신욱 · 퍼포먼스 마케팅{{ else }}SINUK CHOI · PERFORMANCE MARKETING{{ end }}</p>
+        <h1 id="home-intro-title">{{ if $isKo }}기술과 데이터 경험을,<br><em>퍼포먼스 마케팅으로<br class="home-mobile-only"> 연결합니다.</em>{{ else }}Connecting technical<br>and data experience<br><em>to performance marketing.</em>{{ end }}</h1>
+        <p class="home-slide-lead">{{ if $isKo }}데이터와 기술에 대한 이해를 바탕으로 고객의 유입과 전환을 분석하고 개선하는 퍼포먼스 마케터를 지향합니다.{{ else }}I am extending the technical and data fluency I built in backend engineering into acquisition, conversion, and performance improvement.{{ end }}</p>
         <div class="home-slide-actions">
-          <a class="home-deck-button home-deck-button--primary" href="#case">{{ if $isKo }}대표 사례 먼저 보기{{ else }}View featured case{{ end }} <span>↓</span></a>
-          <a class="home-deck-button" href="mailto:reochoi109@gmail.com">{{ if $isKo }}이메일 보내기{{ else }}Send an email{{ end }} <span>↗</span></a>
+          <a class="home-deck-button home-deck-button--primary" href="#career">{{ if $isKo }}경력부터 보기{{ else }}Start with career{{ end }} <span>↓</span></a>
+          {{- with $products }}<a class="home-deck-button" href="{{ .RelPermalink }}">{{ if $isKo }}프로젝트 전체 보기{{ else }}View all projects{{ end }} <span>→</span></a>{{- end }}
         </div>
-        <ul class="home-intro-tags" aria-label="{{ if $isKo }}핵심 관심 영역{{ else }}Focus areas{{ end }}">
-          <li>Paid Media</li>
-          <li>Conversion Tracking</li>
-          <li>Performance Analysis</li>
+        <ul class="home-intro-tags" aria-label="{{ if $isKo }}핵심 강점{{ else }}Core strengths{{ end }}">
+          <li>{{ if $isKo }}기술 도구 적응력{{ else }}Technical adaptability{{ end }}</li>
+          <li>{{ if $isKo }}논리적 문제 해결{{ else }}Logical problem solving{{ end }}</li>
+          <li>{{ if $isKo }}직접 제작 경험{{ else }}Hands-on building{{ end }}</li>
         </ul>
       </div>
-
       <aside class="home-intro-profile" aria-label="{{ if $isKo }}지원자 요약{{ else }}Candidate summary{{ end }}">
-        <div class="home-intro-photo">
-          <img src="{{ "/images/profile/portrait.jpg" | relURL }}" alt="{{ if $isKo }}최신욱 프로필 사진{{ else }}Profile photo of Sinuk Choi{{ end }}" width="720" height="720" loading="eager" decoding="async" draggable="false" data-protected-image>
-          <span>{{ if $isKo }}퍼포먼스 마케터 지원자{{ else }}Performance marketing candidate{{ end }}</span>
-        </div>
+        <div class="home-intro-photo"><img src="{{ "/images/profile/portrait.jpg" | relURL }}" alt="{{ if $isKo }}최신욱 프로필 사진{{ else }}Profile photo of Sinuk Choi{{ end }}" width="720" height="720" loading="eager" decoding="async" draggable="false" data-protected-image><span>{{ if $isKo }}백엔드 개발 → 퍼포먼스 마케팅{{ else }}Backend Engineering → Performance Marketing{{ end }}</span></div>
         <div class="home-intro-meta">
           <div><span>{{ if $isKo }}이름{{ else }}Name{{ end }}</span><strong>{{ if $isKo }}최신욱{{ else }}Sinuk Choi{{ end }}</strong></div>
-          <div><span>{{ if $isKo }}강점{{ else }}Edge{{ end }}</span><strong>{{ if $isKo }}기술 · 데이터 · 실행력{{ else }}Technology · Data · Execution{{ end }}</strong></div>
-          <div><span>{{ if $isKo }}위치{{ else }}Location{{ end }}</span><strong>Seoul, Korea</strong></div>
+          <div><span>{{ if $isKo }}경력{{ else }}Career{{ end }}</span><strong>{{ if $isKo }}서버 개발 2년+{{ else }}Server engineering 2 years+{{ end }}</strong></div>
+          <div><span>{{ if $isKo }}목표{{ else }}Direction{{ end }}</span><strong>{{ if $isKo }}퍼포먼스 마케팅{{ else }}Performance Marketing{{ end }}</strong></div>
         </div>
       </aside>
     </section>
 
-    <section id="strengths" class="home-slide home-slide--strengths" aria-labelledby="home-strengths-title">
+    <section id="career" class="home-slide home-slide--career" aria-labelledby="home-career-title">
       <div class="home-slide-index" aria-hidden="true">02 / 05</div>
       <header class="home-slide-heading">
-        <p class="home-slide-kicker">WHY ME</p>
-        <h2 id="home-strengths-title">{{ if $isKo }}퍼포먼스 마케팅에 가져가는<br>세 가지 강점{{ else }}Three strengths I bring<br>to performance marketing{{ end }}</h2>
-        <p>{{ if $isKo }}해보지 않은 성과를 포장하기보다, 이미 검증된 경험이 실제 업무에 어떻게 연결되는지 보여드립니다.{{ else }}Instead of overstating results, I show how proven experience translates into the work.{{ end }}</p>
+        <p class="home-slide-kicker">CAREER · 2023.05 — 2025.08</p>
+        <h2 id="home-career-title">{{ if $isKo }}서버 개발자로<br>만든 것들{{ else }}What I built<br>as a server engineer{{ end }}</h2>
+        <p>{{ if $isKo }}라온로드에서 Go 기반 API, 데이터 처리, 실시간 통신과 서비스 공통 모듈을 개발했습니다.{{ else }}At Laon Road, I built Go-based APIs, data processing, real-time communication, and shared service modules.{{ end }}</p>
       </header>
-
-      <div class="home-strength-grid">
-        <article>
-          <span>01</span>
-          <p>DATA</p>
-          <h3>{{ if $isKo }}데이터 흐름을<br>구조적으로 봅니다{{ else }}I see data flows<br>as systems{{ end }}</h3>
-          <small>{{ if $isKo }}API·데이터 파이프라인·SQL 경험을 바탕으로 지표가 어디에서 만들어지고 어떻게 연결되는지 이해합니다.{{ else }}My experience with APIs, data pipelines, and SQL helps me understand where metrics originate and how they connect.{{ end }}</small>
-        </article>
-        <article>
-          <span>02</span>
-          <p>EXECUTION</p>
-          <h3>{{ if $isKo }}반복 업무를 발견하면<br>직접 개선합니다{{ else }}I turn repetitive work<br>into better workflows{{ end }}</h3>
-          <small>{{ if $isKo }}광고 상품의 검색 노출 확인 업무를 듣고, 일괄 조회·기록 도구를 직접 설계하고 구현했습니다.{{ else }}After learning about repetitive ad visibility checks, I designed and built a batch-checking workflow tool.{{ end }}</small>
-        </article>
-        <article>
-          <span>03</span>
-          <p>CUSTOMER</p>
-          <h3>{{ if $isKo }}제품과 고객 접점을<br>직접 경험했습니다{{ else }}I have worked directly<br>with products and customers{{ end }}</h3>
-          <small>{{ if $isKo }}웹 서비스 3개를 출시하고 온라인 판매 채널을 운영하며 유입부터 실제 고객 접점까지 경험했습니다.{{ else }}I launched three web products and operated an online store, gaining exposure from acquisition through customer contact.{{ end }}</small>
-        </article>
+      <div class="home-career-grid">
+        {{- range $careerPages }}
+          {{- $visual := index (.Params.visual_image | default (slice "")) 0 -}}
+          <a href="{{ .RelPermalink }}">
+            <span class="home-career-visual">{{- with $visual }}<img src="{{ . | relURL }}" alt="" loading="lazy">{{- end }}</span>
+            <small>{{ .Params.period }} · {{ .Params.org }}</small>
+            <h3>{{ .Params.list_title | default .Title }}</h3>
+            <p>{{ .Description }}</p>
+            <i>→</i>
+          </a>
+        {{- end }}
       </div>
+      {{- with $career }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}경력 전체 보기{{ else }}View full career{{ end }} <span>→</span></a>{{- end }}
+    </section>
+
+    <section id="projects" class="home-slide home-slide--projects" aria-labelledby="home-projects-title">
+      <div class="home-slide-index" aria-hidden="true">03 / 05</div>
+      <header class="home-slide-heading">
+        <p class="home-slide-kicker">INDEPENDENT PROJECTS</p>
+        <h2 id="home-projects-title">{{ if $isKo }}직접 기획하고<br>만든 제품들{{ else }}Products I planned<br>and built{{ end }}</h2>
+        <p>{{ if $isKo }}아이디어와 제품 구조부터 개발, 공개 운영 또는 출시 판단까지 직접 진행했습니다.{{ else }}I worked from product framing and structure through implementation, public operation, or the decision not to launch.{{ end }}</p>
+      </header>
+      <div class="home-project-grid">
+        {{- range $productPages }}
+          <a href="{{ .RelPermalink }}">
+            <span class="home-project-visual"><img src="{{ .Params.visual_image | relURL }}" alt="{{ .Title }}" loading="lazy"></span>
+            <div><small>{{ .Params.status_label }}</small><h3>{{ .Title }}</h3><p>{{ .Params.list_description | default .Params.subtitle }}</p></div>
+            <i>→</i>
+          </a>
+        {{- end }}
+      </div>
+      {{- with $products }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}개인 프로젝트 전체 보기{{ else }}View all independent projects{{ end }} <span>→</span></a>{{- end }}
     </section>
 
     <section id="case" class="home-slide home-slide--case" aria-labelledby="home-case-title">
-      <div class="home-slide-index" aria-hidden="true">03 / 05</div>
-      <div class="home-case-copy">
-        <p class="home-slide-kicker">FEATURED CASE · WORKFLOW AUTOMATION</p>
-        <h2 id="home-case-title">{{ if $isKo }}검색 노출 순위<br>확인 도구{{ else }}Search Visibility<br>Rank Checker{{ end }}</h2>
-        <p class="home-case-summary">{{ if $isKo }}퍼포먼스 마케팅 실무자의 반복 업무를 듣고, 검색과 기록에 쓰이는 시간을 줄이는 도구로 구현했습니다.{{ else }}I translated a performance marketer's repetitive workflow into a tool that reduces manual searching and recording.{{ end }}</p>
-
-        <dl class="home-case-flow">
-          <div>
-            <dt>PROBLEM</dt>
-            <dd>{{ if $isKo }}PC·모바일과 여러 검색 채널에서 광고 상품의 노출 여부와 순위를 매번 직접 확인{{ else }}Ad visibility and ranks had to be checked manually across desktop, mobile, and multiple search surfaces.{{ end }}</dd>
-          </div>
-          <div>
-            <dt>ACTION</dt>
-            <dd>{{ if $isKo }}키워드와 판매처를 입력하면 최대 20개 항목을 일괄 조회하고 결과를 정리하도록 설계{{ else }}Designed batch lookup for up to 20 keyword and seller combinations with structured results.{{ end }}</dd>
-          </div>
-          <div>
-            <dt>RESULT</dt>
-            <dd>{{ if $isKo }}반복 검색과 수기 기록을 줄여 결과 검토에 더 집중할 수 있는 업무 흐름 제공{{ else }}Reduced repetitive searches and manual recording so attention could shift to reviewing results.{{ end }}</dd>
-          </div>
-        </dl>
-
-        {{- with $products }}<a class="home-text-link" href="{{ .RelPermalink }}#work-improvement">{{ if $isKo }}도구 상세 보기{{ else }}View tool details{{ end }} <span>↗</span></a>{{- end }}
-      </div>
-
-      <figure class="home-case-visual">
-        <div class="home-case-window">
-          <div class="home-case-window-bar"><i></i><i></i><i></i><span>SEARCH RANK CHECKER</span></div>
-          <img src="{{ "/images/tools/search-rank/demo.gif" | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 실행 화면{{ else }}Search visibility rank checker in use{{ end }}" loading="lazy">
-        </div>
-        <figcaption>{{ if $isKo }}실제 작동 화면 · PC/모바일 및 검색 채널 선택 지원{{ else }}Working interface · desktop, mobile, and channel filters{{ end }}</figcaption>
-      </figure>
-    </section>
-
-    <section id="evidence" class="home-slide home-slide--evidence" aria-labelledby="home-evidence-title">
       <div class="home-slide-index" aria-hidden="true">04 / 05</div>
-      <header class="home-slide-heading">
-        <p class="home-slide-kicker">RELEVANT EVIDENCE</p>
-        <h2 id="home-evidence-title">{{ if $isKo }}마케팅과 연결되는 경험만<br>한눈에 정리했습니다{{ else }}Only the experience that connects<br>to marketing, at a glance{{ end }}</h2>
-      </header>
-
-      <div class="home-evidence-grid">
-        <article class="home-evidence-card home-evidence-card--wide">
-          <div><strong>3</strong><span>{{ if $isKo }}개 서비스{{ else }}products{{ end }}</span></div>
-          <p>PRODUCT BUILDING</p>
-          <h3>{{ if $isKo }}기획부터 출시까지 직접{{ else }}From planning to launch{{ end }}</h3>
-          <small>Slow Mind · SchemaPad · Molru</small>
-          <img src="{{ "/images/products/molru/cover.png" | relURL }}" alt="" loading="lazy">
-        </article>
-        <article class="home-evidence-card">
-          <div><strong>2+</strong><span>{{ if $isKo }}년{{ else }}years{{ end }}</span></div>
-          <p>BACKEND ENGINEERING</p>
-          <h3>{{ if $isKo }}기술팀과 같은 언어로 소통{{ else }}Fluent collaboration with technical teams{{ end }}</h3>
-          <small>{{ if $isKo }}API · 데이터 파이프라인 · SQL{{ else }}APIs · Data pipelines · SQL{{ end }}</small>
-        </article>
-        <article class="home-evidence-card">
-          <div><strong>1</strong><span>{{ if $isKo }}개 채널{{ else }}channel{{ end }}</span></div>
-          <p>ONLINE RETAIL</p>
-          <h3>{{ if $isKo }}상품 등록부터 고객 접점까지{{ else }}From listings to customer contact{{ end }}</h3>
-          <small>{{ if $isKo }}과일 스마트스토어 직접 운영 경험{{ else }}Hands-on fruit store operation{{ end }}</small>
-        </article>
+      <div class="home-case-copy">
+        <p class="home-slide-kicker">WORK IMPROVEMENT · AUTOMATION</p>
+        <h2 id="home-case-title">{{ if $isKo }}검색 노출 순위<br>확인 도구{{ else }}Search Visibility<br>Rank Checker{{ end }}</h2>
+        <p class="home-case-summary">{{ if $isKo }}퍼포먼스 마케팅 실무자의 반복 검색과 수기 기록을 최대 20개 항목의 일괄 확인 흐름으로 바꿨습니다.{{ else }}I replaced a performance marketer's repetitive searches and manual recording with a batch-checking workflow for up to 20 entries.{{ end }}</p>
+        <dl class="home-case-flow">
+          <div><dt>INPUT</dt><dd>{{ if $isKo }}키워드 · 판매처 · 검색 환경{{ else }}Keywords · sellers · search environment{{ end }}</dd></div>
+          <div><dt>CHECK</dt><dd>{{ if $isKo }}PC·모바일과 검색 채널별 일괄 조회{{ else }}Batch checks across desktop, mobile, and channels{{ end }}</dd></div>
+          <div><dt>OUTPUT</dt><dd>{{ if $isKo }}노출·순위 결과, 스크린샷과 CSV{{ else }}Visibility, rank, screenshots, and CSV{{ end }}</dd></div>
+        </dl>
+        {{- with $searchRank }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}업무 개선 사례 보기{{ else }}View workflow case{{ end }} <span>↗</span></a>{{- end }}
       </div>
-
-      <div class="home-evidence-links">
-        {{- with $products }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}개인 프로젝트 전체 보기{{ else }}View all independent projects{{ end }} <span>→</span></a>{{- end }}
-        {{- with $about }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}경력과 전환 배경 보기{{ else }}View career and transition story{{ end }} <span>→</span></a>{{- end }}
-      </div>
+      <figure class="home-case-visual"><div class="home-case-window"><div class="home-case-window-bar"><i></i><i></i><i></i><span>SEARCH RANK CHECKER</span></div><img src="{{ "/images/tools/search-rank/demo.gif" | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 실행 화면{{ else }}Search Visibility Rank Checker in use{{ end }}" loading="lazy"></div></figure>
     </section>
 
     <section id="contact" class="home-slide home-slide--contact" aria-labelledby="home-contact-title">
       <div class="home-slide-index" aria-hidden="true">05 / 05</div>
       <div class="home-contact-main">
-        <p class="home-slide-kicker">NEXT ROLE</p>
-        <h2 id="home-contact-title">{{ if $isKo }}데이터와 기술을 활용해<br><em>광고 성과를 개선하는 사람.</em>{{ else }}Using data and technology<br><em>to improve campaign performance.</em>{{ end }}</h2>
-        <p>{{ if $isKo }}광고 매체 운영, 전환 추적, 성과 분석과 개선 실험을 실행하는 퍼포먼스 마케터로 성장하고 있습니다. 경험하지 않은 성과는 과장하지 않고, 빠르게 배우고 직접 검증하겠습니다.{{ else }}I am growing into a performance marketer who executes paid-media operations, conversion tracking, performance analysis, and optimization experiments—with honest claims and hands-on validation.{{ end }}</p>
+        <p class="home-slide-kicker">PROFILE · NEXT DIRECTION</p>
+        <h2 id="home-contact-title">{{ if $isKo }}원인을 찾고,<br><em>다음 실행으로 연결합니다.</em>{{ else }}Find the cause,<br><em>turn it into the next action.</em>{{ end }}</h2>
+        <p>{{ if $isKo }}백엔드 개발 · 웹 서비스 제작 · 온라인 판매 채널 운영 경험을 고객의 유입과 전환 개선으로 확장하고 있습니다.{{ else }}I am extending experience in backend engineering, web-product building, and online retail into acquisition and conversion improvement.{{ end }}</p>
         <a class="home-contact-email" href="mailto:reochoi109@gmail.com">reochoi109@gmail.com <span>↗</span></a>
       </div>
-
       <aside class="home-contact-card">
-        <p>{{ if $isKo }}지원 방향{{ else }}ROLE FOCUS{{ end }}</p>
-        <strong>{{ if $isKo }}퍼포먼스 마케터{{ else }}Performance Marketer{{ end }}</strong>
+        <p>{{ if $isKo }}PROFILE SNAPSHOT{{ else }}PROFILE SNAPSHOT{{ end }}</p>
+        <strong>{{ if $isKo }}퍼포먼스 마케팅{{ else }}Performance Marketing{{ end }}</strong>
         <ul>
-          <li>{{ if $isKo }}광고 매체 운영{{ else }}Paid-media operations{{ end }}</li>
-          <li>{{ if $isKo }}전환 추적과 데이터 분석{{ else }}Conversion tracking & analysis{{ end }}</li>
-          <li>{{ if $isKo }}성과 개선 실험{{ else }}Performance optimization{{ end }}</li>
+          <li>{{ if $isKo }}데이터 분석 준전문가(ADsP) · 2026.03{{ else }}ADsP certification · 2026.03{{ end }}</li>
+          <li>{{ if $isKo }}과일 스마트스토어 운영 경험{{ else }}Online fruit-store operation{{ end }}</li>
+          <li>{{ if $isKo }}대경대학교 연극영화과{{ else }}Daekyeung University · Theatre{{ end }}</li>
         </ul>
         {{- with $about }}<a href="{{ .RelPermalink }}">{{ if $isKo }}전체 프로필 보기{{ else }}View full profile{{ end }} <span>→</span></a>{{- end }}
       </aside>

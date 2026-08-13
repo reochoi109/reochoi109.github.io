@@ -29,6 +29,12 @@ Content is organized into Daily Korean, K-Culture, Stories, and Korean Now. The 
 
 Topic, level, and estimated reading time help learners choose an article suited to them rather than browsing an undifferentiated list.
 
+## Wireframes
+
+The public routes and key reading states were designed as complete page flows.
+
+{{< product-wireframes product="molru" >}}
+
 ## Learning experience
 
 - Listen to natural Korean while following the article

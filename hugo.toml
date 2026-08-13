@@ -43,7 +43,7 @@ spacing = 'comfortable' # comfortable | compact
 
       [[languages.ko.menu.main]]
       name = '경력'
-      pageRef = '/engineering'
+      pageRef = '/career'
       weight = 38
 
       [[languages.ko.menu.main]]
@@ -73,7 +73,7 @@ spacing = 'comfortable' # comfortable | compact
 
       [[languages.en.menu.main]]
       name = 'Career'
-      pageRef = '/engineering'
+      pageRef = '/career'
       weight = 38
 
       [[languages.en.menu.main]]

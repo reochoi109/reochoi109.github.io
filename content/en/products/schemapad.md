@@ -36,6 +36,12 @@ Documents remain in the user's browser. This keeps the starting flow simple and 
 - Focus on the essential work needed for an individual schema draft
 - Store documents in the browser rather than sending them to a server
 
+## Wireframes
+
+The screen design covers public pages and the editor's navigation, properties, relationships, and SQL export states.
+
+{{< product-wireframes product="schemapad" >}}
+
 ## What the project taught me
 
 This project translated a database workflow I knew as an engineer into a user-facing product flow. I focused the structure on keeping three core actions—drawing, importing, and exporting—connected instead of expanding the feature set broadly.

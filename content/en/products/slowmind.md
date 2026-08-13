@@ -36,6 +36,12 @@ Focus Mode adds 5, 10, 15, and 30-minute timers plus an open-ended session. This
 - Make the core controls understandable without instructions
 - Support both short pauses and longer focus sessions
 
+## Wireframes
+
+The public pages and the core meditation and focus-player states were designed as complete page flows.
+
+{{< product-wireframes product="slowmind" >}}
+
 ## What I continue to evaluate
 
 The core value is reducing steps rather than adding information. Slow Mind remains publicly available for free, and I continue to assess the experience by whether a user can begin at the moment they need it.

@@ -42,6 +42,12 @@ The central promise was to **keep the person recognizable while refining only th
 - A three-step journey from upload to generation
 - Clear positioning as an application portrait rather than an official ID photo
 
+## Wireframes
+
+The screen design covers the public pages, customer workspace, payment journey, and operations console.
+
+{{< product-wireframes product="photoai" >}}
+
 ## Interface design
 
 The opening message—“Interview photos, without the studio”—states the situation and value immediately. The landing page then moves through style comparison, pricing, process, and production principles so users can understand both the output and the service before paying.

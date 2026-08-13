@@ -1,0 +1,357 @@
+{
+  "molru": [
+    {
+      "image": "/images/products/molru/wireframes/01-home.png",
+      "title": "Home",
+      "route": "/"
+    },
+    {
+      "image": "/images/products/molru/wireframes/02-topics.png",
+      "title": "Topics",
+      "route": "/topics"
+    },
+    {
+      "image": "/images/products/molru/wireframes/03-topic-detail.png",
+      "title": "Topic detail",
+      "route": "/topics/[slug]"
+    },
+    {
+      "image": "/images/products/molru/wireframes/04-article-reading.png",
+      "title": "Article reading",
+      "route": "/articles/[slug]"
+    },
+    {
+      "image": "/images/products/molru/wireframes/05-about-molru.png",
+      "title": "About Molru",
+      "route": "/about"
+    },
+    {
+      "image": "/images/products/molru/wireframes/06-contact.png",
+      "title": "Contact",
+      "route": "/contact"
+    },
+    {
+      "image": "/images/products/molru/wireframes/07-privacy-policy.png",
+      "title": "Privacy Policy",
+      "route": "/privacy"
+    },
+    {
+      "image": "/images/products/molru/wireframes/08-terms-and-service-policy.png",
+      "title": "Terms and Service Policy",
+      "route": "/terms"
+    }
+  ],
+  "photoai": [
+    {
+      "image": "/images/products/photoai/wireframes/01-landing.png",
+      "title": "Landing",
+      "route": "/"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/02-wireframe.png",
+      "title": "로그인",
+      "route": "/login"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/03-wireframe.png",
+      "title": "회원가입",
+      "route": "/signup"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/04-wireframe.png",
+      "title": "비밀번호 재설정",
+      "route": "/auth/password-reset"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/05-wireframe.png",
+      "title": "계정 복구",
+      "route": "/auth/account-recovery"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/06-wireframe.png",
+      "title": "이메일 인증 결과",
+      "route": "/auth/email/verify"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/07-wireframe.png",
+      "title": "개인정보처리방침",
+      "route": "/privacy"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/08-wireframe.png",
+      "title": "이용약관",
+      "route": "/terms"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/09-wireframe.png",
+      "title": "내 프로필 작업",
+      "route": "/workspace"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/10-wireframe.png",
+      "title": "새 프로필 만들기",
+      "route": "/workspace/new"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/11-wireframe.png",
+      "title": "설정 확인 및 결제",
+      "route": "/checkout"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/12-wireframe.png",
+      "title": "사진 생성",
+      "route": "/workspace/[workspaceId]/generate"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/13-wireframe.png",
+      "title": "프로필 작업 상세",
+      "route": "/workspace/[workspaceId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/14-wireframe.png",
+      "title": "사진 수정",
+      "route": "/workspace/[workspaceId]/edit"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/15-wireframe.png",
+      "title": "결제 내역",
+      "route": "/payments"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/16-wireframe.png",
+      "title": "결제 상세",
+      "route": "/payments/[paymentId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/17-wireframe.png",
+      "title": "결제 결과",
+      "route": "/payments/return"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/18-wireframe.png",
+      "title": "계정 설정",
+      "route": "/account"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/19-wireframe.png",
+      "title": "관리자 로그인",
+      "route": "/admin/login"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/20-wireframe.png",
+      "title": "관리자 접근 제한",
+      "route": "/admin/forbidden"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/21-wireframe.png",
+      "title": "관리자 대시보드",
+      "route": "/admin"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/22-wireframe.png",
+      "title": "사용자 관리",
+      "route": "/admin/users"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/23-wireframe.png",
+      "title": "사용자 상세",
+      "route": "/admin/users/[userId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/24-wireframe.png",
+      "title": "상품 관리",
+      "route": "/admin/products"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/25-wireframe.png",
+      "title": "상품 상세",
+      "route": "/admin/products/[productId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/26-wireframe.png",
+      "title": "주문 관리",
+      "route": "/admin/orders"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/27-wireframe.png",
+      "title": "주문 상세",
+      "route": "/admin/orders/[orderId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/28-wireframe.png",
+      "title": "결제 관리",
+      "route": "/admin/payments"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/29-wireframe.png",
+      "title": "결제 상세",
+      "route": "/admin/payments/[paymentId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/30-wireframe.png",
+      "title": "환불 관리",
+      "route": "/admin/refunds"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/31-wireframe.png",
+      "title": "환불 검토 상세",
+      "route": "/admin/refunds/[refundId]"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/32-wireframe.png",
+      "title": "사진 작업 운영 큐",
+      "route": "/admin/photo-jobs"
+    },
+    {
+      "image": "/images/products/photoai/wireframes/33-wireframe.png",
+      "title": "사진 작업 상세",
+      "route": "/admin/photo-jobs/[jobId]"
+    }
+  ],
+  "schemapad": [
+    {
+      "image": "/images/products/schemapad/wireframes/01-wireframe.png",
+      "title": "홈 · 한국어",
+      "route": "/ko"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/02-erd.png",
+      "title": "ERD 문서 · 한국어",
+      "route": "/ko/erd"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/03-wireframe.png",
+      "title": "개인정보처리방침",
+      "route": "/ko/privacy"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/04-wireframe.png",
+      "title": "이용약관",
+      "route": "/ko/policy"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/05-wireframe.png",
+      "title": "문의",
+      "route": "/ko/contact"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/06-erd.png",
+      "title": "ERD 편집기 · 테이블 탐색기",
+      "route": "/ko/erd?id=demo · 테이블 탐색기"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/07-erd.png",
+      "title": "ERD 편집기 · 테이블 속성",
+      "route": "/ko/erd?id=demo · 속성 인스펙터"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/08-erd.png",
+      "title": "ERD 편집기 · 관계 설정",
+      "route": "/ko/erd?id=demo · 관계 설정"
+    },
+    {
+      "image": "/images/products/schemapad/wireframes/09-erd-sql.png",
+      "title": "ERD 편집기 · SQL 내보내기",
+      "route": "/ko/erd?id=demo · SQL 내보내기"
+    }
+  ],
+  "slowmind": [
+    {
+      "image": "/images/products/slowmind/wireframes/01-home.png",
+      "title": "Home",
+      "route": "/"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/02-meditation-spaces.png",
+      "title": "Meditation spaces",
+      "route": "/meditation"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/03-meditation-player.png",
+      "title": "Meditation player",
+      "route": "/meditation/[type] · Meditation"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/04-focus-mode-timer-selection.png",
+      "title": "Focus mode · timer selection",
+      "route": "/meditation/[type] · Focus idle"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/05-focus-mode-running.png",
+      "title": "Focus mode · running",
+      "route": "/meditation/[type] · Focus active"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/06-privacy-policy.png",
+      "title": "Privacy Policy",
+      "route": "/privacy"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/07-terms-and-conditions.png",
+      "title": "Terms and Conditions",
+      "route": "/policy"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/08-contact.png",
+      "title": "Contact",
+      "route": "/contact"
+    },
+    {
+      "image": "/images/products/slowmind/wireframes/09-not-found.png",
+      "title": "Not Found",
+      "route": "/*"
+    }
+  ],
+  "nodalite": [
+    {
+      "image": "/images/products/nodalite/wireframes/01-desktop-project-launcher.png",
+      "title": "Desktop Project Launcher",
+      "route": "앱 실행 · 프로젝트 미선택"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/02-first-run-language.png",
+      "title": "First Run · Language",
+      "route": "Web 첫 방문 · local preference 없음"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/07-final-workspace-combined.png",
+      "title": "Final Workspace · Combined",
+      "route": "Folder Tree + SQL Editor + ERD Canvas + AI Chat"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/08-settings-general.png",
+      "title": "Settings · General",
+      "route": "Workspace → Settings"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/09-edit-table.png",
+      "title": "Edit Table",
+      "route": "ERD table double-click"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/10-ai-project-permission.png",
+      "title": "AI Project Permission",
+      "route": "AI run / Apply proposal"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/03-folder-tree.png",
+      "title": "Folder Tree",
+      "route": "Project / Folder / File / Table hierarchy"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/04-sql-editor.png",
+      "title": "SQL Editor",
+      "route": "Source of truth for schema editing"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/05-erd-canvas.png",
+      "title": "ERD Canvas",
+      "route": "Visual schema navigation & editing"
+    },
+    {
+      "image": "/images/products/nodalite/wireframes/06-ai-chat.png",
+      "title": "AI Chat",
+      "route": "Desktop project-aware agent"
+    }
+  ]
+}

@@ -18,7 +18,11 @@
       <footer class="profile-identity-footer">
         <span>{{ .Params.location }}</span>
         <nav class="profile-identity-links" aria-label="{{ if $isKo }}외부 링크{{ else }}External links{{ end }}">
-          {{- range .Params.links }}<a href="{{ .url | safeURL }}"{{ if not (hasPrefix .url "mailto:") }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }} <span>↗</span></a>{{- end }}
+          {{- range .Params.links }}
+            <a class="profile-icon-link" href="{{ .url | safeURL }}"{{ if not (hasPrefix .url "mailto:") }} target="_blank" rel="noopener noreferrer"{{ end }} aria-label="{{ .label }}" title="{{ .label }}">
+              {{- partial "social-icon.html" . -}}
+            </a>
+          {{- end }}
         </nav>
       </footer>
     </div>
@@ -74,8 +78,19 @@
     </div>
   </section>
 
-  <section class="profile-contact-panel">
-    <div><p>CONTACT</p><h2>{{ if $isKo }}추가로 확인하고 싶은 내용이 있다면<br>편하게 연락해 주세요.{{ else }}If there is anything else you would like to know,<br>feel free to get in touch.{{ end }}</h2></div>
-    <a href="mailto:reochoi109@gmail.com">reochoi109@gmail.com <span>↗</span></a>
+  <section class="profile-contact-panel" aria-labelledby="profile-contact-title">
+    <div class="profile-contact-copy">
+      <p class="overline">CONTACT</p>
+      <h2 id="profile-contact-title">{{ if $isKo }}함께 이야기 나누고 싶은 내용이 있다면<br>편하게 연락해 주세요.{{ else }}If you would like to start a conversation,<br>feel free to get in touch.{{ end }}</h2>
+      <p class="profile-contact-description">{{ if $isKo }}확인 후 가능한 빠르게 답변드리겠습니다.{{ else }}I will get back to you as soon as I can.{{ end }}</p>
+    </div>
+    <div class="profile-contact-actions">
+      <a class="profile-contact-button" href="mailto:reochoi109@gmail.com">
+        {{- partial "social-icon.html" (dict "label" "Email" "url" "mailto:reochoi109@gmail.com") -}}
+        <span>{{ if $isKo }}이메일 보내기{{ else }}Send an email{{ end }}</span>
+        <i aria-hidden="true">↗</i>
+      </a>
+      <span class="profile-contact-address">reochoi109@gmail.com</span>
+    </div>
   </section>
 {{ end }}

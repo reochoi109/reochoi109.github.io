@@ -1,0 +1,48 @@
+{{ define "main" }}
+  {{- $isKo := (eq site.Language.Lang "ko") -}}
+  <section class="collection-hero collection-hero--archive">
+    <p class="overline">CAREER</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p>{{ . }}</p>{{ end -}}
+  </section>
+  {{- with .Content }}
+    <section style="padding-top: 0">
+      <div class="prose">{{ . }}</div>
+    </section>
+  {{- end }}
+
+  {{- $pages := sort .Pages "Params.index" -}}
+  <div class="career-groups career-timeline">
+    {{- range $group := $pages.GroupByParam "field_index" }}
+      {{- $first := index $group.Pages 0 -}}
+      <section class="career-group career-company" aria-labelledby="career-field-{{ $group.Key }}">
+        <header class="career-group-head">
+          <span class="career-company-node" aria-hidden="true"></span>
+          <div class="career-company-copy">
+            <p class="overline">{{ printf "%02d" (int $group.Key) }} · CAREER</p>
+            <div class="career-company-title-row">
+              <h2 id="career-field-{{ $group.Key }}">{{ $first.Params.career_title | default $first.Params.field }}</h2>
+              {{- with $first.Params.employer_url }}
+                <a class="career-company-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $first.Params.employer }} {{ if $isKo }}회사 홈페이지 열기{{ else }}Open company website{{ end }}">
+                  {{ $first.Params.employer }} <span aria-hidden="true">↗</span>
+                </a>
+              {{- end }}
+            </div>
+            <div class="career-company-meta">
+              {{- with $first.Params.employment_period }}<time>{{ . }}</time>{{ end }}
+              <span>{{ if $isKo }}프로젝트 {{ len $group.Pages }}개{{ else }}{{ len $group.Pages }} projects{{ end }}</span>
+            </div>
+          </div>
+        </header>
+        <div class="archive-project-list career-company-projects" aria-label="{{ if $isKo }}{{ $first.Params.career_title }} 수행 프로젝트{{ else }}{{ $first.Params.career_title }} projects{{ end }}">
+          {{- range $i, $page := $group.Pages }}
+            <div class="career-project-branch">
+              <span class="career-project-node" aria-hidden="true"></span>
+              {{ partial "project-item.html" (dict "page" $page "index" (add $i 1)) }}
+            </div>
+          {{- end }}
+        </div>
+      </section>
+    {{- end }}
+  </div>
+{{ end }}
