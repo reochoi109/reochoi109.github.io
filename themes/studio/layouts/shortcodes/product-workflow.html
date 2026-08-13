@@ -1,7 +1,7 @@
 {{- $workflow := transform.Unmarshal .Inner -}}
-<figure class="product-workflow" aria-label="{{ .Get "title" }}">
+<figure class="product-workflow{{ if eq (.Get "layout") "column" }} product-workflow--column{{ end }}" aria-label="{{ .Get "title" }}">
   <figcaption>{{ .Get "title" }}</figcaption>
-  <ol class="product-workflow-steps">
+  <ol class="product-workflow-steps" style="--workflow-columns: {{ len $workflow.nodes }}">
     {{- range $workflow.nodes }}
       <li>{{ .label }}</li>
     {{- end }}

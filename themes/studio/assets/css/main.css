@@ -3883,7 +3883,8 @@ body.about-page .site-main {
   word-break: keep-all;
 }
 
-.project-detail-intro > a {
+.project-detail-intro > a,
+.project-detail-links a {
   display: inline-flex;
   margin-top: 15px;
   padding: 0;
@@ -3895,14 +3896,22 @@ body.about-page .site-main {
   font-weight: 750;
 }
 
-.project-detail-intro > a:hover {
+.project-detail-intro > a:hover,
+.project-detail-links a:hover {
   color: var(--accent-hover);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.project-detail-intro > a span {
+.project-detail-intro > a span,
+.project-detail-links a span {
   font-size: 0.7rem;
+}
+
+.project-detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
 }
 
 .project-detail-facts {
@@ -4232,6 +4241,17 @@ body.about-page .site-main {
   color: var(--text-main);
 }
 
+.project-detail-body .reference-link {
+  color: #2563eb;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.project-detail-body .reference-link:hover {
+  color: #1d4ed8;
+}
+
 .project-detail-body .product-record-shot {
   width: 100%;
   min-width: 0;
@@ -4300,6 +4320,20 @@ body.about-page .site-main {
   font-weight: 820;
 }
 
+.project-detail-body .product-workflow--column .product-workflow-steps {
+  grid-template-columns: 1fr;
+}
+
+.project-detail-body .product-workflow--column .product-workflow-steps li,
+.project-detail-body .product-workflow--column .product-workflow-steps li:nth-child(odd) {
+  border-right: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-detail-body .product-workflow--column .product-workflow-steps li:last-child {
+  border-bottom: 0;
+}
+
 @media (max-width: 760px) {
   .product-workflow {
     margin: 27px 0 31px;
@@ -4310,6 +4344,11 @@ body.about-page .site-main {
   }
 
   .project-detail-body .product-workflow-steps li:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .project-detail-body .product-workflow--column .product-workflow-steps li,
+  .project-detail-body .product-workflow--column .product-workflow-steps li:nth-child(odd) {
     border-right: 0;
   }
 }

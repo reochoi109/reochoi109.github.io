@@ -1,14 +1,35 @@
 {{ define "main" }}
   {{- $isKo := eq site.Language.Lang "ko" -}}
-  <article class="engineering-detail">
-    <a class="case-back" href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}경력{{ else }}Career{{ end }}</a>
+  <article class="project-detail">
+    <a class="project-detail-back" href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}경력{{ else }}Career{{ end }}</a>
 
-    <header class="engineering-head">
-      <p class="overline">ENGINEERING RECORD</p>
-      <h1>{{ .Title }}</h1>
-      {{- with .Description }}<p class="engineering-lead">{{ . }}</p>{{ end -}}
+    <section class="project-detail-overview" aria-labelledby="project-title">
+      <header class="project-detail-head">
+        <div class="project-detail-title">
+          <h1 id="project-title">{{ .Title }}</h1>
+          {{- with .Params.subtitle }}<p class="project-detail-subtitle">{{ . }}</p>{{ end -}}
+        </div>
+        {{- with .Description }}
+          <div class="project-detail-intro">
+            <p>{{ . }}</p>
+            {{- if or $.Params.company_url $.Params.blog_url $.Params.official_url }}
+              <div class="project-detail-links">
+                {{- with $.Params.company_url }}
+                  <a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $.Params.company_label | default . }} <span>↗</span></a>
+                {{- end }}
+                {{- with $.Params.blog_url }}
+                  <a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $.Params.blog_label | default . }} <span>↗</span></a>
+                {{- end }}
+                {{- with $.Params.official_url }}
+                  <a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $.Params.official_label | default . }} <span>↗</span></a>
+                {{- end }}
+              </div>
+            {{- end }}
+          </div>
+        {{- end }}
+      </header>
 
-      <dl class="engineering-meta">
+      <dl class="project-detail-facts">
         {{- with .Params.period }}
           <div>
             <dt>{{ if $isKo }}기간{{ else }}Period{{ end }}</dt>
@@ -22,50 +43,26 @@
           </div>
         {{- end }}
       </dl>
-
-      {{- with .Params.stack -}}
-        <div class="engineering-detail-stack" aria-label="Technology stack">
-          {{- range . }}<span>{{ . }}</span>{{ end -}}
-        </div>
-      {{- end }}
-    </header>
-
-    {{- $images := slice -}}
-    {{- with .Params.visual_image -}}
-      {{- if reflect.IsSlice . }}{{ $images = . }}{{ else }}{{ $images = slice . }}{{ end -}}
-    {{- end -}}
-    {{- if gt (len $images) 0 -}}
-      <figure class="engineering-visual">
-        {{- range first 1 $images }}<img src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end -}}
-      </figure>
-    {{- end -}}
-
-    {{- with .Params.tasks }}
-      <section class="engineering-contributions" aria-labelledby="contributions-title">
-        <div class="engineering-section-head">
-          <p class="overline">KEY CONTRIBUTIONS</p>
-          <h2 id="contributions-title">{{ if $isKo }}주요 기여{{ else }}Key contributions{{ end }}</h2>
-        </div>
-        <ol class="engineering-contribution-grid">
-          {{- range $index, $task := . }}
-            <li>
-              <span>{{ printf "%02d" (add $index 1) }}</span>
-              {{- with $task.title }}<h3>{{ . }}</h3>{{ end -}}
-              {{- with $task.desc }}<p>{{ . }}</p>{{ end -}}
-            </li>
-          {{- end }}
-        </ol>
-      </section>
-    {{- end }}
+    </section>
 
     {{- with .Content }}
-      <section class="engineering-body">
-        <div class="case-body prose">{{ . }}</div>
-      </section>
+      <div class="project-detail-reading">
+        <aside class="project-detail-toc">
+          <p>{{ if $isKo }}목차{{ else }}Contents{{ end }}</p>
+          {{ $.TableOfContents }}
+        </aside>
+        <div class="project-detail-body prose">{{ . }}</div>
+      </div>
     {{- end }}
 
-    <footer class="engineering-detail-footer">
+    <footer class="project-detail-footer">
       <a href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}경력으로 돌아가기{{ else }}Back to career{{ end }}</a>
     </footer>
+
+    {{- with .Params.stack }}
+      <section class="project-detail-stack project-detail-stack--footer" aria-label="Technology stack">
+        <span>TECH STACK</span><ul>{{- range . }}<li>{{ . }}</li>{{- end }}</ul>
+      </section>
+    {{- end }}
   </article>
 {{ end }}
