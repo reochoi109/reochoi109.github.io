@@ -69,14 +69,6 @@ period = "2023.05 – 2025.08"
 tags = ["Product Systems", "Data", "Cross-functional Delivery"]
 
 [[social]]
-label = "Blog"
-url = "https://reo-tech.tistory.com/"
-
-[[social]]
-label = "GitHub"
-url = "https://github.com/reochoi109"
-
-[[social]]
 label = "LinkedIn"
 url = "https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/"
 

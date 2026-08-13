@@ -7,13 +7,10 @@
   {{- if gt (len site.Languages) 1 }}
     <nav class="lang-nav" aria-label="Language">
       {{- $page := . -}}
-      <label class="lang-select-label" for="lang-select">Language</label>
-      <select
-        id="lang-select"
-        class="lang-select"
-        aria-label="Select language"
-        onchange="window.location.href=this.value"
-      >
+      <button class="lang-toggle" type="button" aria-expanded="false" aria-controls="language-menu" aria-label="{{ if eq site.Language.Lang "ko" }}언어 선택{{ else }}Select language{{ end }}" data-language-toggle>
+        <span>{{ site.Language.Lang | upper }}</span><i aria-hidden="true">⌄</i>
+      </button>
+      <div id="language-menu" class="lang-menu" data-language-menu>
         {{- range site.Languages -}}
           {{- $isCurrent := eq .Lang site.Language.Lang -}}
           {{- $target := site.Home -}}
@@ -22,11 +19,12 @@
               {{- $target = index . 0 -}}
             {{- end -}}
           {{- end -}}
-          <option value="{{ $target.RelPermalink }}" {{ if $isCurrent }}selected{{ end }}>
-            {{ .Lang | upper }}
-          </option>
+          <a href="{{ $target.RelPermalink }}"{{ if $isCurrent }} aria-current="true"{{ end }}><span>{{ .LanguageName }}</span><strong>{{ .Lang | upper }}</strong>{{ if $isCurrent }}<i aria-hidden="true">●</i>{{ end }}</a>
         {{- end -}}
-      </select>
+      </div>
     </nav>
   {{- end }}
+  <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-main-menu" aria-label="{{ if eq site.Language.Lang "ko" }}메뉴 열기{{ else }}Open menu{{ end }}" data-mobile-menu-toggle>
+    <span></span><span></span><span></span>
+  </button>
 </div>

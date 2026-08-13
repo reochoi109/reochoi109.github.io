@@ -19,8 +19,8 @@ hugo server -D
 
 ## Portfolio structure
 
-- `/products/`: launched products and a workflow automation tool
-- `/engineering/`: previous backend projects and problem-solving records
+- `/products/`: independent products and a workflow automation case
+- `/career/`: previous backend projects and problem-solving records
 - `/about/`: experience, career direction, and contact information
 
 The Korean site is the default language. Previous `/projects/` and `/side-projects/` links are retained as aliases.

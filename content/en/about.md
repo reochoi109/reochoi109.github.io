@@ -24,8 +24,6 @@ facts = [
 links = [
   { label = "Email", url = "mailto:reochoi109@gmail.com" },
   { label = "LinkedIn", url = "https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/" },
-  { label = "GitHub", url = "https://github.com/reochoi109" },
-  { label = "Blog", url = "https://reo-tech.tistory.com/" },
 ]
 
 [[career]]

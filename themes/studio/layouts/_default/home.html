@@ -102,20 +102,20 @@
     <section id="contact" class="home-slide home-slide--contact" aria-labelledby="home-contact-title">
       <div class="home-slide-index" aria-hidden="true">05 / 05</div>
       <div class="home-contact-main">
-        <p class="home-slide-kicker">PROFILE · NEXT DIRECTION</p>
-        <h2 id="home-contact-title">{{ if $isKo }}원인을 찾고,<br><em>다음 실행으로 연결합니다.</em>{{ else }}Find the cause,<br><em>turn it into the next action.</em>{{ end }}</h2>
-        <p>{{ if $isKo }}백엔드 개발 · 웹 서비스 제작 · 온라인 판매 채널 운영 경험을 고객의 유입과 전환 개선으로 확장하고 있습니다.{{ else }}I am extending experience in backend engineering, web-product building, and online retail into acquisition and conversion improvement.{{ end }}</p>
-        <a class="home-contact-email" href="mailto:reochoi109@gmail.com">reochoi109@gmail.com <span>↗</span></a>
+        <p class="home-slide-kicker">CONTACT</p>
+        <h2 id="home-contact-title">{{ if $isKo }}더 궁금한 내용이 있다면,<br><em>편하게 연락해 주세요.</em>{{ else }}If you would like to know more,<br><em>feel free to get in touch.</em>{{ end }}</h2>
+        <p>{{ if $isKo }}퍼포먼스 마케팅 직무로 새로운 기회를 찾고 있습니다.{{ else }}I am currently exploring opportunities in performance marketing.{{ end }}</p>
+        <a class="home-contact-email" href="mailto:reochoi109@gmail.com"><span>{{ if $isKo }}이메일 주소 복사{{ else }}Copy email address{{ end }}</span><i aria-hidden="true">⧉</i></a>
       </div>
       <aside class="home-contact-card">
-        <p>{{ if $isKo }}PROFILE SNAPSHOT{{ else }}PROFILE SNAPSHOT{{ end }}</p>
-        <strong>{{ if $isKo }}퍼포먼스 마케팅{{ else }}Performance Marketing{{ end }}</strong>
+        <p>EXPLORE MORE</p>
+        <strong>{{ if $isKo }}필요한 정보로<br>바로 이동{{ else }}Continue to<br>the details{{ end }}</strong>
         <ul>
-          <li>{{ if $isKo }}데이터 분석 준전문가(ADsP) · 2026.03{{ else }}ADsP certification · 2026.03{{ end }}</li>
-          <li>{{ if $isKo }}과일 스마트스토어 운영 경험{{ else }}Online fruit-store operation{{ end }}</li>
-          <li>{{ if $isKo }}대경대학교 연극영화과{{ else }}Daekyeung University · Theatre{{ end }}</li>
+          {{- with $career }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}경력{{ else }}Career{{ end }}</span><i>→</i></a></li>{{- end }}
+          {{- with $products }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}</span><i>→</i></a></li>{{- end }}
+          {{- with $about }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}프로필{{ else }}Profile{{ end }}</span><i>→</i></a></li>{{- end }}
         </ul>
-        {{- with $about }}<a href="{{ .RelPermalink }}">{{ if $isKo }}전체 프로필 보기{{ else }}View full profile{{ end }} <span>→</span></a>{{- end }}
+        <a href="https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
       </aside>
     </section>
   </div>

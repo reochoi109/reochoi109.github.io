@@ -1,69 +1,3 @@
-const storageKey = 'theme';
-
-function getSystemTheme() {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
-}
-
-function getSavedTheme() {
-  try {
-    const saved = localStorage.getItem(storageKey);
-    return saved === 'light' || saved === 'dark' ? saved : null;
-  } catch {
-    return null;
-  }
-}
-
-function setTheme(next) {
-  const root = document.documentElement;
-  if (next === 'light' || next === 'dark') root.dataset.theme = next;
-  else delete root.dataset.theme;
-}
-
-function saveTheme(next) {
-  try {
-    if (next === null) localStorage.removeItem(storageKey);
-    else localStorage.setItem(storageKey, next);
-  } catch {}
-}
-
-function currentTheme() {
-  return document.documentElement.dataset.theme || null;
-}
-
-function updateToggleUI(button) {
-  const forced = currentTheme();
-  const effective = forced ?? getSystemTheme();
-  const label = forced ? `테마: ${forced}` : `테마: 시스템(${effective})`;
-  button.setAttribute('aria-label', `${label} (클릭해서 전환)`);
-  button.setAttribute('title', label);
-}
-
-function cycleTheme() {
-  const forced = currentTheme();
-  const next = forced === null ? 'dark' : forced === 'dark' ? 'light' : null;
-  setTheme(next);
-  saveTheme(next);
-}
-
-function initThemeToggle() {
-  const button = document.querySelector('[data-theme-toggle]');
-  if (!button) return;
-
-  const saved = getSavedTheme();
-  if (saved) setTheme(saved);
-
-  updateToggleUI(button);
-  button.addEventListener('click', () => {
-    cycleTheme();
-    updateToggleUI(button);
-  });
-
-  const mq = window.matchMedia?.('(prefers-color-scheme: dark)');
-  mq?.addEventListener?.('change', () => updateToggleUI(button));
-}
-
 function initSliders() {
   const sliders = document.querySelectorAll('[data-slider]');
   for (const slider of sliders) {
@@ -71,8 +5,6 @@ function initSliders() {
     const slides = slider.querySelectorAll('[data-slider-slide]');
     const prev = slider.querySelector('[data-slider-prev]');
     const next = slider.querySelector('[data-slider-next]');
-    const dots = slider.querySelector('[data-slider-dots]');
-
     if (!track || slides.length === 0) continue;
 
     let index = 0;
@@ -89,12 +21,6 @@ function initSliders() {
       if (prev) prev.disabled = index === 0;
       if (next) next.disabled = index === slides.length - 1;
 
-      if (dots) {
-        const dotEls = dots.querySelectorAll('[data-slider-dot]');
-        dotEls.forEach((el, i) => {
-          el.setAttribute('aria-current', i === index ? 'true' : 'false');
-        });
-      }
     }
 
     function goTo(i) {
@@ -104,19 +30,6 @@ function initSliders() {
 
     if (prev) prev.addEventListener('click', () => goTo(index - 1));
     if (next) next.addEventListener('click', () => goTo(index + 1));
-
-    if (dots) {
-      dots.innerHTML = '';
-      slides.forEach((_, i) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'slider-dot';
-        b.setAttribute('data-slider-dot', '');
-        b.setAttribute('aria-label', `Slide ${i + 1}`);
-        b.addEventListener('click', () => goTo(i));
-        dots.appendChild(b);
-      });
-    }
 
     slider.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') goTo(index - 1);
@@ -177,6 +90,132 @@ function initProductImageZoom() {
   close.addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
+  });
+}
+
+function initEmailCopy() {
+  const links = [...document.querySelectorAll('a[href^="mailto:"]')];
+  if (links.length === 0) return;
+
+  const isKo = document.documentElement.lang.toLowerCase().startsWith('ko');
+  const toast = document.createElement('div');
+  toast.className = 'email-copy-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  let toastTimer;
+
+  async function copyText(value) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+
+    const input = document.createElement('textarea');
+    input.value = value;
+    input.setAttribute('readonly', '');
+    input.style.position = 'fixed';
+    input.style.opacity = '0';
+    document.body.appendChild(input);
+    input.select();
+    const copied = document.execCommand('copy');
+    input.remove();
+    if (!copied) throw new Error('Copy failed');
+  }
+
+  function showToast(message, failed = false) {
+    window.clearTimeout(toastTimer);
+    toast.textContent = message;
+    toast.classList.toggle('is-error', failed);
+    toast.classList.add('is-visible');
+    toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 2400);
+  }
+
+  for (const link of links) {
+    const email = decodeURIComponent(link.getAttribute('href').slice('mailto:'.length).split('?')[0]);
+    if (!email) continue;
+
+    link.dataset.copyEmail = email;
+    link.setAttribute('title', isKo ? '이메일 주소 복사' : 'Copy email address');
+    if (!link.textContent.trim() || link.classList.contains('profile-icon-link') || link.classList.contains('footer-icon-link')) {
+      link.setAttribute('aria-label', isKo ? `이메일 주소 복사: ${email}` : `Copy email address: ${email}`);
+    }
+
+    link.addEventListener('click', async (event) => {
+      event.preventDefault();
+      try {
+        await copyText(email);
+        showToast(isKo ? '이메일 주소를 복사했습니다.' : 'Email address copied.');
+      } catch {
+        showToast(isKo ? '이메일 주소를 복사하지 못했습니다.' : 'Could not copy the email address.', true);
+      }
+    });
+  }
+}
+
+function initMobileMenu() {
+  const button = document.querySelector('[data-mobile-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  if (!button || !menu) return;
+
+  const isKo = document.documentElement.lang.toLowerCase().startsWith('ko');
+
+  function setOpen(open) {
+    if (open) {
+      document.querySelector('[data-language-menu]')?.classList.remove('is-open');
+      document.querySelector('[data-language-toggle]')?.setAttribute('aria-expanded', 'false');
+    }
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open
+      ? (isKo ? '메뉴 닫기' : 'Close menu')
+      : (isKo ? '메뉴 열기' : 'Open menu'));
+    button.classList.toggle('is-open', open);
+    menu.classList.toggle('is-open', open);
+  }
+
+  button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setOpen(false);
+      button.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (!button.closest('.site-header')?.contains(event.target)) setOpen(false);
+  });
+  window.matchMedia('(min-width: 761px)').addEventListener('change', (event) => {
+    if (event.matches) setOpen(false);
+  });
+}
+
+function initLanguageMenu() {
+  const button = document.querySelector('[data-language-toggle]');
+  const menu = document.querySelector('[data-language-menu]');
+  if (!button || !menu) return;
+
+  function setOpen(open) {
+    if (open) {
+      const mobileButton = document.querySelector('[data-mobile-menu-toggle]');
+      const mobileMenu = document.querySelector('[data-mobile-menu]');
+      mobileButton?.setAttribute('aria-expanded', 'false');
+      mobileButton?.classList.remove('is-open');
+      mobileMenu?.classList.remove('is-open');
+    }
+    button.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('is-open', open);
+  }
+
+  button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+      button.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (!button.closest('.lang-nav')?.contains(event.target)) setOpen(false);
   });
 }
 
@@ -304,9 +343,11 @@ function initProductWorkflows() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeToggle();
   initSliders();
   initProtectedImages();
   initProductImageZoom();
   initProductWorkflows();
+  initEmailCopy();
+  initMobileMenu();
+  initLanguageMenu();
 });
