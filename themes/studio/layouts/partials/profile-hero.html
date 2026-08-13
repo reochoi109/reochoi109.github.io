@@ -7,7 +7,7 @@
 
 <section class="portfolio-hero home-intro shared-profile-hero">
   <div class="hero-copy">
-    <p class="hero-eyebrow"><span></span>{{ if $isKo }}최신욱 · GROWTH / PERFORMANCE MARKETING{{ else }}SINUK CHOI · GROWTH / PERFORMANCE MARKETING{{ end }}</p>
+    <p class="hero-eyebrow"><span></span>{{ if $isKo }}최신욱 · PERFORMANCE MARKETING{{ else }}SINUK CHOI · PERFORMANCE MARKETING{{ end }}</p>
     {{- if eq $context "home" }}
       <h1 class="hero-title">{{ replace $headline "\n" "<br>" | safeHTML }}</h1>
     {{- else }}
@@ -45,7 +45,7 @@
     </div>
     <div class="home-profile-copy">
       <p>{{ if $isKo }}최신욱{{ else }}Sinuk Choi{{ end }}</p>
-      <strong>{{ if $isKo }}그로스 · 퍼포먼스 마케팅{{ else }}Growth · Performance Marketing{{ end }}</strong>
+      <strong>{{ if $isKo }}퍼포먼스 마케팅{{ else }}Performance Marketing{{ end }}</strong>
       <span>{{ if $isKo }}개발, 제품 제작, 온라인 판매 경험을 바탕으로 고객 유입과 전환의 문제를 다룹니다.{{ else }}Working on acquisition and conversion problems with experience in engineering, product building, and online retail.{{ end }}</span>
     </div>
   </aside>
