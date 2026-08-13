@@ -14,7 +14,7 @@ tag = 'tags'
 category = 'categories'
 
 [params]
-description = '기술과 데이터 경험을 바탕으로 성장 문제를 다루는 최신욱의 포트폴리오.'
+description = '기술과 데이터 경험을 바탕으로 광고 성과를 다루는 최신욱의 퍼포먼스 마케팅 포트폴리오.'
 author = 'Reo'
 brand = 'Reo' # Header/footer brand label (defaults to `title`)
 email = 'reochoi109@gmail.com' # Optional: footer email under brand (falls back to data/home.toml)
@@ -29,7 +29,7 @@ spacing = 'comfortable' # comfortable | compact
   contentDir = 'content/ko'
     [languages.ko.params]
     brand = 'Reo'
-    description = '기술과 데이터 경험을 바탕으로 성장 문제를 다루는 최신욱의 포트폴리오.'
+    description = '기술과 데이터 경험을 바탕으로 광고 성과를 다루는 최신욱의 퍼포먼스 마케팅 포트폴리오.'
     [languages.ko.menu]
       [[languages.ko.menu.main]]
       name = '홈'
@@ -37,17 +37,17 @@ spacing = 'comfortable' # comfortable | compact
       weight = 10
 
       [[languages.ko.menu.main]]
-      name = '제품·도구'
+      name = '개인 프로젝트'
       pageRef = '/products'
       weight = 30
 
       [[languages.ko.menu.main]]
-      name = '개발 아카이브'
+      name = '경력'
       pageRef = '/engineering'
       weight = 38
 
       [[languages.ko.menu.main]]
-      name = '소개'
+      name = '프로필'
       pageRef = '/about'
       weight = 40
 
@@ -67,17 +67,17 @@ spacing = 'comfortable' # comfortable | compact
       weight = 10
 
       [[languages.en.menu.main]]
-      name = 'Products'
+      name = 'Independent Projects'
       pageRef = '/products'
       weight = 30
 
       [[languages.en.menu.main]]
-      name = 'Engineering'
+      name = 'Career'
       pageRef = '/engineering'
       weight = 38
 
       [[languages.en.menu.main]]
-      name = 'About'
+      name = 'Profile'
       pageRef = '/about'
       weight = 40
 

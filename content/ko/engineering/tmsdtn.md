@@ -3,6 +3,9 @@ aliases = ["/ko/projects/tmsdtn/"]
 title = "디지털 트윈 기반 도로 시뮬레이션 중계 서버"
 date = 2026-05-02T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "디지털 트윈 교통 시뮬레이션"
 period = "2024.09 - 2024.12"
 org = "㈜라온로드"
 subtitle = "Backend Project | 2024.09 - 2024.12"
@@ -10,7 +13,7 @@ description = "시뮬레이션 요청과 결과를 비동기로 처리하고, �
 index = 1
 visual_text = ""
 visual_image = [
-  "/images/tmsdtn.png",
+  "/images/career/tmsdtn/overview.png",
 ]
 
 tasks = [
@@ -41,12 +44,6 @@ tags = ["project", "digital-twin", "traffic", "backend", "simulation"]
 각 시점 데이터를 수신할 때마다 파일에 순차적으로 기록하고, 기록한 데이터는 즉시 메모리에서 제거하도록 변경했습니다. 이를 통해 전체 데이터를 한 번에 보관하지 않고 현재 처리 중인 데이터만 메모리에 유지했습니다.
 
 결과 데이터는 JSON 파일로 생성한 뒤 tar.gz로 압축해 보관·전달했습니다.
-
-## 아키텍처
-
-![](/images/projects/tmsdtn/ko/tmsdtn-architecture.svg)
-
-![](/images/projects/tmsdtn/ko/tmsdtn-sequence.svg)
 
 ## 프로젝트에서 맡은 범위
 

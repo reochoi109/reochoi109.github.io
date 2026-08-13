@@ -1,5 +1,5 @@
 +++
-title = "소개"
+title = "프로필"
 date = 2026-08-06T00:00:00+09:00
 layout = "about"
 robots = "index, follow, noimageindex, max-image-preview:none"
@@ -7,7 +7,7 @@ name_line = "최신욱 · 퍼포먼스 마케팅"
 display_name = "최신욱"
 role_from = "백엔드 개발"
 role_to = "퍼포먼스 마케팅"
-hero_title = "기술과 데이터 경험을,\n마케팅 역량으로 확장합니다."
+hero_title = "기술과 데이터 경험을,\n퍼포먼스 마케팅으로 연결합니다."
 intro = [
   "백엔드 개발로 쌓은 기술·데이터 이해를 퍼포먼스 마케팅 역량으로 확장하고 있습니다.",
   "개인 서비스의 검색 구조를 설계하고 온라인 판매 채널을 운영한 경험에서 출발해, 유입과 전환을 더 깊이 다루고자 합니다."
@@ -17,7 +17,7 @@ location = "Seoul, Korea"
 strengths = ["기술 도구 적응력", "논리적 문제 해결", "직접 제작 경험"]
 facts = [
   { label = "개발 경력", value = "서버 개발 2년+" },
-  { label = "출시 제품", value = "개인 웹 서비스 3개" },
+  { label = "개인 프로젝트", value = "웹 서비스 3개 출시" },
   { label = "판매 경험", value = "과일 스마트스토어 운영" },
   { label = "목표 직무", value = "퍼포먼스 마케팅" },
 ]

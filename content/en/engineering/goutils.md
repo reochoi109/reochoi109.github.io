@@ -3,6 +3,9 @@ aliases = ["/en/projects/goutils/"]
 title = "GOUTILS: Internal Shared Go Module"
 date = 2026-05-02T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "GOUTILS"
 period = "2025.01 - 2025.07"
 org = "Laon Road"
 subtitle = "Backend Module | 2025.01 - 2025.07"
@@ -10,7 +13,7 @@ description = "Packaged recurring and inconsistent backend implementations into 
 index = 4
 visual_text = ""
 visual_image = [
-  "/images/goutils-infographic.png",
+  "/images/career/goutils/overview.png",
 ]
 
 tasks = [

@@ -1,0 +1,9 @@
+{{- $workflow := transform.Unmarshal .Inner -}}
+<figure class="product-workflow" aria-label="{{ .Get "title" }}">
+  <figcaption>{{ .Get "title" }}</figcaption>
+  <ol class="product-workflow-steps">
+    {{- range $workflow.nodes }}
+      <li>{{ .label }}</li>
+    {{- end }}
+  </ol>
+</figure>

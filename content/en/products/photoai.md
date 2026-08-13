@@ -14,10 +14,6 @@ label = "Status"
 value = "Launch paused"
 
 [[facts]]
-label = "Role"
-value = "Planning · UI/UX · Frontend · Backend"
-
-[[facts]]
 label = "Audience"
 value = "Job seekers who urgently need a portrait"
 +++

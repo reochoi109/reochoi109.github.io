@@ -3,6 +3,9 @@ aliases = ["/ko/projects/goutils/"]
 title = "GOUTILS: 사내 공용 Go 모듈"
 date = 2025-01-02T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "GOUTILS"
 period = "2025.01 - 2025.07"
 org = "㈜라온로드"
 subtitle = "Backend Module | 2025.01 - 2025.07"
@@ -10,7 +13,7 @@ description = "프로젝트마다 반복되거나 다르게 구현된 백엔드 
 index = 4
 visual_text = ""
 visual_image = [
-  "/images/goutils-infographic.png",
+  "/images/career/goutils/overview.png",
 ]
 
 tasks = [

@@ -2,6 +2,7 @@
 {{- $index := .index -}}
 {{- $indexText := printf "%02d" (int ($page.Params.index | default $index)) -}}
 {{- $isKo := eq site.Language.Lang "ko" -}}
+{{- $displayTitle := $page.Params.list_title | default $page.LinkTitle -}}
 
 {{- $images := slice -}}
 {{- with $page.Params.visual_images -}}
@@ -17,7 +18,7 @@
   <div class="engineering-card-visual">
     {{- if eq (len $images) 1 -}}
       {{- range $images }}
-        <img src="{{ . | relURL }}" alt="{{ $page.LinkTitle }}">
+        <img src="{{ . | relURL }}" alt="{{ $displayTitle }}" loading="lazy" decoding="async">
       {{- end -}}
     {{- else if gt (len $images) 1 -}}
       <div class="slider" data-slider role="group" aria-label="{{ $page.LinkTitle }} {{ if $isKo }}이미지{{ else }}images{{ end }}">
@@ -27,7 +28,7 @@
               {{- $src := . -}}
               {{- $url := cond (or (hasPrefix $src "http://") (hasPrefix $src "https://")) $src ($src | relURL) -}}
               <div class="slider-slide" data-slider-slide>
-                <img src="{{ $url }}" alt="{{ $page.LinkTitle }}">
+                <img src="{{ $url }}" alt="{{ $displayTitle }}" loading="lazy" decoding="async">
               </div>
             {{- end -}}
           </div>
@@ -37,13 +38,13 @@
         <div class="slider-dots" data-slider-dots aria-label="{{ if $isKo }}이미지 선택{{ else }}Image selector{{ end }}"></div>
       </div>
     {{- else -}}
-      <span>{{ with $page.Params.visual_text }}{{ . }}{{ else }}ENGINEERING ARCHIVE{{ end }}</span>
+      <span>{{ with $page.Params.visual_text }}{{ . }}{{ else }}CAREER{{ end }}</span>
     {{- end -}}
   </div>
 
   <div class="engineering-card-copy">
     <span class="engineering-card-index">{{ $indexText }}</span>
-    <h2>{{ $page.LinkTitle }}</h2>
+    <h2>{{ $displayTitle }}</h2>
     <div class="engineering-card-meta">
       {{- with $page.Params.period }}<time>{{ . }}</time>{{ end -}}
       {{- with $page.Params.org }}<span>{{ . }}</span>{{ end -}}

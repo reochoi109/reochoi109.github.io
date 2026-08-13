@@ -3,6 +3,9 @@ aliases = ["/ko/projects/headway/"]
 title = "교통 분석 서비스 – 차량 간 통과 간격 분석"
 date = 2026-04-28T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "GAP 교통 분석"
 period = "2023.07 - 2023.09"
 org = "㈜라온로드"
 subtitle = "Traffic Analysis | 2023.07 - 2023.09"
@@ -10,7 +13,7 @@ description = "차량 검지 데이터를 차로와 신호 주기별로 분석�
 index = 2
 visual_text = ""
 visual_image = [
-  "/images/headway-flow.svg",
+  "/images/career/headway/flow.svg",
 ]
 
 tasks = [

@@ -1,92 +1,81 @@
 {{ define "main" }}
   {{- $isKo := eq site.Language.Lang "ko" -}}
-  <section class="collection-hero collection-hero--about">
-    <p class="overline">ABOUT</p>
-    <h1>{{ .Title }}</h1>
-    <p>{{ if $isKo }}경험의 흐름과 현재의 방향, 확인 가능한 공식 이력을 정리했습니다.{{ else }}A record of my experience, current direction, and verifiable professional background.{{ end }}</p>
-  </section>
 
-  {{ partial "profile-hero.html" (dict "page" . "context" "about") }}
+  <section class="profile-identity profile-identity--compact" aria-labelledby="profile-person-name">
+    <figure class="profile-identity-photo">
+      <img src="{{ "/images/profile/portrait.jpg" | relURL }}" alt="{{ if $isKo }}최신욱 프로필 사진{{ else }}Profile photo of Sinuk Choi{{ end }}" width="720" height="720" loading="eager" decoding="async" draggable="false" data-protected-image>
+    </figure>
 
-  <section class="about-facts" aria-label="Profile highlights">
-    {{- range .Params.facts -}}
-      <div><span>{{ .label }}</span><strong>{{ .value }}</strong></div>
-    {{- end -}}
-  </section>
-
-  <section class="about-records" aria-labelledby="about-records-title">
-    <header class="about-records-head">
-      <p class="overline">OFFICIAL RECORD</p>
-      <h2 id="about-records-title">{{ if $isKo }}경력과 공식 이력{{ else }}Career and official record{{ end }}</h2>
-      <p>{{ if $isKo }}확인 가능한 공식 이력의 기간과 명칭을 기준으로 정리했습니다.{{ else }}Listed using the names and periods available in official records.{{ end }}</p>
-    </header>
-
-    <div class="about-records-grid">
-      <div class="about-records-column">
-        {{- with .Params.career }}
-          <section class="about-record-group" aria-labelledby="career-title">
-            <h3 id="career-title">{{ if $isKo }}경력{{ else }}Career{{ end }}</h3>
-            <ol class="about-record-list">
-              {{- range . }}
-                <li>
-                  <time>{{ .period }}</time>
-                  <div>
-                    <strong>{{ .company }}</strong>
-                    <p>{{ .role }}{{ with .duration }}<span> · {{ . }}</span>{{ end }}</p>
-                    {{- with .note }}<small>{{ . }}</small>{{ end }}
-                  </div>
-                </li>
-              {{- end }}
-            </ol>
-          </section>
-        {{- end }}
-
-        {{- with .Params.education }}
-          <section class="about-record-group" aria-labelledby="education-title">
-            <h3 id="education-title">{{ if $isKo }}학력{{ else }}Education{{ end }}</h3>
-            <ol class="about-record-list">
-              {{- range . }}
-                <li>
-                  <time>{{ .period }}</time>
-                  <div>
-                    <strong>{{ .school }}</strong>
-                    <p>{{ .major }}{{ with .duration }}<span> · {{ . }}</span>{{ end }}</p>
-                  </div>
-                </li>
-              {{- end }}
-            </ol>
-          </section>
-        {{- end }}
+    <div class="profile-identity-copy">
+      <p class="overline">PROFILE</p>
+      <h1 id="profile-person-name">{{ .Params.display_name }}</h1>
+      <div class="profile-career-shift" aria-label="{{ if $isKo }}경력 전환{{ else }}Career transition{{ end }}">
+        <span>{{ .Params.role_from }}</span><i>→</i><strong>{{ .Params.role_to }}</strong>
       </div>
-
-      {{- with .Params.credentials }}
-        <section class="about-record-group about-record-group--credentials" aria-labelledby="credentials-title">
-          <h3 id="credentials-title">{{ if $isKo }}교육 · 자격 · 수상{{ else }}Education · Certifications · Awards{{ end }}</h3>
-          <ol class="about-record-list">
-            {{- range . }}
-              <li>
-                <time>{{ .date }}</time>
-                <div>
-                  <span class="about-record-category">{{ .category }}</span>
-                  <strong>{{ .title }}</strong>
-                  {{- with .details }}
-                    <ul class="about-record-details">{{- range . }}<li>{{ . }}</li>{{- end }}</ul>
-                  {{- else }}
-                    <p>{{ .description }}</p>
-                  {{- end }}
-                </div>
-              </li>
-            {{- end }}
-          </ol>
-        </section>
-      {{- end }}
+      <div class="profile-identity-intro">
+        {{- range .Params.intro }}<p>{{ . }}</p>{{- end }}
+      </div>
+      <footer class="profile-identity-footer">
+        <span>{{ .Params.location }}</span>
+        <nav class="profile-identity-links" aria-label="{{ if $isKo }}외부 링크{{ else }}External links{{ end }}">
+          {{- range .Params.links }}<a href="{{ .url | safeURL }}"{{ if not (hasPrefix .url "mailto:") }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }} <span>↗</span></a>{{- end }}
+        </nav>
+      </footer>
     </div>
   </section>
 
-  <section class="about-story prose">{{ .Content }}</section>
+  <section class="profile-story-section" aria-labelledby="profile-story-title">
+    <header>
+      <p class="overline">TRANSITION</p>
+      <h2 id="profile-story-title">{{ if $isKo }}전환 배경{{ else }}Career transition{{ end }}</h2>
+    </header>
+    <article class="profile-story-content prose">{{ .Content }}</article>
+  </section>
 
-  <section class="about-links-panel">
-    <p>{{ if $isKo }}기술과 데이터를 바탕으로 광고 성과를 개선할 기회를 찾고 있습니다.{{ else }}I am looking for opportunities to improve campaign performance through technology and data.{{ end }}</p>
-    <a href="mailto:reochoi109@gmail.com" aria-label="Email">{{ if $isKo }}이야기 나누기{{ else }}Let's talk{{ end }} <span>↗</span></a>
+  <section id="career" class="profile-record-section" aria-labelledby="profile-record-title">
+    <header class="profile-record-section-head">
+      <p class="overline">CAREER & RECORD</p>
+      <h2 id="profile-record-title">{{ if $isKo }}이력{{ else }}Background{{ end }}</h2>
+      <p>{{ if $isKo }}경력, 학력, 교육·자격·수상 내용을 확인할 수 있습니다.{{ else }}Career, education, certifications, and awards at a glance.{{ end }}</p>
+    </header>
+
+    <div class="profile-record-grid">
+      <div class="profile-record-column">
+        <div class="profile-record-title"><span>01</span><h3>{{ if $isKo }}경력{{ else }}Career{{ end }}</h3></div>
+        <ol class="profile-record-list">
+          {{- range .Params.career }}
+            <li><time>{{ .period }}</time><div><strong>{{ .company }}</strong><p>{{ .role }}{{ with .duration }}<span> · {{ . }}</span>{{ end }}</p>{{ with .note }}<small>{{ . }}</small>{{ end }}</div></li>
+          {{- end }}
+        </ol>
+
+        <div class="profile-record-title profile-record-title--education"><span>02</span><h3>{{ if $isKo }}학력{{ else }}Education{{ end }}</h3></div>
+        <ol class="profile-record-list">
+          {{- range .Params.education }}
+            <li><time>{{ .period }}</time><div><strong>{{ .school }}</strong><p>{{ .major }}</p></div></li>
+          {{- end }}
+        </ol>
+      </div>
+
+      <section class="profile-record-column" aria-labelledby="profile-credential-title">
+        <div class="profile-record-title"><span>03</span><h3 id="profile-credential-title">{{ if $isKo }}교육 · 자격 · 수상{{ else }}Education · Certifications · Awards{{ end }}</h3></div>
+        <ol class="profile-record-list profile-record-list--credentials">
+          {{- range .Params.credentials }}
+            <li>
+              <time>{{ .date }}</time>
+              <div>
+                <span class="profile-record-category">{{ .category }}</span>
+                <strong>{{ .title }}</strong>
+                {{- with .details }}<ul>{{- range . }}<li>{{ . }}</li>{{- end }}</ul>{{- else }}<p>{{ .description }}</p>{{- end }}
+              </div>
+            </li>
+          {{- end }}
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="profile-contact-panel">
+    <div><p>CONTACT</p><h2>{{ if $isKo }}추가로 확인하고 싶은 내용이 있다면<br>편하게 연락해 주세요.{{ else }}If there is anything else you would like to know,<br>feel free to get in touch.{{ end }}</h2></div>
+    <a href="mailto:reochoi109@gmail.com">reochoi109@gmail.com <span>↗</span></a>
   </section>
 {{ end }}

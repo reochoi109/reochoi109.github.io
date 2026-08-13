@@ -1,20 +1,25 @@
 {{- $page := .page -}}
-{{- $index := .index -}}
-{{- $indexText := printf "%02d." (int ($page.Params.index | default $index)) -}}
+{{- $isKo := eq site.Language.Lang "ko" -}}
+{{- $visual := $page.Params.visual_image -}}
+{{- $visualSource := strings.TrimPrefix "/" ($visual | default "") -}}
+{{- $hasVisual := and $visual (fileExists (printf "static/%s" $visualSource)) -}}
 
-<section class="project-section product-section">
-  <div class="project-section-link" role="group" aria-label="{{ $page.LinkTitle }}">
-    {{- with $page.Params.visual_image }}
-      <div class="visual-area">
-        <img class="visual-img" src="{{ . | relURL }}" alt="{{ $page.LinkTitle }}">
-      </div>
-    {{- end }}
-
-    <div class="title"><span>{{ $indexText }}</span> {{ $page.LinkTitle }}</div>
-    {{- with $page.Params.subtitle }}<div class="subtitle">{{ . }}</div>{{ end -}}
-    {{- with $page.Params.description }}<p class="project-summary">{{ . }}</p>{{ end -}}
-    <a class="product-url" href="{{ $page.Params.site_url | safeURL }}" target="_blank" rel="noopener noreferrer">
-      {{ $page.Params.site_url }} <span aria-hidden="true">↗</span>
-    </a>
+<a class="project-showcase-card" href="{{ $page.RelPermalink }}" aria-label="{{ $page.LinkTitle }} {{ if $isKo }}프로젝트 상세 보기{{ else }}view project details{{ end }}">
+  {{- if $hasVisual }}
+    <span class="project-showcase-visual">
+      <img src="{{ $visual | relURL }}" alt="{{ $page.LinkTitle }}" loading="lazy" decoding="async">
+    </span>
+  {{- else }}
+    <span class="project-showcase-visual project-showcase-visual--placeholder">
+      <span class="project-showcase-placeholder-word">{{ $page.LinkTitle }}</span>
+      <small>{{ if $isKo }}제품 화면 준비 중{{ else }}Preview coming soon{{ end }}</small>
+    </span>
+  {{- end }}
+  <div class="project-showcase-copy">
+    <div class="project-showcase-title">
+      <h3>{{ $page.LinkTitle }}</h3>
+      {{- with $page.Params.status_label }}<em>{{ . }}</em>{{- end }}
+    </div>
+    <p class="project-showcase-summary">{{ $page.Params.list_description | default $page.Params.subtitle | default $page.Description }}</p>
   </div>
-</section>
+</a>

@@ -1,6 +1,7 @@
 {{ define "main" }}
+  {{- $isKo := eq site.Language.Lang "ko" -}}
   <section class="collection-hero collection-hero--archive">
-    <p class="overline">ENGINEERING ARCHIVE</p>
+    <p class="overline">CAREER</p>
     <h1>{{ .Title }}</h1>
     {{- with .Description }}<p>{{ . }}</p>{{ end -}}
   </section>
@@ -11,18 +12,23 @@
   {{- end }}
 
   {{- $pages := sort .Pages "Params.index" -}}
-  {{- $p := .Paginate $pages -}}
-  <section class="archive-project-list" style="padding-top: 0">
-    {{ range $i, $page := $p.Pages }}
-      {{ partial "project-item.html" (dict "page" $page "index" (add $i 1)) }}
-    {{ end }}
-  </section>
-
-  {{ if gt $p.TotalPages 1 }}
-    <nav class="pager" aria-label="Pagination">
-      {{ with $p.Prev }}<a class="pager-link" href="{{ .URL }}">Prev</a>{{ end }}
-      <span class="pager-meta">{{ $p.PageNumber }} / {{ $p.TotalPages }}</span>
-      {{ with $p.Next }}<a class="pager-link" href="{{ .URL }}">Next</a>{{ end }}
-    </nav>
-  {{ end }}
+  <div class="career-groups">
+    {{- range $group := $pages.GroupByParam "field_index" }}
+      {{- $first := index $group.Pages 0 -}}
+      <section class="career-group" aria-labelledby="career-field-{{ $group.Key }}">
+        <header class="career-group-head">
+          <div>
+            <p class="overline">{{ printf "%02d" (int $group.Key) }} · FIELD</p>
+            <h2 id="career-field-{{ $group.Key }}">{{ $first.Params.field | default (cond $isKo "기타" "Other") }}</h2>
+          </div>
+          <p>{{ if $isKo }}{{ len $group.Pages }}개의 업무·프로젝트{{ else }}{{ len $group.Pages }} work records and projects{{ end }}</p>
+        </header>
+        <div class="archive-project-list">
+          {{- range $i, $page := $group.Pages }}
+            {{ partial "project-item.html" (dict "page" $page "index" (add $i 1)) }}
+          {{- end }}
+        </div>
+      </section>
+    {{- end }}
+  </div>
 {{ end }}

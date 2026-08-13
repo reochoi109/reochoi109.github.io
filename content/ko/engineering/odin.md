@@ -3,6 +3,9 @@ aliases = ["/ko/projects/odin/"]
 title = "ODIN Sentinel 서버(실시간 이벤트·BBox·스트리밍)"
 date = 2026-05-02T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "ODIN Sentinel"
 period = "2025.01 - 2025.04"
 org = "영상 분석 플랫폼(내부)"
 subtitle = "영상 분석 플랫폼 | 2025.01 - 2025.04"
@@ -10,7 +13,7 @@ description = "영상 분석 서비스 운영을 위해 이벤트 알림, BBox �
 index = 3
 visual_text = ""
 visual_image = [
-  "/images/odin.jpg",
+  "/images/career/odin/overview.jpg",
 ]
 
 tasks = [

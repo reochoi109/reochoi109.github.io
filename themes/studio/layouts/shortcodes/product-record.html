@@ -1,4 +1,16 @@
-<figure class="product-record-shot">
-  <img src="{{ .Get "image" | relURL }}" alt="{{ .Get "alt" }}" loading="lazy">
+{{- $src := .Get "image" -}}
+{{- $isKo := eq site.Language.Lang "ko" -}}
+{{- $source := strings.TrimPrefix "/" $src -}}
+{{- $isExternal := or (hasPrefix $src "http://") (hasPrefix $src "https://") -}}
+{{- $exists := or $isExternal (fileExists (printf "static/%s" $source)) -}}
+<figure class="product-record-shot{{ if not $exists }} product-record-shot--placeholder{{ end }}">
+  {{- if $exists }}
+    <img src="{{ $src | relURL }}" alt="{{ .Get "alt" }}" loading="lazy" decoding="async" data-product-zoom tabindex="0" role="button" aria-label="{{ .Get "alt" }} {{ if $isKo }}크게 보기{{ else }}view larger{{ end }}">
+  {{- else }}
+    <div class="product-record-placeholder" role="img" aria-label="{{ .Get "alt" }}">
+      <strong>PREVIEW</strong>
+      <span>{{ .Get "alt" }}</span>
+    </div>
+  {{- end }}
   <figcaption>{{ .Get "caption" }}</figcaption>
 </figure>

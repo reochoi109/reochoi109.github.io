@@ -69,6 +69,12 @@
     {{- $img = . -}}
   {{- end -}}
 {{- end -}}
+{{- if and $img (not (or (hasPrefix $img "http://") (hasPrefix $img "https://"))) -}}
+  {{- $imgSource := strings.TrimPrefix "/" $img -}}
+  {{- if not (fileExists (printf "static/%s" $imgSource)) -}}
+    {{- $img = "" -}}
+  {{- end -}}
+{{- end -}}
 
 <meta name="twitter:card" content="{{ if $img }}summary_large_image{{ else }}summary{{ end }}">
 <meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">

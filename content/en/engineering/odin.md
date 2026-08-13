@@ -3,6 +3,9 @@ aliases = ["/en/projects/odin/"]
 title = "ODIN Sentinel Server (Realtime Events, BBox, Streaming)"
 date = 2026-05-02T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "ODIN Sentinel"
 period = "2025.01 - 2025.04"
 org = "Video Analytics Platform (Internal)"
 subtitle = "Video Analytics Platform | 2025.01 - 2025.04"
@@ -10,7 +13,7 @@ description = "Built real-time backend capabilities for a video analytics servic
 index = 3
 visual_text = ""
 visual_image = [
-  "/images/odin.jpg",
+  "/images/career/odin/overview.jpg",
 ]
 
 tasks = [

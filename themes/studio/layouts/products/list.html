@@ -1,76 +1,71 @@
 {{ define "main" }}
-  <section class="collection-hero collection-hero--products">
-    <p class="overline">PRODUCTS · TOOLS</p>
-    <h1>{{ .Title }}</h1>
-    {{- with .Description }}<p>{{ . }}</p>{{ end -}}
-  </section>
-  {{- with .Content }}
-    <section style="padding-top: 0">
-      <div class="prose">{{ . }}</div>
-    </section>
-  {{- end }}
-
-  {{- $pages := sort .Pages "Params.index" -}}
+  {{- $isKo := eq site.Language.Lang "ko" -}}
+  {{- $pages := where (sort .Pages "Params.index") "LinkTitle" "ne" "" -}}
   {{- $launched := where $pages "Params.status" "ne" "unreleased" -}}
   {{- $experiments := where $pages "Params.status" "eq" "unreleased" -}}
   {{- $p := .Paginate $launched -}}
-  <section class="collection-group" aria-labelledby="launched-products-title">
-    <div class="collection-group-head">
-      <p class="overline">01 · LAUNCHED PRODUCTS</p>
-      <h2 id="launched-products-title">{{ if eq site.Language.Lang "ko" }}1. 출시한 제품{{ else }}1. Launched products{{ end }}</h2>
+
+  <section class="project-index-hero">
+    <div class="project-index-hero-copy">
+      <p class="overline">{{ if $isKo }}PROJECTS{{ else }}PROJECTS{{ end }}</p>
+      <h1>{{ .Title }}</h1>
     </div>
-    <div class="product-project-list">
-    {{ range $i, $page := $p.Pages }}
-      {{ partial "product-item.html" (dict "page" $page "index" (add $i 1)) }}
-    {{ end }}
+    <nav class="project-index-summary" aria-label="{{ if $isKo }}개인 프로젝트 목차{{ else }}Independent project sections{{ end }}">
+      <a href="#work-improvement"><span>01</span><strong>{{ if $isKo }}업무 개선{{ else }}Work Improvement{{ end }}</strong></a>
+      <a href="#service-development"><span>02</span><strong>{{ if $isKo }}서비스 개발{{ else }}Service Development{{ end }}</strong></a>
+      <a href="#unreleased-services"><span>03</span><strong>{{ if $isKo }}미 출시 서비스{{ else }}Unreleased Services{{ end }}</strong></a>
+    </nav>
+  </section>
+
+  {{- with .Params.tools }}
+    <section id="work-improvement" class="project-case-section" aria-labelledby="practical-case-title">
+      <header class="project-section-heading">
+        <h2 id="practical-case-title"><span>01</span>{{ if $isKo }}업무 개선{{ else }}Work Improvement{{ end }}</h2>
+      </header>
+
+      <div class="project-showcase-grid">
+        {{- range . }}
+          <a class="project-showcase-card" href="{{ site.Home.RelPermalink }}#case" aria-label="{{ if $isKo }}검색 노출 순위 확인 도구 상세 보기{{ else }}View Search Visibility Rank Checker details{{ end }}">
+            {{- with .visual_image }}
+              <span class="project-showcase-visual">
+                <img src="{{ . | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 화면{{ else }}Search Visibility Rank Checker interface{{ end }}" loading="lazy" decoding="async">
+              </span>
+            {{- end }}
+            <div class="project-showcase-copy">
+              <div class="project-showcase-title">
+                <h3>{{ .title }}</h3>
+                <em>{{ if $isKo }}업무 도구{{ else }}Work tool{{ end }}</em>
+              </div>
+              <p class="project-showcase-summary">{{ .subtitle }}</p>
+            </div>
+          </a>
+        {{- end }}
+      </div>
+    </section>
+  {{- end }}
+
+  <section id="service-development" class="project-launch-section" aria-labelledby="launched-products-title">
+    <header class="project-section-heading">
+      <h2 id="launched-products-title"><span>02</span>{{ if $isKo }}서비스 개발{{ else }}Service Development{{ end }}</h2>
+    </header>
+
+    <div class="project-showcase-grid">
+      {{ range $i, $page := $p.Pages }}
+        {{ partial "product-item.html" (dict "page" $page "index" (add $i 1)) }}
+      {{ end }}
     </div>
   </section>
 
   {{- with $experiments }}
-    <section class="product-experiments" aria-labelledby="product-experiments-title">
-      <div class="collection-group-head">
-        <p class="overline">02 · UNRELEASED PRODUCT</p>
-        <h2 id="product-experiments-title">{{ if eq site.Language.Lang "ko" }}2. 출시하지 못한 제품{{ else }}2. Unreleased product{{ end }}</h2>
-        <p>{{ if eq site.Language.Lang "ko" }}완성한 기능보다 검증 과정과 출시 판단을 중심으로 기록했습니다.{{ else }}A record centered on validation and the launch decision, not just completed features.{{ end }}</p>
+    <section id="unreleased-services" class="project-decision-section" aria-labelledby="product-decisions-title">
+      <header class="project-section-heading">
+        <h2 id="product-decisions-title"><span>03</span>{{ if $isKo }}미 출시 서비스{{ else }}Unreleased Services{{ end }}</h2>
+      </header>
+      <div class="project-showcase-grid">
+        {{- range $i, $page := . }}
+          {{ partial "product-item.html" (dict "page" $page "index" (add $i 1)) }}
+        {{- end }}
       </div>
-      {{- range . }}
-        <a class="product-experiment-card" href="{{ .RelPermalink }}">
-          <div class="product-experiment-image">
-            <img src="{{ .Params.visual_image | relURL }}" alt="{{ .Title }}">
-          </div>
-          <div class="product-experiment-copy">
-            <span class="product-status">{{ .Params.status_label }}</span>
-            <h3>{{ .Title }}</h3>
-            <p class="product-experiment-subtitle">{{ .Params.subtitle }}</p>
-            <p>{{ .Description }}</p>
-            <span class="product-experiment-link">{{ if eq site.Language.Lang "ko" }}기획과 판단 보기{{ else }}View planning and decisions{{ end }} <i>→</i></span>
-          </div>
-        </a>
-      {{- end }}
-    </section>
-  {{- end }}
-
-  {{- with .Params.tools }}
-    <section id="tools" class="work-tools" aria-labelledby="work-tools-title">
-      <div class="work-tools-head">
-        <p class="overline">03 · TOOLS FOR WORK</p>
-        <h2 id="work-tools-title">{{ if eq site.Language.Lang "ko" }}3. 도구{{ else }}3. Tools{{ end }}</h2>
-      </div>
-
-      {{- range . }}
-        <article class="work-tool-card work-tool-card--simple">
-          <div class="work-tool-copy work-tool-copy--simple">
-            <h3>{{ .title }}</h3>
-            <p>{{ .description }}</p>
-            <p>{{ .impact }}</p>
-          </div>
-          {{- with .demo_image }}
-            <figure class="work-tool-demo">
-              <img src="{{ . | relURL }}" alt="{{ if eq site.Language.Lang "ko" }}검색어와 판매처를 입력해 노출 순위를 확인하는 실제 사용 화면{{ else }}Actual workflow for entering keywords and sellers to check visibility rank{{ end }}" loading="lazy">
-            </figure>
-          {{- end }}
-        </article>
-      {{- end }}
     </section>
   {{- end }}
 

@@ -3,6 +3,9 @@ aliases = ["/en/projects/tmsdtn/"]
 title = "Digital Twin Road Simulation Relay Server"
 date = 2026-05-02T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "Digital Twin Traffic Simulation"
 period = "2024.09 - 2024.12"
 org = "Laon Road"
 subtitle = "Backend Project | 2024.09 - 2024.12"
@@ -10,7 +13,7 @@ description = "Designed and built a Go relay server that asynchronously processe
 index = 1
 visual_text = ""
 visual_image = [
-  "/images/tmsdtn.png",
+  "/images/career/tmsdtn/overview.png",
 ]
 
 tasks = [
@@ -41,12 +44,6 @@ A 15-minute simulation result arrives as 9,000 time-point records. The previous 
 I changed the flow to append each record to a file as it arrived and remove the recorded data from memory immediately. This kept only the record currently being processed in memory instead of the entire result set.
 
 The completed result was stored as JSON and compressed as tar.gz for storage and delivery.
-
-## Architecture
-
-![](/images/projects/tmsdtn/ko/tmsdtn-architecture.svg)
-
-![](/images/projects/tmsdtn/ko/tmsdtn-sequence.svg)
 
 ## Scope
 

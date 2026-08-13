@@ -3,6 +3,9 @@ aliases = ["/en/projects/headway/"]
 title = "Traffic Analysis – Vehicle Passage Interval Analysis"
 date = 2026-04-28T00:00:00+09:00
 type = "engineering"
+field = "Backend Development"
+field_index = 1
+list_title = "GAP Traffic Analysis"
 period = "2023.07 - 2023.09"
 org = "Laon Road"
 subtitle = "Traffic Analysis | 2023.07 - 2023.09"
@@ -10,7 +13,7 @@ description = "Calculated vehicle passage intervals from lane- and signal-cycle-
 index = 2
 visual_text = ""
 visual_image = [
-  "/images/headway-flow.svg",
+  "/images/career/headway/flow.svg",
 ]
 
 tasks = [

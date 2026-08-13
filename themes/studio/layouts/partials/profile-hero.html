@@ -16,7 +16,7 @@
     <p class="hero-bio">{{ $bio }}</p>
     <div class="hero-actions">
       <a class="cta cta-primary" href="{{ (site.GetPage "/products").RelPermalink }}">
-        {{ if $isKo }}제품과 도구 보기{{ else }}View products & tools{{ end }} <span>↗</span>
+        {{ if $isKo }}개인 프로젝트 보기{{ else }}View independent projects{{ end }} <span>↗</span>
       </a>
       {{- if eq $context "home" }}
         <a class="cta cta-ghost" href="{{ (site.GetPage "/about").RelPermalink }}">
@@ -33,7 +33,7 @@
   <aside class="home-profile-card" aria-label="{{ if $isKo }}간략 프로필{{ else }}Brief profile{{ end }}">
     <div class="home-profile-photo">
       <img
-        src="{{ "/images/profile-protected.jpg" | relURL }}"
+        src="{{ "/images/profile/portrait.jpg" | relURL }}"
         alt="{{ if $isKo }}최신욱 프로필 사진{{ else }}Profile photo of Sinuk Choi{{ end }}"
         width="720"
         height="720"

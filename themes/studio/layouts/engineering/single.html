@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{- $isKo := eq site.Language.Lang "ko" -}}
   <article class="engineering-detail">
-    <a class="case-back" href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}개발 아카이브{{ else }}Engineering archive{{ end }}</a>
+    <a class="case-back" href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}경력{{ else }}Career{{ end }}</a>
 
     <header class="engineering-head">
       <p class="overline">ENGINEERING RECORD</p>
@@ -65,7 +65,7 @@
     {{- end }}
 
     <footer class="engineering-detail-footer">
-      <a href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}개발 아카이브로 돌아가기{{ else }}Back to engineering archive{{ end }}</a>
+      <a href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}경력으로 돌아가기{{ else }}Back to career{{ end }}</a>
     </footer>
   </article>
 {{ end }}

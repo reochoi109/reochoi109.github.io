@@ -1,6 +1,6 @@
 +++
-title = "Engineering Archive"
-description = "Selected backend work that shaped how I understand products, systems, and data."
+title = "Career"
+description = "Work and projects completed within professional organizations."
 type = "engineering"
 aliases = ["/en/projects/"]
 +++

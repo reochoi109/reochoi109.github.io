@@ -1,5 +1,5 @@
 +++
-title = "About"
+title = "Profile"
 date = 2026-08-06T00:00:00+09:00
 layout = "about"
 robots = "index, follow, noimageindex, max-image-preview:none"
@@ -7,7 +7,7 @@ name_line = "Sinuk Choi · Performance Marketing"
 display_name = "Sinuk Choi"
 role_from = "Backend Engineering"
 role_to = "Performance Marketing"
-hero_title = "Extending technical and data experience\ninto marketing capability."
+hero_title = "Connecting technical and data experience\nto performance marketing."
 intro = [
   "I am extending the technical and data fluency I built in backend engineering into performance marketing.",
   "Designing search-friendly product structures and operating an online sales channel led me to focus more deeply on acquisition and conversion."
@@ -17,7 +17,7 @@ location = "Seoul, Korea"
 strengths = ["Technical adaptability", "Logical problem solving", "Hands-on building"]
 facts = [
   { label = "Background", value = "2 years+ in server engineering" },
-  { label = "Products", value = "3 independent web products" },
+  { label = "Independent projects", value = "3 web products launched" },
   { label = "Commerce", value = "Operated an online fruit store" },
   { label = "Direction", value = "Performance Marketing" },
 ]
