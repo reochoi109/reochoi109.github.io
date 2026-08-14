@@ -4035,10 +4035,14 @@ body.about-page .site-main {
 .project-detail-facts {
   display: grid;
   margin: 0;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: minmax(120px, 0.45fr) minmax(260px, 1.4fr) minmax(220px, 1fr);
   background: var(--white);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border-strong);
+}
+
+.project-detail-facts:not(:has(.project-detail-fact-site)) {
+  grid-template-columns: minmax(120px, 0.45fr) minmax(260px, 2fr);
 }
 
 .project-detail-facts > div {
@@ -4066,6 +4070,29 @@ body.about-page .site-main {
   font-size: 0.8rem;
   font-weight: 730;
   line-height: 1.5;
+}
+
+.project-detail-fact-site a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.project-detail-fact-site a:hover {
+  color: var(--accent-hover);
+}
+
+.project-detail-fact-site a span {
+  font-size: 0.8em;
+  text-decoration: none;
 }
 
 .project-detail-hero {

@@ -12,15 +12,18 @@
         </div>
         <div class="project-detail-intro">
           <p>{{ .Description }}</p>
-          {{- with .Params.site_url }}
-            <a class="project-detail-site" href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $.Params.site_label | default . }} <span>↗</span></a>
-          {{- end }}
         </div>
       </header>
 
-      {{- with .Params.facts }}
+      {{- if or .Params.facts .Params.site_url }}
         <dl class="project-detail-facts">
-          {{- range . }}<div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>{{- end }}
+          {{- range $index, $fact := .Params.facts }}<div{{ if eq $index 0 }} class="project-detail-fact-status"{{ end }}><dt>{{ $fact.label }}</dt><dd>{{ $fact.value }}</dd></div>{{- end }}
+          {{- with .Params.site_url }}
+            <div class="project-detail-fact-site">
+              <dt>{{ if $isKo }}주소{{ else }}Website{{ end }}</dt>
+              <dd><a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $.Params.site_label | default . }} <span aria-hidden="true">↗</span></a></dd>
+            </div>
+          {{- end }}
         </dl>
       {{- end }}
     </section>
