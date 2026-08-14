@@ -14,7 +14,7 @@ tag = 'tags'
 category = 'categories'
 
 [params]
-description = '기술과 데이터 경험을 바탕으로 광고 성과를 다루는 최신욱의 퍼포먼스 마케팅 포트폴리오.'
+description = '기술과 데이터 경험을 바탕으로 고객의 유입과 전환을 다루는 최신욱의 그로스 마케팅 포트폴리오.'
 author = 'Reo'
 brand = 'Reo' # Header/footer brand label (defaults to `title`)
 email = 'reochoi109@gmail.com' # Optional: footer email under brand (falls back to data/home.toml)
@@ -29,7 +29,7 @@ spacing = 'comfortable' # comfortable | compact
   contentDir = 'content/ko'
     [languages.ko.params]
     brand = 'Reo'
-    description = '기술과 데이터 경험을 바탕으로 광고 성과를 다루는 최신욱의 퍼포먼스 마케팅 포트폴리오.'
+    description = '기술과 데이터 경험을 바탕으로 고객의 유입과 전환을 다루는 최신욱의 그로스 마케팅 포트폴리오.'
     [languages.ko.menu]
       [[languages.ko.menu.main]]
       name = '홈'

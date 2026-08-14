@@ -7,7 +7,7 @@ aliases = ["/en/side-projects/"]
 [[tools]]
 title = "Search Visibility Rank Checker"
 subtitle = "A work tool that automates repetitive ad-product visibility checks"
-description = "Built at the request of a performance marketing practitioner. Given search keywords and sellers, it checks product visibility and ranking across desktop, mobile, shopping, and search surfaces in batches."
+description = "Built at the request of a marketing practitioner. Given search keywords and sellers, it checks product visibility and ranking across desktop, mobile, shopping, and search surfaces in batches."
 impact = "It reduced the repetitive work of searching and recording ranks manually, leaving more time to review the results."
 visual_image = "/images/tools/search-rank/dashboard.png"
 demo_image = "/images/tools/search-rank/demo.gif"

@@ -26,7 +26,7 @@ The Search Visibility Rank Checker was built to reduce the repetitive work invol
 
 ## Starting point
 
-A performance marketing practitioner was repeatedly searching the same terms across desktop, mobile, shopping, and general search surfaces, then recording the results separately.
+A marketing practitioner was repeatedly searching the same terms across desktop, mobile, shopping, and general search surfaces, then recording the results separately.
 
 Because much of this process consisted of repeating the same search-and-record steps, I turned the workflow into a tool that accepts the conditions once and checks each entry in sequence.
 

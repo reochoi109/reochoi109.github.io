@@ -19,9 +19,9 @@
     <section id="intro" class="home-slide home-slide--intro" aria-labelledby="home-intro-title">
       <div class="home-slide-index" aria-hidden="true">01 / 05</div>
       <div class="home-intro-copy">
-        <p class="home-slide-kicker">{{ if $isKo }}최신욱 · 퍼포먼스 마케팅{{ else }}SINUK CHOI · PERFORMANCE MARKETING{{ end }}</p>
-        <h1 id="home-intro-title">{{ if $isKo }}기술과 데이터 경험을,<br><em>퍼포먼스 마케팅으로<br class="home-mobile-only"> 연결합니다.</em>{{ else }}Connecting technical<br>and data experience<br><em>to performance marketing.</em>{{ end }}</h1>
-        <p class="home-slide-lead">{{ if $isKo }}데이터와 기술에 대한 이해를 바탕으로 고객의 유입과 전환을 분석하고 개선하는 퍼포먼스 마케터를 지향합니다.{{ else }}I am extending the technical and data fluency I built in backend engineering into acquisition, conversion, and performance improvement.{{ end }}</p>
+        <p class="home-slide-kicker">{{ if $isKo }}최신욱 · 그로스 마케팅{{ else }}SINUK CHOI · GROWTH MARKETING{{ end }}</p>
+        <h1 id="home-intro-title">{{ if $isKo }}기술과 데이터 경험을,<br><em>그로스 마케팅으로<br class="home-mobile-only"> 연결합니다.</em>{{ else }}Connecting technical<br>and data experience<br><em>to growth marketing.</em>{{ end }}</h1>
+        <p class="home-slide-lead">{{ if $isKo }}데이터와 기술에 대한 이해를 바탕으로 고객의 유입과 전환을 분석하고 개선하는 그로스 마케터를 지향합니다.{{ else }}I am extending the technical and data fluency I built in backend engineering into acquisition, conversion, and growth improvement.{{ end }}</p>
         <div class="home-slide-actions">
           <a class="home-deck-button home-deck-button--primary" href="#career">{{ if $isKo }}경력부터 보기{{ else }}Start with career{{ end }} <span>↓</span></a>
           {{- with $products }}<a class="home-deck-button" href="{{ .RelPermalink }}">{{ if $isKo }}프로젝트 전체 보기{{ else }}View all projects{{ end }} <span>→</span></a>{{- end }}
@@ -33,11 +33,11 @@
         </ul>
       </div>
       <aside class="home-intro-profile" aria-label="{{ if $isKo }}지원자 요약{{ else }}Candidate summary{{ end }}">
-        <div class="home-intro-photo"><img src="{{ "/images/profile/portrait.jpg" | relURL }}" alt="{{ if $isKo }}최신욱 프로필 사진{{ else }}Profile photo of Sinuk Choi{{ end }}" width="720" height="720" loading="eager" decoding="async" draggable="false" data-protected-image><span>{{ if $isKo }}백엔드 개발 → 퍼포먼스 마케팅{{ else }}Backend Engineering → Performance Marketing{{ end }}</span></div>
+        <div class="home-intro-photo"><img src="{{ "/images/profile/portrait.jpg" | relURL }}" alt="{{ if $isKo }}최신욱 프로필 사진{{ else }}Profile photo of Sinuk Choi{{ end }}" width="720" height="720" loading="eager" decoding="async" draggable="false" data-protected-image><span>{{ if $isKo }}백엔드 개발 → 그로스 마케팅{{ else }}Backend Engineering → Growth Marketing{{ end }}</span></div>
         <div class="home-intro-meta">
           <div><span>{{ if $isKo }}이름{{ else }}Name{{ end }}</span><strong>{{ if $isKo }}최신욱{{ else }}Sinuk Choi{{ end }}</strong></div>
           <div><span>{{ if $isKo }}경력{{ else }}Career{{ end }}</span><strong>{{ if $isKo }}서버 개발 2년+{{ else }}Server engineering 2 years+{{ end }}</strong></div>
-          <div><span>{{ if $isKo }}목표{{ else }}Direction{{ end }}</span><strong>{{ if $isKo }}퍼포먼스 마케팅{{ else }}Performance Marketing{{ end }}</strong></div>
+          <div><span>{{ if $isKo }}목표{{ else }}Direction{{ end }}</span><strong>{{ if $isKo }}그로스 마케팅{{ else }}Growth Marketing{{ end }}</strong></div>
         </div>
       </aside>
     </section>
@@ -88,7 +88,7 @@
       <div class="home-case-copy">
         <p class="home-slide-kicker">WORK IMPROVEMENT · AUTOMATION</p>
         <h2 id="home-case-title">{{ if $isKo }}검색 노출 순위<br>확인 도구{{ else }}Search Visibility<br>Rank Checker{{ end }}</h2>
-        <p class="home-case-summary">{{ if $isKo }}퍼포먼스 마케팅 실무자의 반복 검색과 수기 기록을 최대 20개 항목의 일괄 확인 흐름으로 바꿨습니다.{{ else }}I replaced a performance marketer's repetitive searches and manual recording with a batch-checking workflow for up to 20 entries.{{ end }}</p>
+        <p class="home-case-summary">{{ if $isKo }}마케팅 실무자의 반복 검색과 수기 기록을 최대 20개 항목의 일괄 확인 흐름으로 바꿨습니다.{{ else }}I replaced a marketing practitioner's repetitive searches and manual recording with a batch-checking workflow for up to 20 entries.{{ end }}</p>
         <dl class="home-case-flow">
           <div><dt>INPUT</dt><dd>{{ if $isKo }}키워드 · 판매처 · 검색 환경{{ else }}Keywords · sellers · search environment{{ end }}</dd></div>
           <div><dt>CHECK</dt><dd>{{ if $isKo }}PC·모바일과 검색 채널별 일괄 조회{{ else }}Batch checks across desktop, mobile, and channels{{ end }}</dd></div>
@@ -104,7 +104,7 @@
       <div class="home-contact-main">
         <p class="home-slide-kicker">CONTACT</p>
         <h2 id="home-contact-title">{{ if $isKo }}더 궁금한 내용이 있다면,<br><em>편하게 연락해 주세요.</em>{{ else }}If you would like to know more,<br><em>feel free to get in touch.</em>{{ end }}</h2>
-        <p>{{ if $isKo }}퍼포먼스 마케팅 직무로 새로운 기회를 찾고 있습니다.{{ else }}I am currently exploring opportunities in performance marketing.{{ end }}</p>
+        <p>{{ if $isKo }}그로스 마케팅 직무로 새로운 기회를 찾고 있습니다.{{ else }}I am currently exploring opportunities in growth marketing.{{ end }}</p>
         <a class="home-contact-email" href="mailto:reochoi109@gmail.com"><span>{{ if $isKo }}이메일 주소 복사{{ else }}Copy email address{{ end }}</span><i aria-hidden="true">⧉</i></a>
       </div>
       <aside class="home-contact-card">
