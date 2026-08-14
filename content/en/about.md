@@ -3,23 +3,23 @@ title = "Profile"
 date = 2026-08-06T00:00:00+09:00
 layout = "about"
 robots = "index, follow, noimageindex, max-image-preview:none"
-name_line = "Sinuk Choi · Marketing"
+name_line = "Sinuk Choi · Growth Marketing"
 display_name = "Sinuk Choi"
 role_from = "Backend Engineering"
-role_to = "Marketing"
-hero_title = "Connecting technical and data experience\nto marketing."
+role_to = "Growth Marketer"
+hero_title = "Connecting technical and data experience\nto growth marketing."
 intro = [
-  "I am extending the technical and data fluency I built in backend engineering into marketing.",
+  "I am extending the technical and data fluency I built in backend engineering into growth marketing.",
   "Designing search-friendly product structures and operating an online sales channel led me to focus more deeply on acquisition and conversion."
 ]
-status = "Marketing"
+status = "Growth Marketing"
 location = "Seoul, Korea"
 strengths = ["Technical adaptability", "Logical problem solving", "Hands-on building"]
 facts = [
   { label = "Background", value = "2 years+ in server engineering" },
   { label = "Independent projects", value = "3 web products launched" },
   { label = "Commerce", value = "Operated an online fruit store" },
-  { label = "Direction", value = "Marketing" },
+  { label = "Direction", value = "Growth Marketer" },
 ]
 links = [
   { label = "Email", url = "mailto:reochoi109@gmail.com" },
@@ -90,4 +90,4 @@ I also previously operated an online store selling fruit. The business is now cl
 
 ## Areas I am expanding into
 
-I am expanding my experience into paid-media operations, conversion tracking, analysis, and optimization. I aim to bring an engineering-informed perspective to marketing, communicate smoothly with technical teams, and use data and tools with confidence.
+I am expanding my experience into paid-media operations, conversion tracking, analysis, and optimization. I aim to bring an engineering-informed perspective to growth marketing, communicate smoothly with technical teams, and use data and tools with confidence.
