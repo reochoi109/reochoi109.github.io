@@ -2,7 +2,7 @@
   {{- $isKo := eq site.Language.Lang "ko" -}}
   {{- $isPaused := eq .Params.status "unreleased" -}}
   <article class="project-detail">
-    <a class="project-detail-back" href="{{ (site.GetPage "/products").RelPermalink }}">← {{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}</a>
+    <a class="project-detail-back" href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}</a>
 
     <section class="project-detail-overview" aria-labelledby="project-title">
       <header class="project-detail-head">
@@ -39,7 +39,7 @@
     {{- end }}
 
     <footer class="project-detail-footer">
-      <a href="{{ (site.GetPage "/products").RelPermalink }}">← {{ if $isKo }}개인 프로젝트로 돌아가기{{ else }}Back to independent projects{{ end }}</a>
+      <a href="{{ .Parent.RelPermalink }}">← {{ if $isKo }}개인 프로젝트로 돌아가기{{ else }}Back to independent projects{{ end }}</a>
       {{- with .Params.site_url }}<a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ if $isKo }}사이트 열기{{ else }}Open website{{ end }} ↗</a>{{- end }}
     </footer>
 

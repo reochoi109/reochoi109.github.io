@@ -1,6 +1,7 @@
 +++
 title = "프로필"
 date = 2026-08-06T00:00:00+09:00
+type = "page"
 layout = "about"
 robots = "index, follow, noimageindex, max-image-preview:none"
 name_line = "최신욱 · 퍼포먼스 마케팅"

@@ -6,6 +6,34 @@ title = 'Reo Portfolio'
 theme = 'studio'
 enableRobotsTXT = true
 
+# Company-specific portfolio routes reuse the canonical Korean content while
+# keeping the company slug in every generated URL.
+[module]
+  [[module.mounts]]
+  source = 'content/ko'
+  target = 'content'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/en'
+  target = 'content'
+  lang = 'en'
+
+  [[module.mounts]]
+  source = 'content/ko/products'
+  target = 'content/madup/products'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/ko/career'
+  target = 'content/madup/career'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/ko/about.md'
+  target = 'content/madup/about.md'
+  lang = 'ko'
+
 [pagination]
 pagerSize = 12
 
@@ -19,6 +47,7 @@ author = 'Reo'
 brand = 'Reo' # Header/footer brand label (defaults to `title`)
 email = 'reochoi109@gmail.com' # Optional: footer email under brand (falls back to data/home.toml)
 spacing = 'comfortable' # comfortable | compact
+company_routes = ['madup'] # Company-specific mirrors that preserve their URL prefix
 
 [languages]
   [languages.ko]

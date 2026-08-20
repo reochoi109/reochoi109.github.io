@@ -5,6 +5,10 @@
   {{- $launched := where $pages "Params.status" "ne" "unreleased" -}}
   {{- $experiments := where $pages "Params.status" "eq" "unreleased" -}}
   {{- $p := .Paginate $launched -}}
+  {{- $searchRankPath := "/products/search-rank" -}}
+  {{- if in site.Params.company_routes .Section -}}
+    {{- $searchRankPath = printf "/%s/products/search-rank" .Section -}}
+  {{- end -}}
 
   <section class="project-index-hero">
     <div class="project-index-hero-copy">
@@ -26,7 +30,7 @@
 
       <div class="project-showcase-grid">
         {{- range . }}
-          <a class="project-showcase-card" href="{{ (site.GetPage "/products/search-rank").RelPermalink }}" aria-label="{{ if $isKo }}검색 노출 순위 확인 도구 상세 보기{{ else }}View Search Visibility Rank Checker details{{ end }}">
+          <a class="project-showcase-card" href="{{ (site.GetPage $searchRankPath).RelPermalink }}" aria-label="{{ if $isKo }}검색 노출 순위 확인 도구 상세 보기{{ else }}View Search Visibility Rank Checker details{{ end }}">
             {{- with .visual_image }}
               <span class="project-showcase-visual">
                 <img src="{{ . | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 화면{{ else }}Search Visibility Rank Checker interface{{ end }}" loading="lazy" decoding="async">

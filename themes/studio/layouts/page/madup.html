@@ -2,10 +2,11 @@
 
   {{- $isKo := eq site.Language.Lang "ko" -}}
 
-  {{- $products := site.GetPage "/products" -}}
-  {{- $career := site.GetPage "/career" -}}
-  {{- $about := site.GetPage "/about" -}}
-  {{- $searchRank := site.GetPage "/products/search-rank" -}}
+  {{- $companyBase := printf "/%s" .Section -}}
+  {{- $products := site.GetPage (printf "%s/products" $companyBase) -}}
+  {{- $career := site.GetPage (printf "%s/career" $companyBase) -}}
+  {{- $about := site.GetPage (printf "%s/about" $companyBase) -}}
+  {{- $searchRank := site.GetPage (printf "%s/products/search-rank" $companyBase) -}}
 
   {{- $careerPages := sort $career.Pages "Params.index" -}}
   {{- $productPages := where (sort $products.Pages "Params.index") "Params.project_group" "ne" "work-improvement" -}}

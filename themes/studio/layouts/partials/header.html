@@ -1,5 +1,11 @@
 {{- $brand := site.Params.brand | default site.Title -}}
-<a class="brand-link" href="{{ site.Home.RelPermalink }}" aria-label="{{ $brand }} home">
+{{- $homeURL := site.Home.RelPermalink -}}
+{{- if in site.Params.company_routes .Section -}}
+  {{- with site.GetPage (printf "/%s" .Section) -}}
+    {{- $homeURL = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+<a class="brand-link" href="{{ $homeURL }}" aria-label="{{ $brand }} home">
   <span class="brand-wordmark" aria-hidden="true">Reo</span>
 </a>
 <div class="header-actions">
@@ -13,8 +19,11 @@
       <div id="language-menu" class="lang-menu" data-language-menu>
         {{- range site.Languages -}}
           {{- $isCurrent := eq .Lang site.Language.Lang -}}
-          {{- $target := site.Home -}}
-          {{- if $page.IsTranslated -}}
+          {{- $targetSite := index (where site.Sites "Language.Lang" .Lang) 0 -}}
+          {{- $target := $targetSite.Home -}}
+          {{- if $isCurrent -}}
+            {{- $target = $page -}}
+          {{- else if $page.IsTranslated -}}
             {{- with where $page.AllTranslations "Lang" .Lang -}}
               {{- $target = index . 0 -}}
             {{- end -}}
