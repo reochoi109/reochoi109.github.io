@@ -927,6 +927,128 @@ h1 {
   }
 }
 
+/* Shared company application home */
+.company-home .site-main,
+.company-home .madup-deck,
+.company-home .madup-deck > .home-slide {
+  width: 100%;
+  min-width: 0;
+}
+
+.company-home .site-main {
+  position: relative;
+}
+
+.company-home .madup-deck-nav a {
+  position: relative;
+}
+
+.company-home .madup-deck-nav a::before {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 11px);
+  width: max-content;
+  padding: 6px 9px;
+  color: #fff;
+  background: var(--text-main);
+  border-radius: 6px;
+  content: attr(data-label);
+  font-size: 0.62rem;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(5px, -50%);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.company-home .madup-deck-nav a:hover::before,
+.company-home .madup-deck-nav a:focus-visible::before {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.company-home .madup-deck-nav a[aria-current="location"] {
+  color: #fff;
+  background: var(--accent);
+}
+
+.company-home .home-slide--cover-letter .home-cover-letter-content > p,
+.company-home .home-slide--application .home-cover-letter-content > p {
+  margin: 0;
+  padding: 26px 0 28px;
+}
+
+.company-home .home-slide--cover-letter .home-cover-letter-content > p:first-child,
+.company-home .home-slide--application .home-cover-letter-content > p:first-child {
+  margin: 0;
+  padding-top: 30px;
+}
+
+@media (max-width: 1000px) {
+  .company-home .madup-deck-nav {
+    top: auto;
+    right: 50%;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    display: flex;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    padding: 6px;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 3px;
+    border-color: var(--border-strong);
+    box-shadow: 0 12px 36px rgba(23, 32, 51, 0.14);
+    transform: translateX(50%);
+    scrollbar-width: none;
+  }
+
+  .company-home .madup-deck-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .company-home .madup-deck-nav a {
+    flex: 0 0 30px;
+  }
+
+  .company-home .madup-deck-nav a::before {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .company-home .site-main {
+    overflow: hidden;
+  }
+
+  .company-home .home-slide-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .company-home .home-intro-profile {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .company-home .home-intro-meta > div {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .company-home .home-slide--cover-letter .home-cover-letter-content > p,
+  .company-home .home-slide--application .home-cover-letter-content > p {
+    padding: 22px 0 24px;
+    font-size: 0.92rem;
+    line-height: 1.85;
+  }
+}
+
+@media print {
+  .company-home .madup-deck-nav {
+    display: none;
+  }
+}
+
 /* Work tools within the product collection */
 .work-tools {
   padding: 104px 0 120px;

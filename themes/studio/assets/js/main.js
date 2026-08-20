@@ -219,6 +219,38 @@ function initLanguageMenu() {
   });
 }
 
+function initDeckNavigation() {
+  const navigation = document.querySelector('[data-deck-nav]');
+  if (!navigation) return;
+
+  const links = [...navigation.querySelectorAll('a[href^="#"]')];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+  if (sections.length === 0) return;
+
+  function activate(section) {
+    const activeLink = links.find((link) => link.getAttribute('href') === `#${section.id}`);
+    if (!activeLink || activeLink.getAttribute('aria-current') === 'location') return;
+
+    links.forEach((link) => link.removeAttribute('aria-current'));
+    activeLink.setAttribute('aria-current', 'location');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible[0]) activate(visible[0].target);
+  }, {
+    rootMargin: '-28% 0px -55% 0px',
+    threshold: [0, 0.1, 0.25],
+  });
+
+  sections.forEach((section) => observer.observe(section));
+  activate(sections.find((section) => section.matches(':target')) || sections[0]);
+}
+
 function initProductWorkflows() {
   const workflows = document.querySelectorAll('[data-product-workflow]');
 
@@ -350,4 +382,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmailCopy();
   initMobileMenu();
   initLanguageMenu();
+  initDeckNavigation();
 });
