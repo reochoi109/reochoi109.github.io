@@ -91,6 +91,14 @@
       word-break: keep-all;
     }
 
+    .home-slide--cover-letter .home-slide-heading h2 {
+      margin: 0 0 18px;
+      font-size: clamp(34px, 3.8vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+      font-weight: 700;
+    }
+
     .home-slide--transition {
       display: grid;
       grid-template-columns: minmax(220px, .72fr) minmax(0, 1.55fr);
@@ -108,11 +116,13 @@
       align-self: start;
     }
 
-    .home-transition-head h2 {
-      margin: 12px 0 22px;
-      font-size: clamp(38px, 5vw, 78px);
-      line-height: .98;
-      letter-spacing: -.055em;
+    .home-transition-head h2,
+    .home-slide--application .home-slide-heading h2 {
+      margin: 0 0 18px;
+      font-size: clamp(34px, 3.8vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+      font-weight: 700;
     }
 
     .home-transition-head > p:last-child {
@@ -242,7 +252,96 @@
         border-left: 0;
       }
     }
-  </style>
+  
+    /* MADUP application-specific refinement */
+    .home-slide--intro::before {
+      content: "MADUP";
+      position: absolute;
+      right: clamp(24px, 4vw, 72px);
+      bottom: clamp(18px, 3vw, 42px);
+      font-size: clamp(72px, 13vw, 220px);
+      font-weight: 800;
+      line-height: .8;
+      letter-spacing: -.08em;
+      opacity: .035;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .home-slide--intro {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-intro-copy,
+    .home-intro-profile {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-slide--application,
+    .home-slide--transition {
+      border-top: 1px solid var(--line-color, rgba(127,127,127,.22));
+    }
+
+    .home-slide--application .home-slide-kicker,
+    .home-slide--transition .home-slide-kicker {
+      letter-spacing: .12em;
+    }
+
+    #motivation .home-slide-kicker,
+    #future .home-slide-kicker {
+      font-weight: 800;
+    }
+
+    #motivation .home-cover-letter-content p:first-child,
+    #future .home-cover-letter-content p:first-child {
+      font-size: clamp(17px, 1.2vw, 21px);
+      font-weight: 600;
+      line-height: 1.75;
+    }
+
+    .home-transition-head {
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+
+    @media (max-width: 900px) {
+      .home-slide--intro::before {
+        right: 14px;
+        bottom: 20px;
+        font-size: clamp(64px, 24vw, 130px);
+      }
+
+      .home-transition-head {
+        position: static;
+      }
+
+      .home-transition-head h2,
+      .home-slide--application .home-slide-heading h2,
+      .home-slide--cover-letter .home-slide-heading h2 {
+        font-size: clamp(32px, 9vw, 46px);
+      }
+    }
+
+
+    .home-application-note {
+      margin: 18px 0 0;
+      font-size: clamp(13px, .9vw, 15px);
+      font-weight: 700;
+      letter-spacing: .01em;
+      line-height: 1.5;
+      color: var(--text-muted, #777);
+      word-break: keep-all;
+    }
+
+    .home-slide--intro .home-slide-kicker {
+      letter-spacing: .12em;
+      font-weight: 800;
+    }
+
+</style>
 
 <nav
     class="home-deck-nav"
@@ -281,11 +380,7 @@
       <div class="home-intro-copy">
 
         <p class="home-slide-kicker">
-          {{ if $isKo }}
-            최신욱 · 퍼포먼스 마케팅
-          {{ else }}
-            SINUK CHOI · PERFORMANCE MARKETING
-          {{ end }}
+          MADUP · PERFORMANCE MARKETING APPLICATION
         </p>
 
 
@@ -293,34 +388,42 @@
 
           {{ if $isKo }}
 
-            기술과 데이터 경험을,<br>
+            문제를 발견하고,<br>
             <em>
-              퍼포먼스 마케팅으로<br class="home-mobile-only">
-              연결합니다.
+              데이터로 다음 액션을<br class="home-mobile-only">
+              찾아가는 마케터.
             </em>
 
           {{ else }}
 
-            Connecting technical<br>
-            and data experience<br>
+            Finding the problem,<br>
+            then the next action<br>
             <em>
-              to performance marketing.
+              through data.
             </em>
 
           {{ end }}
 
         </h1>
 
+        <p class="home-application-note">
+          {{ if $isKo }}
+            최신욱 · 매드업 퍼포먼스 마케터 지원 포트폴리오
+          {{ else }}
+            Sinuk Choi · Performance Marketing Application Portfolio for MADUP
+          {{ end }}
+        </p>
+
 
         <p class="home-slide-lead">
 
           {{ if $isKo }}
 
-            데이터와 기술에 대한 이해를 바탕으로 고객의 유입과 전환을 분석하고 개선하는 퍼포먼스 마케터를 지향합니다.
+            백엔드 개발에서 익힌 문제 해결 방식과 기술 활용 경험을 바탕으로, 매드업에서 데이터를 통해 원인을 찾고 더 나은 다음 액션을 제안하는 퍼포먼스 마케터로 성장하고자 합니다.
 
           {{ else }}
 
-            I am extending the technical and data fluency I built in backend engineering into acquisition, conversion, and performance improvement.
+            I want to bring the problem-solving and technical perspective I built in backend engineering to MADUP, using data to identify causes and propose better next actions.
 
           {{ end }}
 
@@ -331,6 +434,18 @@
 
           <a
             class="home-deck-button home-deck-button--primary"
+            href="#motivation"
+          >
+            {{ if $isKo }}
+              지원동기 보기
+            {{ else }}
+              Why MADUP
+            {{ end }}
+            <span>↓</span>
+          </a>
+
+          <a
+            class="home-deck-button"
             href="#about-me"
           >
             {{ if $isKo }}
@@ -341,38 +456,19 @@
             <span>↓</span>
           </a>
 
-
           <a
             class="home-deck-button"
-            href="#career"
+            href="#case"
           >
             {{ if $isKo }}
-              경력 보기
+              업무 개선 사례
             {{ else }}
-              View career
+              Workflow case
             {{ end }}
             <span>↓</span>
           </a>
 
-
-          {{- with $products }}
-
-            <a
-              class="home-deck-button"
-              href="{{ .RelPermalink }}"
-            >
-              {{ if $isKo }}
-                프로젝트 전체 보기
-              {{ else }}
-                View all projects
-              {{ end }}
-              <span>→</span>
-            </a>
-
-          {{- end }}
-
         </div>
-
 
         <ul
           class="home-intro-tags"
@@ -381,25 +477,25 @@
 
           <li>
             {{ if $isKo }}
-              빠른 적응과 실행
+              문제 정의와 가설 검증
             {{ else }}
-              Fast adaptation
+              Problem framing & validation
             {{ end }}
           </li>
 
           <li>
             {{ if $isKo }}
-              논리적 문제 해결
+              데이터 기반 문제 해결
             {{ else }}
-              Logical problem solving
+              Data-driven problem solving
             {{ end }}
           </li>
 
           <li>
             {{ if $isKo }}
-              기술 활용 역량
+              AI · 자동화 활용
             {{ else }}
-              Technical fluency
+              AI & automation fluency
             {{ end }}
           </li>
 
@@ -428,9 +524,9 @@
 
           <span>
             {{ if $isKo }}
-              백엔드 개발 → 퍼포먼스 마케터
+              Backend → Performance Marketing @ MADUP
             {{ else }}
-              Backend Engineering → Performance Marketer
+              Backend → Performance Marketing @ MADUP
             {{ end }}
           </span>
 
@@ -488,9 +584,9 @@
 
             <strong>
               {{ if $isKo }}
-                퍼포먼스 마케터
+                매드업 퍼포먼스 마케터
               {{ else }}
-                Performance Marketer
+                Performance Marketer at MADUP
               {{ end }}
             </strong>
           </div>
