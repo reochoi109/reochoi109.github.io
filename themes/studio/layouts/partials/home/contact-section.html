@@ -1,0 +1,35 @@
+{{- $isKo := eq site.Language.Lang "ko" -}}
+{{- $career := .career -}}
+{{- $products := .products -}}
+{{- $about := .about -}}
+{{- $company := .company -}}
+{{- $isCompany := isset . "company" -}}
+
+<section id="contact" class="home-slide home-slide--contact" aria-labelledby="home-contact-title">
+  <div class="home-slide-index" aria-hidden="true">{{ printf "%02d / %02d" .index .total }}</div>
+  <div class="home-contact-main">
+    <p class="home-slide-kicker">CONTACT</p>
+    <h2 id="home-contact-title">{{ if $isKo }}더 궁금한 내용이 있다면,<br><em>편하게 연락해 주세요.</em>{{ else }}If you would like to know more,<br><em>feel free to get in touch.</em>{{ end }}</h2>
+    <p>{{ if $isKo }}퍼포먼스 마케팅 직무로 새로운 기회를 찾고 있습니다.{{ else }}I am currently exploring opportunities in performance marketing.{{ end }}</p>
+    <a class="home-contact-email" href="mailto:reochoi109@gmail.com">
+      <span>{{ if $isCompany }}{{ if $isKo }}이메일 보내기{{ else }}Send email{{ end }}{{ else }}{{ if $isKo }}이메일 주소 복사{{ else }}Copy email address{{ end }}{{ end }}</span>
+      <i aria-hidden="true">{{ if $isCompany }}↗{{ else }}⧉{{ end }}</i>
+    </a>
+  </div>
+  <aside class="home-contact-card">
+    <p>EXPLORE MORE</p>
+    <strong>{{ if $isKo }}필요한 정보로<br>바로 이동{{ else }}Continue to<br>the details{{ end }}</strong>
+    <ul>
+      {{- if $isCompany }}
+        <li><a href="#about-me"><span>{{ if $isKo }}자기소개{{ else }}About me{{ end }}</span><i>↑</i></a></li>
+        <li><a href="#motivation"><span>{{ if $isKo }}지원동기{{ else }}Why {{ $company.name }}{{ end }}</span><i>↑</i></a></li>
+        <li><a href="#future"><span>{{ if $isKo }}입사 후 미래 모습{{ else }}Future at {{ $company.name }}{{ end }}</span><i>↑</i></a></li>
+        <li><a href="#transition"><span>{{ if $isKo }}전환 배경{{ else }}Transition{{ end }}</span><i>↑</i></a></li>
+      {{- end }}
+      {{- with $career }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}경력{{ else }}Career{{ end }}</span><i>→</i></a></li>{{- end }}
+      {{- with $products }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}</span><i>→</i></a></li>{{- end }}
+      {{- with $about }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}프로필{{ else }}Profile{{ end }}</span><i>→</i></a></li>{{- end }}
+    </ul>
+    <a href="https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+  </aside>
+</section>

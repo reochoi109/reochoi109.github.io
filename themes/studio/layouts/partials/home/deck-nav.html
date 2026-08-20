@@ -1,0 +1,16 @@
+{{- $isKo := eq site.Language.Lang "ko" -}}
+{{- $company := .company -}}
+{{- $isCompany := isset . "company" -}}
+<nav class="home-deck-nav{{ if $isCompany }} madup-deck-nav{{ end }}" data-deck-nav aria-label="{{ if $isCompany }}{{ if $isKo }}{{ $company.name_ko }} 지원 페이지 섹션 바로가기{{ else }}{{ $company.name }} application sections{{ end }}{{ else }}{{ if $isKo }}홈 섹션 바로가기{{ else }}Home sections{{ end }}{{ end }}">
+  <a href="#intro" data-label="{{ if $isKo }}소개{{ else }}Profile{{ end }}" aria-label="{{ if $isKo }}프로필{{ else }}Profile{{ end }}"><span>01</span></a>
+  {{- if $isCompany }}
+    <a href="#about-me" data-label="{{ if $isKo }}자기소개{{ else }}About{{ end }}" aria-label="{{ if $isKo }}자기소개{{ else }}About me{{ end }}"><span>02</span></a>
+    <a href="#motivation" data-label="{{ if $isKo }}지원동기{{ else }}Why {{ $company.name }}{{ end }}" aria-label="{{ if $isKo }}지원동기{{ else }}Why {{ $company.name }}{{ end }}"><span>03</span></a>
+    <a href="#future" data-label="{{ if $isKo }}입사 후{{ else }}Future{{ end }}" aria-label="{{ if $isKo }}입사 후 미래 모습{{ else }}Future at {{ $company.name }}{{ end }}"><span>04</span></a>
+    <a href="#transition" data-label="{{ if $isKo }}전환 배경{{ else }}Transition{{ end }}" aria-label="{{ if $isKo }}전환 배경{{ else }}Transition{{ end }}"><span>05</span></a>
+  {{- end }}
+  <a href="#career" data-label="{{ if $isKo }}경력{{ else }}Career{{ end }}" aria-label="{{ if $isKo }}경력{{ else }}Career{{ end }}"><span>{{ if $isCompany }}06{{ else }}02{{ end }}</span></a>
+  <a href="#projects" data-label="{{ if $isKo }}프로젝트{{ else }}Projects{{ end }}" aria-label="{{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}"><span>{{ if $isCompany }}07{{ else }}03{{ end }}</span></a>
+  <a href="#case" data-label="{{ if $isKo }}업무 개선{{ else }}Case study{{ end }}" aria-label="{{ if $isKo }}업무 개선 사례{{ else }}Workflow case{{ end }}"><span>{{ if $isCompany }}08{{ else }}04{{ end }}</span></a>
+  <a href="#contact" data-label="{{ if $isKo }}연락처{{ else }}Contact{{ end }}" aria-label="{{ if $isKo }}{{ if $isCompany }}연락처{{ else }}지원 방향과 연락처{{ end }}{{ else }}{{ if $isCompany }}Contact{{ else }}Direction and contact{{ end }}{{ end }}"><span>{{ if $isCompany }}09{{ else }}05{{ end }}</span></a>
+</nav>

@@ -1,0 +1,65 @@
+{{- $isKo := eq site.Language.Lang "ko" -}}
+{{- $career := .career -}}
+{{- $products := .products -}}
+{{- $searchRank := .searchRank -}}
+{{- $careerPages := .careerPages -}}
+{{- $productPages := .productPages -}}
+{{- $start := .start | default 2 -}}
+{{- $total := .total | default 5 -}}
+
+<section id="career" class="home-slide home-slide--career" aria-labelledby="home-career-title">
+  <div class="home-slide-index" aria-hidden="true">{{ printf "%02d / %02d" $start $total }}</div>
+  <header class="home-slide-heading">
+    <p class="home-slide-kicker">CAREER · 2023.05 — 2025.08</p>
+    <h2 id="home-career-title">{{ if $isKo }}서버 개발자로<br>만든 것들{{ else }}What I built<br>as a server engineer{{ end }}</h2>
+    <p>{{ if $isKo }}라온로드에서 Go 기반 API, 데이터 처리, 실시간 통신과 서비스 공통 모듈을 개발했습니다.{{ else }}At Laon Road, I built Go-based APIs, data processing, real-time communication, and shared service modules.{{ end }}</p>
+  </header>
+  <div class="home-career-grid">
+    {{- range $careerPages }}
+      {{- $visual := index (.Params.visual_image | default (slice "")) 0 -}}
+      <a href="{{ .RelPermalink }}">
+        <span class="home-career-visual">{{- with $visual }}<img src="{{ . | relURL }}" alt="" loading="lazy">{{- end }}</span>
+        <small>{{ .Params.period }} · {{ .Params.org }}</small>
+        <h3>{{ .Params.list_title | default .Title }}</h3>
+        <p>{{ .Description }}</p>
+        <i>→</i>
+      </a>
+    {{- end }}
+  </div>
+  {{- with $career }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}경력 전체 보기{{ else }}View full career{{ end }} <span>→</span></a>{{- end }}
+</section>
+
+<section id="projects" class="home-slide home-slide--projects" aria-labelledby="home-projects-title">
+  <div class="home-slide-index" aria-hidden="true">{{ printf "%02d / %02d" (add $start 1) $total }}</div>
+  <header class="home-slide-heading">
+    <p class="home-slide-kicker">INDEPENDENT PROJECTS</p>
+    <h2 id="home-projects-title">{{ if $isKo }}직접 기획하고<br>만든 제품들{{ else }}Products I planned<br>and built{{ end }}</h2>
+    <p>{{ if $isKo }}아이디어와 제품 구조부터 개발, 공개 운영 또는 출시 판단까지 직접 진행했습니다.{{ else }}I worked from product framing and structure through implementation, public operation, or the decision not to launch.{{ end }}</p>
+  </header>
+  <div class="home-project-grid">
+    {{- range $productPages }}
+      <a href="{{ .RelPermalink }}">
+        <span class="home-project-visual"><img src="{{ .Params.visual_image | relURL }}" alt="{{ .Title }}" loading="lazy"></span>
+        <div><small>{{ .Params.status_label }}</small><h3>{{ .Title }}</h3><p>{{ .Params.list_description | default .Params.subtitle }}</p></div>
+        <i>→</i>
+      </a>
+    {{- end }}
+  </div>
+  {{- with $products }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}개인 프로젝트 전체 보기{{ else }}View all independent projects{{ end }} <span>→</span></a>{{- end }}
+</section>
+
+<section id="case" class="home-slide home-slide--case" aria-labelledby="home-case-title">
+  <div class="home-slide-index" aria-hidden="true">{{ printf "%02d / %02d" (add $start 2) $total }}</div>
+  <div class="home-case-copy">
+    <p class="home-slide-kicker">WORK IMPROVEMENT · AUTOMATION</p>
+    <h2 id="home-case-title">{{ if $isKo }}검색 노출 순위<br>확인 도구{{ else }}Search Visibility<br>Rank Checker{{ end }}</h2>
+    <p class="home-case-summary">{{ if $isKo }}마케팅 실무자의 반복 검색과 수기 기록을 최대 20개 항목의 일괄 확인 흐름으로 바꿨습니다.{{ else }}I replaced a marketing practitioner's repetitive searches and manual recording with a batch-checking workflow for up to 20 entries.{{ end }}</p>
+    <dl class="home-case-flow">
+      <div><dt>INPUT</dt><dd>{{ if $isKo }}키워드 · 판매처 · 검색 환경{{ else }}Keywords · sellers · search environment{{ end }}</dd></div>
+      <div><dt>CHECK</dt><dd>{{ if $isKo }}PC·모바일과 검색 채널별 일괄 조회{{ else }}Batch checks across desktop, mobile, and channels{{ end }}</dd></div>
+      <div><dt>OUTPUT</dt><dd>{{ if $isKo }}노출·순위 결과, 스크린샷과 CSV{{ else }}Visibility, rank, screenshots, and CSV{{ end }}</dd></div>
+    </dl>
+    {{- with $searchRank }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}업무 개선 사례 보기{{ else }}View workflow case{{ end }} <span>↗</span></a>{{- end }}
+  </div>
+  <figure class="home-case-visual"><div class="home-case-window"><div class="home-case-window-bar"><i></i><i></i><i></i><span>SEARCH RANK CHECKER</span></div><img src="{{ "/images/tools/search-rank/demo.gif" | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 실행 화면{{ else }}Search Visibility Rank Checker in use{{ end }}" loading="lazy"></div></figure>
+</section>

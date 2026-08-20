@@ -7,13 +7,7 @@
   {{- $careerPages := sort $career.Pages "Params.index" -}}
   {{- $productPages := where (sort $products.Pages "Params.index") "Params.project_group" "ne" "work-improvement" -}}
 
-  <nav class="home-deck-nav" aria-label="{{ if $isKo }}홈 섹션 바로가기{{ else }}Home sections{{ end }}">
-    <a href="#intro" aria-label="{{ if $isKo }}프로필{{ else }}Profile{{ end }}"><span>01</span></a>
-    <a href="#career" aria-label="{{ if $isKo }}경력{{ else }}Career{{ end }}"><span>02</span></a>
-    <a href="#projects" aria-label="{{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}"><span>03</span></a>
-    <a href="#case" aria-label="{{ if $isKo }}업무 개선 사례{{ else }}Workflow case{{ end }}"><span>04</span></a>
-    <a href="#contact" aria-label="{{ if $isKo }}지원 방향과 연락처{{ else }}Direction and contact{{ end }}"><span>05</span></a>
-  </nav>
+  {{ partial "home/deck-nav.html" dict }}
 
   <div class="home-deck">
     <section id="intro" class="home-slide home-slide--intro" aria-labelledby="home-intro-title">
@@ -42,81 +36,21 @@
       </aside>
     </section>
 
-    <section id="career" class="home-slide home-slide--career" aria-labelledby="home-career-title">
-      <div class="home-slide-index" aria-hidden="true">02 / 05</div>
-      <header class="home-slide-heading">
-        <p class="home-slide-kicker">CAREER · 2023.05 — 2025.08</p>
-        <h2 id="home-career-title">{{ if $isKo }}서버 개발자로<br>만든 것들{{ else }}What I built<br>as a server engineer{{ end }}</h2>
-        <p>{{ if $isKo }}라온로드에서 Go 기반 API, 데이터 처리, 실시간 통신과 서비스 공통 모듈을 개발했습니다.{{ else }}At Laon Road, I built Go-based APIs, data processing, real-time communication, and shared service modules.{{ end }}</p>
-      </header>
-      <div class="home-career-grid">
-        {{- range $careerPages }}
-          {{- $visual := index (.Params.visual_image | default (slice "")) 0 -}}
-          <a href="{{ .RelPermalink }}">
-            <span class="home-career-visual">{{- with $visual }}<img src="{{ . | relURL }}" alt="" loading="lazy">{{- end }}</span>
-            <small>{{ .Params.period }} · {{ .Params.org }}</small>
-            <h3>{{ .Params.list_title | default .Title }}</h3>
-            <p>{{ .Description }}</p>
-            <i>→</i>
-          </a>
-        {{- end }}
-      </div>
-      {{- with $career }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}경력 전체 보기{{ else }}View full career{{ end }} <span>→</span></a>{{- end }}
-    </section>
-
-    <section id="projects" class="home-slide home-slide--projects" aria-labelledby="home-projects-title">
-      <div class="home-slide-index" aria-hidden="true">03 / 05</div>
-      <header class="home-slide-heading">
-        <p class="home-slide-kicker">INDEPENDENT PROJECTS</p>
-        <h2 id="home-projects-title">{{ if $isKo }}직접 기획하고<br>만든 제품들{{ else }}Products I planned<br>and built{{ end }}</h2>
-        <p>{{ if $isKo }}아이디어와 제품 구조부터 개발, 공개 운영 또는 출시 판단까지 직접 진행했습니다.{{ else }}I worked from product framing and structure through implementation, public operation, or the decision not to launch.{{ end }}</p>
-      </header>
-      <div class="home-project-grid">
-        {{- range $productPages }}
-          <a href="{{ .RelPermalink }}">
-            <span class="home-project-visual"><img src="{{ .Params.visual_image | relURL }}" alt="{{ .Title }}" loading="lazy"></span>
-            <div><small>{{ .Params.status_label }}</small><h3>{{ .Title }}</h3><p>{{ .Params.list_description | default .Params.subtitle }}</p></div>
-            <i>→</i>
-          </a>
-        {{- end }}
-      </div>
-      {{- with $products }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}개인 프로젝트 전체 보기{{ else }}View all independent projects{{ end }} <span>→</span></a>{{- end }}
-    </section>
-
-    <section id="case" class="home-slide home-slide--case" aria-labelledby="home-case-title">
-      <div class="home-slide-index" aria-hidden="true">04 / 05</div>
-      <div class="home-case-copy">
-        <p class="home-slide-kicker">WORK IMPROVEMENT · AUTOMATION</p>
-        <h2 id="home-case-title">{{ if $isKo }}검색 노출 순위<br>확인 도구{{ else }}Search Visibility<br>Rank Checker{{ end }}</h2>
-        <p class="home-case-summary">{{ if $isKo }}마케팅 실무자의 반복 검색과 수기 기록을 최대 20개 항목의 일괄 확인 흐름으로 바꿨습니다.{{ else }}I replaced a marketing practitioner's repetitive searches and manual recording with a batch-checking workflow for up to 20 entries.{{ end }}</p>
-        <dl class="home-case-flow">
-          <div><dt>INPUT</dt><dd>{{ if $isKo }}키워드 · 판매처 · 검색 환경{{ else }}Keywords · sellers · search environment{{ end }}</dd></div>
-          <div><dt>CHECK</dt><dd>{{ if $isKo }}PC·모바일과 검색 채널별 일괄 조회{{ else }}Batch checks across desktop, mobile, and channels{{ end }}</dd></div>
-          <div><dt>OUTPUT</dt><dd>{{ if $isKo }}노출·순위 결과, 스크린샷과 CSV{{ else }}Visibility, rank, screenshots, and CSV{{ end }}</dd></div>
-        </dl>
-        {{- with $searchRank }}<a class="home-text-link" href="{{ .RelPermalink }}">{{ if $isKo }}업무 개선 사례 보기{{ else }}View workflow case{{ end }} <span>↗</span></a>{{- end }}
-      </div>
-      <figure class="home-case-visual"><div class="home-case-window"><div class="home-case-window-bar"><i></i><i></i><i></i><span>SEARCH RANK CHECKER</span></div><img src="{{ "/images/tools/search-rank/demo.gif" | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 실행 화면{{ else }}Search Visibility Rank Checker in use{{ end }}" loading="lazy"></div></figure>
-    </section>
-
-    <section id="contact" class="home-slide home-slide--contact" aria-labelledby="home-contact-title">
-      <div class="home-slide-index" aria-hidden="true">05 / 05</div>
-      <div class="home-contact-main">
-        <p class="home-slide-kicker">CONTACT</p>
-        <h2 id="home-contact-title">{{ if $isKo }}더 궁금한 내용이 있다면,<br><em>편하게 연락해 주세요.</em>{{ else }}If you would like to know more,<br><em>feel free to get in touch.</em>{{ end }}</h2>
-        <p>{{ if $isKo }}퍼포먼스 마케팅 직무로 새로운 기회를 찾고 있습니다.{{ else }}I am currently exploring opportunities in performance marketing.{{ end }}</p>
-        <a class="home-contact-email" href="mailto:reochoi109@gmail.com"><span>{{ if $isKo }}이메일 주소 복사{{ else }}Copy email address{{ end }}</span><i aria-hidden="true">⧉</i></a>
-      </div>
-      <aside class="home-contact-card">
-        <p>EXPLORE MORE</p>
-        <strong>{{ if $isKo }}필요한 정보로<br>바로 이동{{ else }}Continue to<br>the details{{ end }}</strong>
-        <ul>
-          {{- with $career }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}경력{{ else }}Career{{ end }}</span><i>→</i></a></li>{{- end }}
-          {{- with $products }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}개인 프로젝트{{ else }}Independent projects{{ end }}</span><i>→</i></a></li>{{- end }}
-          {{- with $about }}<li><a href="{{ .RelPermalink }}"><span>{{ if $isKo }}프로필{{ else }}Profile{{ end }}</span><i>→</i></a></li>{{- end }}
-        </ul>
-        <a href="https://www.linkedin.com/in/%EC%8B%A0%EC%9A%B1-%EC%B5%9C-396259409/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
-      </aside>
-    </section>
+    {{ partial "home/shared-work-sections.html" (dict
+      "career" $career
+      "products" $products
+      "searchRank" $searchRank
+      "careerPages" $careerPages
+      "productPages" $productPages
+      "start" 2
+      "total" 5
+    ) }}
+    {{ partial "home/contact-section.html" (dict
+      "career" $career
+      "products" $products
+      "about" $about
+      "index" 5
+      "total" 5
+    ) }}
   </div>
 {{ end }}
