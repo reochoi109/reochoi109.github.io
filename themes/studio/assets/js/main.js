@@ -219,6 +219,216 @@ function initLanguageMenu() {
   });
 }
 
+function initLifeCalendar() {
+  const calendar = document.querySelector('[data-life-calendar]');
+  if (!calendar) return;
+
+  const form = calendar.querySelector('[data-life-calendar-form]');
+  const yearInput = calendar.querySelector('[data-life-calendar-year]');
+  const monthInput = calendar.querySelector('[data-life-calendar-month]');
+  const dayInput = calendar.querySelector('[data-life-calendar-day]');
+  const lifespanInput = calendar.querySelector('[data-life-calendar-lifespan]');
+  const unitInput = calendar.querySelector('[data-life-calendar-unit]');
+  const result = calendar.querySelector('[data-life-calendar-result]');
+  const empty = calendar.querySelector('[data-life-calendar-empty]');
+  const error = calendar.querySelector('[data-life-calendar-error]');
+  const grid = calendar.querySelector('[data-life-calendar-grid]');
+  const years = calendar.querySelector('[data-life-calendar-years]');
+  const livedValue = calendar.querySelector('[data-life-calendar-lived]');
+  const leftValue = calendar.querySelector('[data-life-calendar-left]');
+  const percentValue = calendar.querySelector('[data-life-calendar-percent]');
+  const livedLabel = calendar.querySelector('[data-life-calendar-lived-label]');
+  const leftLabel = calendar.querySelector('[data-life-calendar-left-label]');
+  const percentLabel = calendar.querySelector('[data-life-calendar-percent-label]');
+  const legendLived = calendar.querySelector('[data-life-calendar-legend-lived]');
+  const legendAhead = calendar.querySelector('[data-life-calendar-legend-ahead]');
+  const dimensions = calendar.querySelector('[data-life-calendar-dimensions]');
+  const tooltip = calendar.querySelector('[data-life-calendar-tooltip]');
+  const inputs = [yearInput, monthInput, dayInput, lifespanInput, unitInput];
+  if (!form || inputs.some((input) => !input) || !result || !empty || !error || !grid || !years) return;
+
+  const isKo = document.documentElement.lang.toLowerCase().startsWith('ko');
+  const storageKey = 'profile-life-calendar-settings';
+  const oldStorageKey = 'profile-life-calendar-birth-date';
+
+  function parseDate(year, month, day) {
+    const parts = [year, month, day].map(Number);
+    if (parts.some((part) => !Number.isInteger(part))) return null;
+    const date = new Date(parts[0], parts[1] - 1, parts[2], 12);
+    if (date.getFullYear() !== parts[0] || date.getMonth() !== parts[1] - 1 || date.getDate() !== parts[2]) return null;
+    return date;
+  }
+
+  function getSettings() {
+    return {
+      year: yearInput.value.trim(),
+      month: monthInput.value.trim(),
+      day: dayInput.value.trim(),
+      lifespan: Number(lifespanInput.value),
+      unit: unitInput.value,
+    };
+  }
+
+  function render(settings) {
+    const birthDate = parseDate(settings.year, settings.month, settings.day);
+    const now = new Date();
+    const lifespan = Math.trunc(settings.lifespan);
+    if (!birthDate || birthDate > now || lifespan < 1 || lifespan > 150) {
+      error.textContent = isKo ? '생년월일과 기대수명을 올바르게 입력해 주세요.' : 'Enter a valid date and lifespan.';
+      error.hidden = false;
+      result.hidden = true;
+      empty.hidden = false;
+      return;
+    }
+
+    const isWeek = settings.unit === 'week';
+    const unitsPerYear = isWeek ? 52 : 12;
+    const totalUnits = lifespan * unitsPerYear;
+    const elapsedMonths = Math.max(0, (now.getFullYear() - birthDate.getFullYear()) * 12 + now.getMonth() - birthDate.getMonth()
+      - (now.getDate() < birthDate.getDate() ? 1 : 0));
+    const elapsedUnits = isWeek
+      ? Math.floor((now - birthDate) / 604800000)
+      : elapsedMonths;
+    const livedUnits = Math.min(totalUnits, Math.max(0, elapsedUnits));
+    const remainingUnits = Math.max(0, totalUnits - livedUnits);
+    const fragment = document.createDocumentFragment();
+    for (let index = 0; index < totalUnits; index += 1) {
+      const cell = document.createElement('span');
+      if (index < livedUnits) cell.className = 'is-lived';
+      else if (index === livedUnits) cell.className = 'is-current';
+      const yearIndex = Math.floor(index / unitsPerYear) + 1;
+      const unitInYear = index % unitsPerYear + 1;
+      cell.dataset.calendarLabel = isKo
+        ? `출생 후 ${index + 1}번째 ${isWeek ? '주' : '달'} · ${yearIndex}년 차 ${unitInYear}번째 ${isWeek ? '주' : '달'}`
+        : `${isWeek ? 'Week' : 'Month'} ${index + 1} since birth · ${isWeek ? 'week' : 'month'} ${unitInYear} of year ${yearIndex}`;
+      cell.setAttribute('aria-hidden', 'true');
+      fragment.appendChild(cell);
+    }
+    grid.replaceChildren(fragment);
+    grid.style.setProperty('--calendar-rows', unitsPerYear);
+    grid.classList.toggle('is-month-view', !isWeek);
+
+    const yearFragment = document.createDocumentFragment();
+    const labelInterval = lifespan <= 50 ? 5 : 10;
+    for (let age = 0; age <= lifespan; age += labelInterval) {
+      const label = document.createElement('span');
+      label.style.setProperty('--year-position', `${(age / lifespan) * 100}%`);
+      label.textContent = age;
+      yearFragment.appendChild(label);
+    }
+    if (lifespan % labelInterval !== 0) {
+      const label = document.createElement('span');
+      label.style.setProperty('--year-position', '100%');
+      label.textContent = lifespan;
+      yearFragment.appendChild(label);
+    }
+    years.replaceChildren(yearFragment);
+
+    const percent = Math.min(100, (livedUnits / totalUnits) * 100);
+    livedValue.textContent = livedUnits.toLocaleString();
+    leftValue.textContent = remainingUnits.toLocaleString();
+    percentValue.textContent = `${percent.toFixed(1)}%`;
+    livedLabel.textContent = isKo ? `살아온 ${isWeek ? '주' : '개월'}` : `${isWeek ? 'weeks' : 'months'} lived`;
+    leftLabel.textContent = isKo ? `남은 ${isWeek ? '주' : '개월'}` : `${isWeek ? 'weeks' : 'months'} remaining`;
+    percentLabel.textContent = isKo ? `${lifespan}세 기준 지나온 비율` : `of a ${lifespan}-year life`;
+    legendLived.textContent = isKo ? `살아온 ${isWeek ? '주' : '달'}` : `Lived ${isWeek ? 'weeks' : 'months'}`;
+    legendAhead.textContent = isKo ? `앞으로의 ${isWeek ? '주' : '달'}` : `${isWeek ? 'Weeks' : 'Months'} ahead`;
+    dimensions.textContent = isKo
+      ? `세로 ${unitsPerYear}칸 × 가로 ${lifespan}칸`
+      : `${unitsPerYear} rows × ${lifespan} columns`;
+    grid.setAttribute('aria-label', isKo
+      ? `${lifespan}세 인생달력 중 ${livedUnits.toLocaleString()}${isWeek ? '주' : '개월'}를 살아왔습니다.`
+      : `${livedUnits.toLocaleString()} ${isWeek ? 'weeks' : 'months'} lived in a ${lifespan}-year life calendar.`);
+    error.hidden = true;
+    empty.hidden = true;
+    result.hidden = false;
+
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(settings));
+    } catch {
+      // The calendar still works when browser storage is unavailable.
+    }
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    render(getSettings());
+  });
+
+  if (tooltip) {
+    grid.addEventListener('mousemove', (event) => {
+      const cell = event.target.closest('[data-calendar-label]');
+      if (!cell) return;
+      tooltip.textContent = cell.dataset.calendarLabel;
+      tooltip.hidden = false;
+      const tooltipWidth = tooltip.offsetWidth || 220;
+      tooltip.style.left = `${Math.max(8, Math.min(event.clientX + 14, window.innerWidth - tooltipWidth - 8))}px`;
+      tooltip.style.top = `${Math.max(8, event.clientY - 42)}px`;
+    });
+    grid.addEventListener('mouseleave', () => {
+      tooltip.hidden = true;
+    });
+  }
+
+  try {
+    let savedSettings = JSON.parse(window.localStorage.getItem(storageKey));
+    if (!savedSettings) {
+      const oldDate = window.localStorage.getItem(oldStorageKey);
+      if (oldDate) {
+        const [year, month, day] = oldDate.split('-');
+        savedSettings = { year, month, day, lifespan: 100, unit: 'week' };
+      }
+    }
+    if (savedSettings) {
+      yearInput.value = savedSettings.year || '';
+      monthInput.value = savedSettings.month || '';
+      dayInput.value = savedSettings.day || '';
+      lifespanInput.value = savedSettings.lifespan || 100;
+      unitInput.value = savedSettings.unit === 'month' ? 'month' : 'week';
+      render(getSettings());
+    }
+  } catch {
+    // Leave the calendar empty when browser storage is unavailable.
+  }
+}
+
+function initLifeQuoteSlider() {
+  const slider = document.querySelector('[data-life-calendar-quotes]');
+  if (!slider) return;
+
+  const quotes = [...slider.querySelectorAll('[data-life-calendar-quote]')];
+  if (quotes.length < 2) return;
+
+  let index = 0;
+  let timer;
+
+  function show(nextIndex) {
+    index = nextIndex % quotes.length;
+    quotes.forEach((quote, quoteIndex) => {
+      const active = quoteIndex === index;
+      quote.classList.toggle('is-active', active);
+      quote.setAttribute('aria-hidden', String(!active));
+    });
+  }
+
+  function stop() {
+    window.clearInterval(timer);
+  }
+
+  function start() {
+    stop();
+    if (!document.hidden) timer = window.setInterval(() => show(index + 1), 5200);
+  }
+
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  slider.addEventListener('focusin', stop);
+  slider.addEventListener('focusout', start);
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  show(0);
+  start();
+}
+
 function initDeckNavigation() {
   const navigation = document.querySelector('[data-deck-nav]');
   if (!navigation) return;
@@ -382,5 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmailCopy();
   initMobileMenu();
   initLanguageMenu();
+  initLifeCalendar();
+  initLifeQuoteSlider();
   initDeckNavigation();
 });

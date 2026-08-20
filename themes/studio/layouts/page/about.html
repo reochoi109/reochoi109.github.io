@@ -93,4 +93,86 @@
       <span class="profile-contact-address">reochoi109@gmail.com</span>
     </div>
   </section>
+
+  <details class="life-calendar" data-life-calendar>
+    <summary class="life-calendar-summary">
+      <span>
+        <small>LIFE IN WEEKS</small>
+        <strong>{{ if $isKo }}인생달력{{ else }}Life calendar{{ end }}</strong>
+      </span>
+      <span class="life-calendar-summary-copy">{{ if $isKo }}기대수명을 주 또는 달로 보기{{ else }}See life expectancy in weeks or months{{ end }}</span>
+      <i aria-hidden="true"></i>
+    </summary>
+
+    <div class="life-calendar-content">
+      <form class="life-calendar-form" data-life-calendar-form>
+        <div class="life-calendar-fields">
+          <fieldset class="life-calendar-field life-calendar-birthday">
+            <legend>{{ if $isKo }}생년월일{{ else }}Date of birth{{ end }}</legend>
+            <div>
+              <label><span>{{ if $isKo }}연도{{ else }}Year{{ end }}</span><input name="birth-year" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="1996" autocomplete="bday-year" required data-life-calendar-year></label>
+              <i aria-hidden="true">.</i>
+              <label><span>{{ if $isKo }}월{{ else }}Month{{ end }}</span><input name="birth-month" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="08" autocomplete="bday-month" required data-life-calendar-month></label>
+              <i aria-hidden="true">.</i>
+              <label><span>{{ if $isKo }}일{{ else }}Day{{ end }}</span><input name="birth-day" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="20" autocomplete="bday-day" required data-life-calendar-day></label>
+            </div>
+          </fieldset>
+          <label class="life-calendar-field">
+            <span>{{ if $isKo }}기대수명{{ else }}Life expectancy{{ end }}</span>
+            <span class="life-calendar-number-input"><input name="lifespan" type="number" inputmode="numeric" min="1" max="150" value="100" required data-life-calendar-lifespan><i>{{ if $isKo }}세{{ else }}yrs{{ end }}</i></span>
+          </label>
+          <label class="life-calendar-field">
+            <span>{{ if $isKo }}달력 단위{{ else }}Calendar unit{{ end }}</span>
+            <select name="unit" data-life-calendar-unit>
+              <option value="week">{{ if $isKo }}일주일{{ else }}Week{{ end }}</option>
+              <option value="month">{{ if $isKo }}한 달{{ else }}Month{{ end }}</option>
+            </select>
+          </label>
+        </div>
+        <button class="life-calendar-submit" type="submit">{{ if $isKo }}달력 보기{{ else }}Show calendar{{ end }}</button>
+        <p>{{ if $isKo }}입력한 정보는 이 브라우저에만 저장됩니다.{{ else }}Your information is saved only in this browser.{{ end }}</p>
+      </form>
+
+      <div class="life-calendar-result" data-life-calendar-result hidden>
+        <div class="life-calendar-stats" aria-live="polite">
+          <p><strong data-life-calendar-lived>0</strong><span data-life-calendar-lived-label>{{ if $isKo }}살아온 주{{ else }}weeks lived{{ end }}</span></p>
+          <p><strong data-life-calendar-left>5,200</strong><span data-life-calendar-left-label>{{ if $isKo }}남은 주{{ else }}weeks remaining{{ end }}</span></p>
+          <p><strong data-life-calendar-percent>0%</strong><span data-life-calendar-percent-label>{{ if $isKo }}기대수명 중 지나온 비율{{ else }}of expected life{{ end }}</span></p>
+        </div>
+        <div class="life-calendar-legend" aria-hidden="true">
+          <span class="life-calendar-dimensions" data-life-calendar-dimensions>{{ if $isKo }}세로 52칸 × 가로 100칸{{ else }}52 rows × 100 columns{{ end }}</span>
+          <span><i class="is-lived"></i><b data-life-calendar-legend-lived>{{ if $isKo }}살아온 주{{ else }}Lived weeks{{ end }}</b></span>
+          <span><i class="is-current"></i><b>{{ if $isKo }}진행 중{{ else }}Current{{ end }}</b></span>
+          <span><i></i><b data-life-calendar-legend-ahead>{{ if $isKo }}앞으로의 주{{ else }}Weeks ahead{{ end }}</b></span>
+        </div>
+        <div class="life-calendar-scroll">
+          <div class="life-calendar-years" aria-hidden="true" data-life-calendar-years></div>
+          <div class="life-calendar-grid" data-life-calendar-grid role="img"></div>
+        </div>
+        <div class="life-calendar-tooltip" data-life-calendar-tooltip role="tooltip" hidden></div>
+        <section class="life-calendar-quotes" data-life-calendar-quotes aria-label="{{ if $isKo }}시간에 관한 명언{{ else }}Quotes about time{{ end }}" tabindex="0">
+          <div class="life-calendar-quotes-track">
+            <blockquote class="life-calendar-quote is-active" data-life-calendar-quote>
+              <p>{{ if $isKo }}“우리에게 주어진 시간이 짧은 것이 아니라, 많은 시간을 흘려보내는 것이다.”{{ else }}“It is not that we have a short time to live, but that we waste much of it.”{{ end }}</p>
+              <cite>— Seneca</cite>
+            </blockquote>
+            <blockquote class="life-calendar-quote" data-life-calendar-quote aria-hidden="true">
+              <p>{{ if $isKo }}“당신은 지금 당장 삶을 떠날 수도 있다. 그 가능성이 지금 무엇을 할지 결정하게 하라.”{{ else }}“You could leave life right now. Let that determine what you do and say and think.”{{ end }}</p>
+              <cite>— Marcus Aurelius</cite>
+            </blockquote>
+            <blockquote class="life-calendar-quote" data-life-calendar-quote aria-hidden="true">
+              <p>{{ if $isKo }}“잃어버린 시간은 다시 찾을 수 없다.”{{ else }}“Lost time is never found again.”{{ end }}</p>
+              <cite>— Benjamin Franklin</cite>
+            </blockquote>
+            <blockquote class="life-calendar-quote" data-life-calendar-quote aria-hidden="true">
+              <p>{{ if $isKo }}“삶은 제대로 사용할 줄 안다면 충분히 길다.”{{ else }}“Life is long if you know how to use it.”{{ end }}</p>
+              <cite>— Seneca</cite>
+            </blockquote>
+          </div>
+        </section>
+      </div>
+      <p class="life-calendar-empty" data-life-calendar-empty>{{ if $isKo }}정보를 입력하면 지나온 시간을 검은색으로 채워 보여드립니다.{{ else }}Enter your information to fill the time you have lived in black.{{ end }}</p>
+      <p class="life-calendar-error" data-life-calendar-error role="alert" hidden></p>
+    </div>
+  </details>
 {{ end }}
