@@ -83,7 +83,7 @@ The traffic simulation model and user interface were outside my scope; I focused
 
 ## Problem solving and improvements
 
-### Memory growth across 9,000 time points
+### Memory performance across 9,000 time points
 
 A 15-minute dynamic result arrives in 900 chunks containing 9,000 time points. The initial file-generation path merged the received chunks into one large map and serialized the entire object at once, requiring a consolidated map and serialization buffer in addition to the received data already held in memory.
 
