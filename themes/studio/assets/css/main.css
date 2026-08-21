@@ -949,7 +949,7 @@ h1 {
   max-width: 720px;
 }
 
-.home-transition-content h2 {
+.home-slide .home-transition-content h2 {
   margin: 0 0 17px;
   font-size: 1.18rem;
   font-weight: 770;
@@ -957,7 +957,7 @@ h1 {
   letter-spacing: -0.035em;
 }
 
-.home-transition-content h2:not(:first-child) {
+.home-slide .home-transition-content h2:not(:first-child) {
   margin-top: 34px;
 }
 
