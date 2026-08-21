@@ -1,14 +1,14 @@
 +++
 aliases = ["/ko/engineering/tmsdtn/", "/ko/projects/tmsdtn/"]
-title = "디지털트윈 중계 서버 개발"
+title = "디지털트윈 네트워크(DTN) 중계 서버 개발"
 date = 2026-05-02T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "백엔드 개발"
-list_title = "디지털트윈 중계 서버"
+list_title = "DTN 중계 서버"
 period = "2024.09 - 2024.12"
-org = "㈜라온로드"
+org = "라온로드"
 employer = "라온로드"
 employer_index = 1
 employer_url = "https://www.laonroad.com/"
@@ -18,7 +18,7 @@ company_label = "회사 홈페이지"
 blog_url = "https://m.blog.naver.com/PostView.naver?blogId=laonroad&logNo=224340608032&navType=by"
 blog_label = "DTN 공식 블로그"
 subtitle = "Backend Project | 2024.09 - 2024.12"
-description = "교통정책을 가상환경에서 검증하는 DTN에서, 장시간 시뮬레이션의 요청·상태·대용량 결과를 처리하는 Go 기반 중계 서버를 설계·개발했습니다."
+description = "교통 시뮬레이션 디지털트윈 네트워크(DTN) 중계 서버 설계·개발"
 index = 1
 visual_text = ""
 visual_image = [

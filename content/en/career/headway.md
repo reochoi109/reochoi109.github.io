@@ -1,13 +1,13 @@
 +++
 aliases = ["/en/engineering/headway/", "/en/projects/headway/"]
-title = "Vehicle Passage Interval Analysis"
+title = "Traffic Management System (TMS) Development and Maintenance"
 date = 2026-04-28T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "Backend Development"
-list_title = "Headway and GAP Analysis"
-period = "2023.07 - 2023.09"
+list_title = "Traffic Management System (TMS)"
+period = "May 2023 - Aug 2025"
 org = "Laon Road"
 employer = "Laon Road"
 employer_index = 1
@@ -15,8 +15,8 @@ employer_url = "https://www.laonroad.com/"
 employment_period = "May 2023 - Aug 2025"
 company_url = "https://www.laonroad.com/"
 company_label = "Company website"
-subtitle = "Traffic Analysis | 2023.07 - 2023.09"
-description = "Calculated vehicle passage intervals from lane- and signal-cycle-level detection data and published the results for traffic-signal optimization."
+subtitle = "Backend Development | May 2023 - Aug 2025"
+description = "Developed and maintained the backend of the company's Traffic Management System (TMS) and responded to operational issues."
 index = 3
 visual_text = ""
 visual_image = [
@@ -24,9 +24,9 @@ visual_image = [
 ]
 
 tasks = [
-  { title = "Interval calculation", desc = "Grouped detections by lane, ordered them by passage time, and calculated Headway and GAP." },
-  { title = "Detection-data correction", desc = "Compared footage with detections and corrected cases where vehicle length and camera angle caused an occluded following vehicle to be detected late." },
-  { title = "Aggregation and integration", desc = "Aggregated valid samples into lane- and signal-cycle-level metrics and published them for downstream analysis." },
+  { title = "Backend development and maintenance", desc = "Analyzed the existing codebase, implemented requirements, and developed new features." },
+  { title = "Operational issue response", desc = "Investigated production issues and applied fixes to the service." },
+  { title = "Traffic-analysis feature", desc = "Built Headway and GAP analysis and data integration as a representative TMS feature." },
 ]
 stack = ["Go", "MySQL", "Tibero", "ODBC"]
 tags = ["project", "data-pipeline", "traffic"]
@@ -34,15 +34,17 @@ tags = ["project", "data-pipeline", "traffic"]
 
 ## Overview
 
-This traffic-data analysis feature calculates Headway and GAP between consecutive vehicles in the same lane from camera-based detections. It combines detection time, speed, vehicle type, lane, and signal-cycle data to select valid vehicle pairs and produce lane- and cycle-level metrics.
+I developed and maintained the backend of Laon Road's Traffic Management System (TMS), covering existing-code analysis, requirement implementation, new feature development, and operational issue response.
+
+This page presents one representative feature from that work: Headway and GAP analysis using vehicle-detection data. It combines detection time, speed, vehicle type, lane, and signal-cycle data to select valid vehicle pairs and produce lane- and cycle-level metrics.
 
 ## Objective
 
-The objective was to quantify passage headway and the time gap between vehicles at a detection point and produce consistent input for signal-operation and optimization analysis.
+The broader objective was to keep the TMS reliable while translating operational requirements into backend improvements. The representative Headway and GAP feature quantified vehicle passage intervals and produced consistent input for signal-operation and optimization analysis.
 
 ## Responsibilities
 
-I developed the detection-data grouping and calculation logic, signal-window and outlier handling, corrections for different camera installations, result aggregation, and Tibero database integration.
+I analyzed and maintained the existing service, resolved operational issues, and implemented requirements and new features. For Headway and GAP analysis, I developed the detection grouping and calculation logic, signal-window handling, corrections for different camera installations, result aggregation, and Tibero database integration.
 
 ## Key implementation
 

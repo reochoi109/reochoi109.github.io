@@ -15,7 +15,7 @@
       <div class="home-intro-copy">
         <p class="home-slide-kicker">{{ if $isKo }}최신욱 · 퍼포먼스 마케팅{{ else }}SINUK CHOI · performance MARKETING{{ end }}</p>
         <h1 id="home-intro-title">{{ if $isKo }}기술과 데이터 경험을,<br><em>퍼포먼스 마케팅으로<br class="home-mobile-only"> 연결합니다.</em>{{ else }}Connecting technical<br>and data experience<br><em>to performance marketing.</em>{{ end }}</h1>
-        <p class="home-slide-lead">{{ if $isKo }}데이터와 기술에 대한 이해를 바탕으로 고객의 유입과 전환을 분석하고 개선하는 퍼포먼스 마케터를 지향합니다.{{ else }}I am extending the technical and data fluency I built in backend engineering into acquisition, conversion, and performance improvement.{{ end }}</p>
+        <p class="home-slide-lead">{{ if $isKo }}개인 웹서비스와 스마트스토어를 운영하며 작은 실행이 노출 결과를 바꾸는 과정을 경험했습니다. 기술과 데이터로 가설을 검증해온 강점을 고객의 유입과 전환 개선으로 연결하고자 합니다.{{ else }}I am extending the technical and data fluency I built in backend engineering into acquisition, conversion, and performance improvement.{{ end }}</p>
         <div class="home-slide-actions">
           <a class="home-deck-button home-deck-button--primary" href="#career">{{ if $isKo }}경력부터 보기{{ else }}Start with career{{ end }} <span>↓</span></a>
           {{- with $products }}<a class="home-deck-button" href="{{ .RelPermalink }}">{{ if $isKo }}프로젝트 전체 보기{{ else }}View all projects{{ end }} <span>→</span></a>{{- end }}
@@ -36,21 +36,31 @@
       </aside>
     </section>
 
+    <section id="transition" class="home-slide home-slide--transition" aria-labelledby="home-transition-title">
+      <div class="home-slide-index" aria-hidden="true">02 / 06</div>
+      <header class="home-transition-head">
+        <p class="home-slide-kicker">TRANSITION</p>
+        <h2 id="home-transition-title">{{ if $isKo }}전환 배경{{ else }}Career transition{{ end }}</h2>
+      </header>
+      <article class="profile-story-content home-transition-content prose">{{ $about.Content }}</article>
+      <a class="home-text-link" href="#career">{{ if $isKo }}경력 이어서 보기{{ else }}Continue to career{{ end }} <span>↓</span></a>
+    </section>
+
     {{ partial "home/shared-work-sections.html" (dict
       "career" $career
       "products" $products
       "searchRank" $searchRank
       "careerPages" $careerPages
       "productPages" $productPages
-      "start" 2
-      "total" 5
+      "start" 3
+      "total" 6
     ) }}
     {{ partial "home/contact-section.html" (dict
       "career" $career
       "products" $products
       "about" $about
-      "index" 5
-      "total" 5
+      "index" 6
+      "total" 6
     ) }}
   </div>
 {{ end }}

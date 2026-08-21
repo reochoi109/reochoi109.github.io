@@ -1,12 +1,12 @@
 +++
 aliases = ["/en/engineering/goutils/", "/en/projects/goutils/"]
-title = "GOUTILS Development"
+title = "Goutils Development"
 date = 2025-01-02T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "Backend Development"
-list_title = "GOUTILS"
+list_title = "Goutils"
 period = "2025.01 - 2025.07"
 org = "Laon Road"
 employer = "Laon Road"
@@ -35,7 +35,7 @@ tags = ["project", "platform", "golang", "module", "backend"]
 
 ## Overview
 
-**GOUTILS** is an internal Go module that separates recurring infrastructure code into reusable packages. It covers database and API foundations, messaging, real-time communication, RTSP media handling, and operational utilities, with each service selecting its required version from `go.mod`.
+**Goutils** is an internal Go module that separates recurring infrastructure code into reusable packages. It covers database and API foundations, messaging, real-time communication, RTSP media handling, and operational utilities, with each service selecting its required version from `go.mod`.
 
 ## Objective
 
@@ -76,7 +76,7 @@ I owned the module architecture and implementation, Git tag-based versioning, th
 
 ### Version distribution and adoption flow
 
-{{< product-workflow title="GOUTILS distribution flow" layout="column" >}}
+{{< product-workflow title="Goutils distribution flow" layout="column" >}}
 {
   "nodes": [
     { "id": "branch", "label": "Develop on a feature branch" },

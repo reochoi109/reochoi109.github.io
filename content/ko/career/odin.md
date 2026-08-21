@@ -1,26 +1,26 @@
 +++
 aliases = ["/ko/engineering/odin/", "/ko/projects/odin/"]
-title = "Odin AI 서버 개발"
+title = "AI 영상관제 솔루션 Odin 서버 개발"
 date = 2026-05-02T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "백엔드 개발"
-list_title = "Odin AI 서버"
+list_title = "Odin 서버"
 period = "2025.01 - 2025.04"
-org = "㈜라온피플"
+org = "라온로드"
 employer = "라온로드"
 employer_index = 1
 employer_url = "https://www.laonroad.com/"
 employment_period = "2023.05 - 2025.08"
-company_url = "https://laonpeople.com/"
+company_url = "https://www.laonroad.com/"
 company_label = "회사 홈페이지"
 official_url = "https://laonpeople.com/odinai-server/"
 official_label = "Odin AI Server 공식 페이지"
 blog_url = "https://laonpeople.com/blog/%EA%B7%B8%EB%9E%98%EC%84%9C-%EB%AD%90%EA%B0%80-%EC%A2%8B%EC%95%84%EC%A7%84-%EA%B1%B4%EB%8D%B0-%EC%83%9D%EC%84%B1%ED%98%95-ai-%EA%B4%80%EC%A0%9C%EB%A1%9C-%EB%8B%AC%EB%9D%BC%EC%A7%84-5%EA%B0%80/"
 blog_label = "Odin AI 공식 블로그"
 subtitle = "Backend Development | 2025.01 - 2025.04"
-description = "Odin AI Server 개발에 참여해 이벤트 알림·BBox 전달·RTSP 영상 중계와 스냅샷 관리 등 실시간 관제 백엔드의 일부 기능을 구현했습니다."
+description = "AI 영상관제 솔루션 Odin 서버 개발"
 index = 2
 visual_text = ""
 visual_image = [
@@ -40,6 +40,8 @@ tags = ["project", "backend", "streaming", "websocket", "video"]
 ## 프로젝트 개요
 
 Odin AI Server는 VLM 영상 분석과 관제 기능을 결합한 다채널 AI 영상관제 솔루션입니다. 공식 제품 구조는 카메라 스트림을 수집·분배하는 영상중계 서버와 Multi-GPU 영상분석 서버를 분리하고, RTSP·ONVIF 같은 표준 프로토콜로 기존 CCTV를 연동합니다.
+
+이 프로젝트에는 라온로드 소속 개발자로 참여해 라온피플과 협업했습니다.
 
 저는 서버 개발의 일부에 참여해 분석 이벤트, 객체 위치(BBox), 실시간 영상 스트림을 운영 화면에 전달하는 기능을 구현했습니다.
 

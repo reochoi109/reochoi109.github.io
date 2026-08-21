@@ -1,14 +1,14 @@
 +++
 aliases = ["/ko/engineering/goutils/", "/ko/projects/goutils/"]
-title = "GOUTILS 개발"
+title = "Goutils 개발"
 date = 2025-01-02T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "백엔드 개발"
-list_title = "GOUTILS"
+list_title = "Goutils"
 period = "2025.01 - 2025.07"
-org = "㈜라온로드"
+org = "라온로드"
 employer = "라온로드"
 employer_index = 1
 employer_url = "https://www.laonroad.com/"
@@ -16,7 +16,7 @@ employment_period = "2023.05 - 2025.08"
 company_url = "https://www.laonroad.com/"
 company_label = "회사 홈페이지"
 subtitle = "Backend Module | 2025.01 - 2025.07"
-description = "DB·로깅·검증부터 Kafka·WebSocket·RTSP까지 반복되는 백엔드 기능을 공용 Go 모듈로 구성하고, 사내 서비스에서 버전별로 사용할 수 있도록 배포·문서화했습니다."
+description = "사내 공통 모듈 Goutils 개발 및 버전 관리·배포·적용 표준화"
 index = 4
 visual_text = ""
 visual_image = [
@@ -35,7 +35,7 @@ tags = ["project", "platform", "golang", "module", "backend"]
 
 ## 프로젝트 개요
 
-**GOUTILS**는 여러 Go 백엔드 서비스에서 반복해서 사용하는 인프라성 코드를 패키지 단위로 분리한 사내 공용 Go 모듈입니다. 데이터베이스와 API 기반 기능부터 메시징, 실시간 통신, RTSP 영상 처리, 운영 유틸리티까지 제공하며 각 서비스가 필요한 버전을 `go.mod`에서 선택해 사용하도록 구성했습니다.
+**Goutils**는 여러 Go 백엔드 서비스에서 반복해서 사용하는 인프라성 코드를 패키지 단위로 분리한 사내 공용 Go 모듈입니다. 데이터베이스와 API 기반 기능부터 메시징, 실시간 통신, RTSP 영상 처리, 운영 유틸리티까지 제공하며 각 서비스가 필요한 버전을 `go.mod`에서 선택해 사용하도록 구성했습니다.
 
 ## 프로젝트 목적
 
@@ -76,7 +76,7 @@ tags = ["project", "platform", "golang", "module", "backend"]
 
 ### 버전 배포와 적용 흐름
 
-{{< product-workflow title="GOUTILS 배포 흐름" layout="column" >}}
+{{< product-workflow title="Goutils 배포 흐름" layout="column" >}}
 {
   "nodes": [
     { "id": "branch", "label": "기능 브랜치 개발" },

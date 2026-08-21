@@ -8,19 +8,19 @@ field_index = 1
 career_title = "Backend Development"
 list_title = "Odin AI Server"
 period = "2025.01 - 2025.04"
-org = "Laon People"
+org = "Laon Road"
 employer = "Laon Road"
 employer_index = 1
 employer_url = "https://www.laonroad.com/"
 employment_period = "May 2023 - Aug 2025"
-company_url = "https://laonpeople.com/en/"
+company_url = "https://www.laonroad.com/"
 company_label = "Company website"
 official_url = "https://laonpeople.com/odinai-server/"
 official_label = "Official Odin AI Server page"
 blog_url = "https://laonpeople.com/blog/%EA%B7%B8%EB%9E%98%EC%84%9C-%EB%AD%90%EA%B0%80-%EC%A2%8B%EC%95%84%EC%A7%84-%EA%B1%B4%EB%8D%B0-%EC%83%9D%EC%84%B1%ED%98%95-ai-%EA%B4%80%EC%A0%9C%EB%A1%9C-%EB%8B%AC%EB%9D%BC%EC%A7%84-5%EA%B0%80/"
 blog_label = "Official Odin AI blog post"
 subtitle = "Backend Development | 2025.01 - 2025.04"
-description = "Contributed selected real-time monitoring backend features to Odin AI Server, including event notifications, BBox delivery, RTSP relaying, and snapshot management."
+description = "As a Laon Road engineer collaborating with Laon People, I contributed selected real-time monitoring backend features to Odin AI Server, including event notifications, BBox delivery, RTSP relaying, and snapshot management."
 index = 2
 visual_text = ""
 visual_image = [
@@ -40,6 +40,8 @@ tags = ["project", "backend", "streaming", "websocket", "video"]
 ## Overview
 
 Odin AI Server is a multi-channel AI video-monitoring solution that combines VLM analysis with an operations platform. Its published architecture separates the video relay layer from Multi-GPU analysis servers and connects existing CCTV through standard protocols including RTSP and ONVIF.
+
+I joined this project as a Laon Road engineer and collaborated with Laon People.
 
 I contributed selected server features that delivered analysis events, object locations (BBox), and live camera streams to the monitoring interface.
 

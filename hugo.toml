@@ -34,6 +34,21 @@ enableRobotsTXT = true
   target = 'content/madup/about.md'
   lang = 'ko'
 
+  [[module.mounts]]
+  source = 'content/ko/products'
+  target = 'content/madup-ai/products'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/ko/career'
+  target = 'content/madup-ai/career'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/ko/about.md'
+  target = 'content/madup-ai/about.md'
+  lang = 'ko'
+
 [pagination]
 pagerSize = 12
 
@@ -47,7 +62,7 @@ author = 'Reo'
 brand = 'Reo' # Header/footer brand label (defaults to `title`)
 email = 'reochoi109@gmail.com' # Optional: footer email under brand (falls back to data/home.toml)
 spacing = 'comfortable' # comfortable | compact
-company_routes = ['madup'] # Company-specific mirrors that preserve their URL prefix
+company_routes = ['madup', 'madup-ai'] # Company-specific mirrors that preserve their URL prefix
 
 [languages]
   [languages.ko]
