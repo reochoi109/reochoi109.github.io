@@ -64,6 +64,21 @@ enableRobotsTXT = true
   target = 'content/chai/about.md'
   lang = 'ko'
 
+  [[module.mounts]]
+  source = 'content/ko/products'
+  target = 'content/dpurple/products'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/ko/career'
+  target = 'content/dpurple/career'
+  lang = 'ko'
+
+  [[module.mounts]]
+  source = 'content/ko/about.md'
+  target = 'content/dpurple/about.md'
+  lang = 'ko'
+
 [pagination]
 pagerSize = 12
 
@@ -77,7 +92,7 @@ author = 'Reo'
 brand = 'Reo' # Header/footer brand label (defaults to `title`)
 email = 'reochoi109@gmail.com' # Optional: footer email under brand (falls back to data/home.toml)
 spacing = 'comfortable' # comfortable | compact
-company_routes = ['madup', 'madup-ai', 'chai'] # Company-specific mirrors that preserve their URL prefix
+company_routes = ['madup', 'madup-ai', 'chai', 'dpurple'] # Company-specific mirrors that preserve their URL prefix
 
 [languages]
   [languages.ko]
