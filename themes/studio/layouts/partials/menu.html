@@ -9,41 +9,29 @@ Renders a menu for the given menu ID.
 
 {{- $page := .page }}
 {{- $menuID := .menuID }}
-{{- $companyRoot := false -}}
-{{- if in site.Params.company_routes $page.Section -}}
-  {{- $companyRoot = site.GetPage (printf "/%s" $page.Section) -}}
-{{- end -}}
 
 {{- with index site.Menus $menuID }}
   <nav id="mobile-main-menu" class="nav" aria-label="Main menu" data-mobile-menu>
     <ul class="nav-list">
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" . "companyRoot" $companyRoot) }}
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
     </ul>
   </nav>
 {{- end }}
 
 {{- define "partials/inline/menu/walk.html" }}
   {{- $page := .page }}
-  {{- $companyRoot := .companyRoot }}
   {{- range .menuEntries }}
     {{- $href := .URL -}}
-    {{- if and $companyRoot (hasPrefix $href site.Home.RelPermalink) -}}
-      {{- $relativePath := strings.TrimPrefix site.Home.RelPermalink $href -}}
-      {{- $href = printf "%s%s" $companyRoot.RelPermalink $relativePath -}}
-    {{- end -}}
     {{- $attrs := dict "href" $href }}
     {{- $class := "nav-link" }}
-    {{- if or ($page.IsMenuCurrent .Menu .) (and $companyRoot (eq $page.RelPermalink $href)) }}
+    {{- if $page.IsMenuCurrent .Menu . }}
       {{- $attrs = merge $attrs (dict "aria-current" "page") }}
       {{- $class = printf "%s is-active" $class }}
-    {{- else if or ($page.HasMenuCurrent .Menu .) (and $companyRoot (ne $href $companyRoot.RelPermalink) (hasPrefix $page.RelPermalink $href)) }}
+    {{- else if $page.HasMenuCurrent .Menu . }}
       {{- $attrs = merge $attrs (dict "aria-current" "true") }}
       {{- $class = printf "%s is-ancestor" $class }}
     {{- end }}
     {{- $name := .Name }}
-    {{- if and $companyRoot (eq $companyRoot.Section "developer") (eq $name "개인 프로젝트") -}}
-      {{- $name = "개인 개발 프로젝트" -}}
-    {{- end -}}
     {{- with .Identifier }}
       {{- with T . }}
         {{- $name = . }}

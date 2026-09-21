@@ -1,10 +1,9 @@
 {{ define "main" }}
   {{- $isKo := (eq site.Language.Lang "ko") -}}
-  {{- $isDeveloper := eq .Section "developer" -}}
   <section class="collection-hero collection-hero--archive">
-    <p class="overline">{{ if $isDeveloper }}BACKEND CAREER{{ else }}CAREER{{ end }}</p>
-    <h1>{{ if $isDeveloper }}백엔드 개발 경력{{ else }}{{ .Title }}{{ end }}</h1>
-    {{- if not $isDeveloper }}{{ with .Description }}<p>{{ . }}</p>{{ end }}{{ end -}}
+    <p class="overline">CAREER</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
   </section>
   {{- with .Content }}
     <section style="padding-top: 0">
@@ -36,41 +35,11 @@
           </div>
         </header>
         <div class="archive-project-list career-company-projects" aria-label="{{ if $isKo }}{{ $first.Params.career_title }} 수행 프로젝트{{ else }}{{ $first.Params.career_title }} projects{{ end }}">
-          {{- if $isDeveloper }}
-            {{- $solutionRoots := where $group.Pages "Params.solution_role" "root" -}}
-            {{- $solutionChildren := where $group.Pages "Params.solution_role" "child" -}}
-            {{- $standalone := where $group.Pages "Params.solution_key" "ne" "tms" -}}
-            {{- range $solutionRoots }}
-              <section class="career-solution-group" aria-label="{{ .Title }}와 내부 개발">
-                <p class="career-solution-label">MAIN SOLUTION · 전체 재직 기간</p>
-                <div class="career-project-branch career-project-branch--solution">
-                  <span class="career-project-node" aria-hidden="true"></span>
-                  {{ partial "project-item.html" (dict "page" . "index" 1 "showStack" false) }}
-                </div>
-                <div class="career-solution-children">
-                  <p>TMS 주요 개발</p>
-                  {{- range $i, $page := $solutionChildren }}
-                    <div class="career-project-branch">
-                      <span class="career-project-node" aria-hidden="true"></span>
-                      {{ partial "project-item.html" (dict "page" $page "index" (add $i 2) "showStack" false) }}
-                    </div>
-                  {{- end }}
-                </div>
-              </section>
-            {{- end }}
-            {{- range $i, $page := $standalone }}
-              <div class="career-project-branch career-project-branch--standalone">
-                <span class="career-project-node" aria-hidden="true"></span>
-                {{ partial "project-item.html" (dict "page" $page "index" (add $i 4) "showStack" false) }}
-              </div>
-            {{- end }}
-          {{- else }}
-            {{- range $i, $page := $group.Pages }}
-              <div class="career-project-branch">
-                <span class="career-project-node" aria-hidden="true"></span>
-                {{ partial "project-item.html" (dict "page" $page "index" (add $i 1) "showStack" false) }}
-              </div>
-            {{- end }}
+          {{- range $i, $page := $group.Pages }}
+            <div class="career-project-branch">
+              <span class="career-project-node" aria-hidden="true"></span>
+              {{ partial "project-item.html" (dict "page" $page "index" (add $i 1) "showStack" false) }}
+            </div>
           {{- end }}
         </div>
       </section>

@@ -1,10 +1,5 @@
 {{- $brand := site.Params.brand | default site.Title -}}
 {{- $homeURL := site.Home.RelPermalink -}}
-{{- if in site.Params.company_routes .Section -}}
-  {{- with site.GetPage (printf "/%s" .Section) -}}
-    {{- $homeURL = .RelPermalink -}}
-  {{- end -}}
-{{- end -}}
 <a class="brand-link" href="{{ $homeURL }}" aria-label="{{ $brand }} home">
   <span class="brand-wordmark" aria-hidden="true">Reo</span>
 </a>

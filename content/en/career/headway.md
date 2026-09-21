@@ -1,12 +1,12 @@
 +++
 aliases = ["/en/engineering/headway/", "/en/projects/headway/"]
-title = "Traffic Management System (TMS) Development and Maintenance"
+title = "Headway and GAP Traffic-Metric Analysis"
 date = 2026-04-28T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "Backend Development"
-list_title = "Traffic Management System (TMS)"
+list_title = "Headway and GAP Analysis"
 period = "May 2023 - Aug 2025"
 org = "Laon Road"
 employer = "Laon Road"
@@ -16,7 +16,7 @@ employment_period = "May 2023 - Aug 2025"
 company_url = "https://www.laonroad.com/"
 company_label = "Company website"
 subtitle = "Backend Development | May 2023 - Aug 2025"
-description = "Developed and maintained the backend of the company's Traffic Management System (TMS) and responded to operational issues."
+description = "Turned real-world vehicle detections into reliable Headway and GAP metrics by accounting for signal cycles, vehicle length, camera conditions, and outliers."
 index = 3
 visual_text = ""
 visual_image = [

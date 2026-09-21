@@ -8,7 +8,7 @@
 <h1>{{ if $ko }}끊임없이 도전하는<br>개발자 <span>최신욱</span>입니다.{{ else }}A developer who keeps<br>taking on <span>new challenges.</span>{{ end }}</h1>
 <div class="folio-actions"><a class="folio-button" href="#selected-work">{{ if $ko }}경력 보기{{ else }}View experience{{ end }} ↘</a><a href="#contact">{{ if $ko }}연락처{{ else }}Contact{{ end }} ↘</a></div>
 </div><aside class="folio-identity"><img src="{{ "/images/profile/portrait.png" | relURL }}" alt="{{ if $ko }}최신욱{{ else }}Sinuk Choi{{ end }}" width="600" height="600" fetchpriority="high" decoding="async"></aside></div>
-<dl class="folio-facts"><div><dt>{{ if $ko }}백엔드 개발 경력{{ else }}Backend experience{{ end }}</dt><dd>{{ if $ko }}2년 4개월{{ else }}2 years, 4 months{{ end }}</dd></div><div><dt>{{ if $ko }}주요 기술{{ else }}Core technologies{{ end }}</dt><dd>Go · Kafka · PostgreSQL</dd></div><div><dt>{{ if $ko }}개발 분야{{ else }}Focus{{ end }}</dt><dd>API · WebSocket · Data Pipeline</dd></div></dl>
+<dl class="folio-facts"><div><dt>{{ if $ko }}경력{{ else }}Experience{{ end }}</dt><dd>{{ if $ko }}2년 4개월{{ else }}2 years, 4 months{{ end }}</dd></div><div><dt>{{ if $ko }}주요 기술{{ else }}Core technologies{{ end }}</dt><dd>Go · Kafka · PostgreSQL</dd></div><div><dt>{{ if $ko }}개발 분야{{ else }}Focus{{ end }}</dt><dd>API · WebSocket · Data Pipeline</dd></div></dl>
 </section>
 <section class="folio-section" id="selected-work"><header class="folio-heading"><div><h2>{{ if $ko }}경력{{ else }}Career{{ end }}</h2></div>{{ with site.GetPage "/career" }}<a href="{{ .RelPermalink }}">{{ if $ko }}전체 보기{{ else }}View all{{ end }} ↗</a>{{ end }}</header>
 <div class="folio-company">
