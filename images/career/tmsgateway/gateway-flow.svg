@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">TMS-Gateway 서비스 흐름</title>
+  <desc id="desc">외부 클라이언트 요청이 TMS-Gateway의 인증, 권한, 요청 제한과 프록시를 거쳐 여러 TMS 내부 서비스로 전달되고 Kafka 알림이 WebSocket으로 사용자에게 전송되는 구조</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="gateway" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="675" rx="30" fill="url(#bg)"/>
+  <text x="70" y="86" fill="#f8fafc" font-family="sans-serif" font-size="34" font-weight="700">TMS-Gateway</text>
+  <text x="70" y="123" fill="#94a3b8" font-family="sans-serif" font-size="19">Existing service maintenance &amp; additional development</text>
+
+  <rect x="70" y="245" width="190" height="122" rx="18" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <text x="165" y="298" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="24" font-weight="700">Client</text>
+  <text x="165" y="332" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="16">REST · WebSocket</text>
+
+  <path d="M270 306 H367" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="380" y="178" width="350" height="260" rx="24" fill="url(#gateway)"/>
+  <text x="555" y="229" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="28" font-weight="700">API Gateway</text>
+  <rect x="414" y="257" width="132" height="52" rx="12" fill="#ffffff" fill-opacity=".16"/>
+  <text x="480" y="290" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16">Session · Auth</text>
+  <rect x="564" y="257" width="132" height="52" rx="12" fill="#ffffff" fill-opacity=".16"/>
+  <text x="630" y="290" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16">Rate Limit</text>
+  <rect x="414" y="327" width="132" height="52" rx="12" fill="#ffffff" fill-opacity=".16"/>
+  <text x="480" y="360" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16">Reverse Proxy</text>
+  <rect x="564" y="327" width="132" height="52" rx="12" fill="#ffffff" fill-opacity=".16"/>
+  <text x="630" y="360" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16">User · Admin</text>
+  <text x="555" y="411" text-anchor="middle" fill="#e0f2fe" font-family="sans-serif" font-size="15">Go · Gin · PostgreSQL · Kafka · WebSocket</text>
+
+  <path d="M742 306 H827" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="840" y="178" width="290" height="260" rx="24" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <text x="985" y="225" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="22" font-weight="700">TMS Services</text>
+  <g fill="#334155" font-family="sans-serif" font-size="16" text-anchor="middle">
+    <rect x="872" y="253" width="104" height="43" rx="10"/><text x="924" y="280" fill="#e2e8f0">Hub</text>
+    <rect x="994" y="253" width="104" height="43" rx="10"/><text x="1046" y="280" fill="#e2e8f0">Base</text>
+    <rect x="872" y="311" width="104" height="43" rx="10"/><text x="924" y="338" fill="#e2e8f0">Collect</text>
+    <rect x="994" y="311" width="104" height="43" rx="10"/><text x="1046" y="338" fill="#e2e8f0">Calculate</text>
+    <rect x="872" y="369" width="104" height="43" rx="10"/><text x="924" y="396" fill="#e2e8f0">DTN</text>
+    <rect x="994" y="369" width="104" height="43" rx="10"/><text x="1046" y="396" fill="#e2e8f0">Others</text>
+  </g>
+
+  <rect x="380" y="504" width="350" height="88" rx="18" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <text x="555" y="540" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-size="19" font-weight="700">Kafka notification → WebSocket</text>
+  <text x="555" y="568" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="15">Filter · broadcast · session expiration</text>
+  <path d="M555 438 V491" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+</svg>
