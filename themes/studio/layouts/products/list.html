@@ -1,84 +1,137 @@
-{{ define "main" }}
-  {{- $isKo := eq site.Language.Lang "ko" -}}
-  {{- $pages := where (sort .Pages "Params.index") "LinkTitle" "ne" "" -}}
-  {{- $pages = where $pages "Params.project_group" "ne" "work-improvement" -}}
-  {{- $launched := where $pages "Params.status" "ne" "unreleased" -}}
-  {{- $experiments := where $pages "Params.status" "eq" "unreleased" -}}
-  {{- $p := .Paginate $launched -}}
-  {{- $searchRankPath := "/products/search-rank" -}}
-  {{- if in site.Params.company_routes .Section -}}
-    {{- $searchRankPath = printf "/%s/products/search-rank" .Section -}}
-  {{- end -}}
+{{ define "main" }} {{- $isKo := eq site.Language.Lang "ko" -}} {{- $isDeveloper
+:= eq .Section "developer" -}} {{- $pages := where (sort .Pages "Params.index")
+"LinkTitle" "ne" "" -}} {{- $pages = where $pages "Params.project_group" "ne"
+"work-improvement" -}} {{- $launched := where $pages "Params.status" "ne"
+"unreleased" -}} {{- $experiments := where $pages "Params.status" "eq"
+"unreleased" -}} {{- $p := .Paginate $launched -}}
+{{- if $isDeveloper }} {{- $developerTools := where (sort .Pages "Params.index")
+"Params.project_group" "eq" "work-improvement" -}}
+<section class="project-index-hero">
+  <div class="project-index-hero-copy">
+    <p class="overline">PERSONAL PROJECTS</p>
+    <h1>개인 개발 프로젝트</h1>
+  </div>
+  <nav class="project-index-summary" aria-label="개인 개발 프로젝트 목차">
+    <a href="#launched-services"
+      ><span>01</span><strong>출시 서비스</strong></a
+    >
+    <a href="#unreleased-projects"
+      ><span>02</span><strong>미출시 프로젝트</strong></a
+    >
+    <a href="#convenience-tools"
+      ><span>03</span><strong>편의 도구</strong></a
+    >
+  </nav>
+</section>
 
-  <section class="project-index-hero">
-    <div class="project-index-hero-copy">
-      <p class="overline">{{ if $isKo }}PROJECTS{{ else }}PROJECTS{{ end }}</p>
-      <h1>{{ .Title }}</h1>
-    </div>
-    <nav class="project-index-summary" aria-label="{{ if $isKo }}개인 프로젝트 목차{{ else }}Independent project sections{{ end }}">
-      <a href="#work-improvement"><span>01</span><strong>{{ if $isKo }}업무 개선{{ else }}Work Improvement{{ end }}</strong></a>
-      <a href="#service-development"><span>02</span><strong>{{ if $isKo }}서비스 개발{{ else }}Service Development{{ end }}</strong></a>
-      <a href="#unreleased-services"><span>03</span><strong>{{ if $isKo }}미 출시 서비스{{ else }}Unreleased Services{{ end }}</strong></a>
-    </nav>
-  </section>
+<section
+  id="launched-services"
+  class="project-launch-section"
+  aria-labelledby="launched-services-title"
+>
+  <header class="project-section-heading">
+    <h2 id="launched-services-title"><span>01</span>출시 서비스</h2>
+  </header>
+  <div class="project-showcase-grid">
+    {{- range $i, $page := $launched }} {{ partial "product-item.html"
+    (dict "page" $page "index" (add $i 1) "showStack" false) }} {{- end }}
+  </div>
+</section>
 
-  {{- with .Params.tools }}
-    <section id="work-improvement" class="project-case-section" aria-labelledby="practical-case-title">
-      <header class="project-section-heading">
-        <h2 id="practical-case-title"><span>01</span>{{ if $isKo }}업무 개선{{ else }}Work Improvement{{ end }}</h2>
-      </header>
+<section
+  id="unreleased-projects"
+  class="project-decision-section"
+  aria-labelledby="unreleased-projects-title"
+>
+  <header class="project-section-heading">
+    <h2 id="unreleased-projects-title"><span>02</span>미출시 프로젝트</h2>
+  </header>
+  <div class="project-showcase-grid">
+    {{- range $i, $page := $experiments }} {{ partial "product-item.html"
+    (dict "page" $page "index" (add $i 1) "showStack" false) }} {{- end }}
+  </div>
+</section>
 
-      <div class="project-showcase-grid">
-        {{- range . }}
-          <a class="project-showcase-card" href="{{ (site.GetPage $searchRankPath).RelPermalink }}" aria-label="{{ if $isKo }}검색 노출 순위 확인 도구 상세 보기{{ else }}View Search Visibility Rank Checker details{{ end }}">
-            {{- with .visual_image }}
-              <span class="project-showcase-visual">
-                <img src="{{ . | relURL }}" alt="{{ if $isKo }}검색 노출 순위 확인 도구 화면{{ else }}Search Visibility Rank Checker interface{{ end }}" loading="lazy" decoding="async">
-              </span>
-            {{- end }}
-            <div class="project-showcase-copy">
-              <div class="project-showcase-title">
-                <h3>{{ .title }}</h3>
-                <em>{{ if $isKo }}업무 도구{{ else }}Work tool{{ end }}</em>
-              </div>
-              <p class="project-showcase-summary">{{ .subtitle }}</p>
-            </div>
-          </a>
-        {{- end }}
-      </div>
-    </section>
-  {{- end }}
+<section
+  id="convenience-tools"
+  class="project-launch-section"
+  aria-labelledby="convenience-tools-title"
+>
+  <header class="project-section-heading">
+    <h2 id="convenience-tools-title"><span>03</span>편의 도구</h2>
+  </header>
+  <div class="project-showcase-grid">
+    {{- range $i, $page := $developerTools }} {{ partial "product-item.html" (dict
+    "page" $page "index" (add $i 1) "showStack" false) }} {{- end }}
+  </div>
+</section>
 
-  <section id="service-development" class="project-launch-section" aria-labelledby="launched-products-title">
-    <header class="project-section-heading">
-      <h2 id="launched-products-title"><span>02</span>{{ if $isKo }}서비스 개발{{ else }}Service Development{{ end }}</h2>
-    </header>
+{{- else }}
 
-    <div class="project-showcase-grid">
-      {{ range $i, $page := $p.Pages }}
-        {{ partial "product-item.html" (dict "page" $page "index" (add $i 1)) }}
-      {{ end }}
-    </div>
-  </section>
+<section class="project-index-hero">
+  <div class="project-index-hero-copy">
+    <p class="overline">{{ if $isKo }}PROJECTS{{ else }}PROJECTS{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+  </div>
+  <nav
+    class="project-index-summary"
+    aria-label="{{ if $isKo }}개인 프로젝트 목차{{ else }}Independent project sections{{ end }}"
+  >
+    <a href="#service-development"
+      ><span>01</span
+      ><strong
+        >{{ if $isKo }}서비스 개발{{ else }}Service Development{{ end }}</strong
+      ></a
+    >
+    <a href="#unreleased-services"
+      ><span>02</span
+      ><strong
+        >{{ if $isKo }}미 출시 서비스{{ else }}Unreleased Services{{ end
+        }}</strong
+      ></a
+    >
+  </nav>
+</section>
 
-  {{- with $experiments }}
-    <section id="unreleased-services" class="project-decision-section" aria-labelledby="product-decisions-title">
-      <header class="project-section-heading">
-        <h2 id="product-decisions-title"><span>03</span>{{ if $isKo }}미 출시 서비스{{ else }}Unreleased Services{{ end }}</h2>
-      </header>
-      <div class="project-showcase-grid">
-        {{- range $i, $page := . }}
-          {{ partial "product-item.html" (dict "page" $page "index" (add $i 1)) }}
-        {{- end }}
-      </div>
-    </section>
-  {{- end }}
+<section
+  id="service-development"
+  class="project-launch-section"
+  aria-labelledby="launched-products-title"
+>
+  <header class="project-section-heading">
+    <h2 id="launched-products-title">
+      <span>01</span>{{ if $isKo }}서비스 개발{{ else }}Service Development{{
+      end }}
+    </h2>
+  </header>
 
-  {{ if gt $p.TotalPages 1 }}
-    <nav class="pager" aria-label="Pagination">
-      {{ with $p.Prev }}<a class="pager-link" href="{{ .URL }}">Prev</a>{{ end }}
-      <span class="pager-meta">{{ $p.PageNumber }} / {{ $p.TotalPages }}</span>
-      {{ with $p.Next }}<a class="pager-link" href="{{ .URL }}">Next</a>{{ end }}
-    </nav>
-  {{ end }}
-{{ end }}
+  <div class="project-showcase-grid">
+    {{ range $i, $page := $p.Pages }} {{ partial "product-item.html" (dict
+    "page" $page "index" (add $i 1)) }} {{ end }}
+  </div>
+</section>
+
+{{- with $experiments }}
+<section
+  id="unreleased-services"
+  class="project-decision-section"
+  aria-labelledby="product-decisions-title"
+>
+  <header class="project-section-heading">
+    <h2 id="product-decisions-title">
+      <span>02</span>{{ if $isKo }}미 출시 서비스{{ else }}Unreleased Services{{
+      end }}
+    </h2>
+  </header>
+  <div class="project-showcase-grid">
+    {{- range $i, $page := . }} {{ partial "product-item.html" (dict "page"
+    $page "index" (add $i 1)) }} {{- end }}
+  </div>
+</section>
+{{- end }} {{ if gt $p.TotalPages 1 }}
+<nav class="pager" aria-label="Pagination">
+  {{ with $p.Prev }}<a class="pager-link" href="{{ .URL }}">Prev</a>{{ end }}
+  <span class="pager-meta">{{ $p.PageNumber }} / {{ $p.TotalPages }}</span>
+  {{ with $p.Next }}<a class="pager-link" href="{{ .URL }}">Next</a>{{ end }}
+</nav>
+{{ end }} {{- end }} {{ end }}

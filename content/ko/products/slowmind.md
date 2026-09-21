@@ -12,6 +12,7 @@ status_label = "공개 운영"
 visual_image = "/images/products/slowmind/landing.png"
 site_url = "https://slowmind.xyz"
 site_label = "slowmind.xyz"
+stack = ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vitest", "Playwright"]
 
 [[facts]]
 label = "상태"

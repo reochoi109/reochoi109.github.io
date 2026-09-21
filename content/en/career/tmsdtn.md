@@ -27,7 +27,7 @@ visual_image = [
 
 tasks = [
   { title = "End-to-end server ownership", desc = "Owned the complete backend scope, from REST APIs and job-state management to Kafka integration, storage, and WebSocket delivery." },
-  { title = "High-volume result processing", desc = "Wrote 9,000 time points as ordered JSON Lines instead of rebuilding one large JSON object, reducing additional memory during file generation." },
+  { title = "High-volume result processing", desc = "Wrote dynamic results as ordered JSON Lines instead of rebuilding one large JSON object, reducing additional memory during file generation." },
   { title = "Service-ready analysis results", desc = "Processed static metrics and dynamic twin data separately and replayed archived results through session-specific WebSocket servers." },
 ]
 stack = ["Go", "Gin", "Kafka", "PostgreSQL", "WebSocket", "Docker", "Swagger/OpenAPI"]
@@ -76,18 +76,18 @@ The traffic simulation model and user interface were outside my scope; I focused
 
 ### Result replay and multi-user delivery
 
-- Wrote the completed 9,000 time points as ordered JSON Lines and retained the file as a tar.gz archive
+- Wrote completed dynamic results as ordered JSON Lines and retained the file as a tar.gz archive
 - Allocated an available WebSocket port for each replay and extracted its archive into a session-specific temporary path to prevent result collisions
 - Read the file line by line, streamed each point over WebSocket, and marked the final packet so the client could detect replay completion
 - Shut down timed-out or completed servers, removed temporary files, and returned ports to the pool for reuse
 
 ## Problem solving and improvements
 
-### Memory performance across 9,000 time points
+### Memory use during dynamic-result file generation
 
-A 15-minute dynamic result arrives in 900 chunks containing 9,000 time points. The initial file-generation path merged the received chunks into one large map and serialized the entire object at once, requiring a consolidated map and serialization buffer in addition to the received data already held in memory.
+Dynamic results arrive in multiple chunks. The initial file-generation path merged the received chunks into one large map and serialized the entire object at once, requiring a consolidated map and serialization buffer in addition to the received data already held in memory.
 
-I changed file generation to write one time point at a time. The process iterates through chunk and time-point order, builds a small map for one record, and appends it as one JSON Lines entry. This removes the need to rebuild all 9,000 points as one result object and byte array.
+I changed file generation to write one time point at a time. The process iterates through chunk and time-point order, builds a small map for one record, and appends it as one JSON Lines entry. This removes the need to rebuild the entire dynamic result as one object and byte array.
 
 This bounded the additional memory used during file generation and produced an ordered, streaming-friendly artifact. Once writing completed, the file was compressed as tar.gz and the original was removed so storage and replay used the same artifact lifecycle.
 
@@ -101,7 +101,7 @@ After all required static result types were stored, the static reader sent the U
 
 - Built an asynchronous, job-level workflow for tracking long-running simulations independently of API requests
 - Synchronized static metric storage and dynamic twin-file creation to keep completion state consistent
-- Removed whole-result reconstruction during file generation and introduced ordered JSON Lines output for 9,000 time points
+- Removed whole-result reconstruction during file generation and introduced ordered JSON Lines output
 - Built a replay lifecycle spanning archive storage, session-specific extraction, WebSocket delivery, cleanup, and port reuse
 - Exposed one backend interface covering analysis requests, state checks, metric queries, and result replay
 

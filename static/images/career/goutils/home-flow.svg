@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Goutils 공용 모듈 구조와 배포</title>
+  <desc id="desc">반복되는 Go 기반 기능을 공용 패키지로 구성하고 Git tag와 go.mod로 여러 서비스에 적용하는 구조</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#315be8"/></marker>
+    <style>.t{font-family:Pretendard,'Noto Sans KR',sans-serif;fill:#121a2f}.h{font-size:40px;font-weight:800}.s{font-size:29px;font-weight:700}.n{font-size:23px;fill:#697083}.box{fill:#fff;stroke:#cfd5df;stroke-width:2}.own{fill:#eef3ff;stroke:#315be8;stroke-width:4}.line{fill:none;stroke:#315be8;stroke-width:5;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1200" height="675" fill="#f7f8fa"/>
+  <text x="70" y="78" class="t h">반복 기반 코드를 버전 관리되는 모듈로 통합</text>
+  <rect x="65" y="215" width="240" height="190" rx="20" class="box"/>
+  <text x="185" y="275" text-anchor="middle" class="t s">Go 서비스</text><text x="185" y="318" text-anchor="middle" class="t n">TMS · DTN · Odin</text><text x="185" y="355" text-anchor="middle" class="t n">필요 패키지 import</text>
+  <rect x="390" y="145" width="420" height="330" rx="24" class="own"/>
+  <text x="600" y="205" text-anchor="middle" class="t h">Goutils</text>
+  <rect x="430" y="245" width="150" height="82" rx="14" class="box"/><text x="505" y="295" text-anchor="middle" class="t s">DB · Log</text>
+  <rect x="620" y="245" width="150" height="82" rx="14" class="box"/><text x="695" y="295" text-anchor="middle" class="t s">HTTP · File</text>
+  <rect x="430" y="350" width="150" height="82" rx="14" class="box"/><text x="505" y="400" text-anchor="middle" class="t s">Kafka · WS</text>
+  <rect x="620" y="350" width="150" height="82" rx="14" class="box"/><text x="695" y="400" text-anchor="middle" class="t s">TCP · RTSP</text>
+  <rect x="895" y="215" width="240" height="190" rx="20" class="box"/>
+  <text x="1015" y="275" text-anchor="middle" class="t s">버전 배포</text><text x="1015" y="318" text-anchor="middle" class="t n">Git tag</text><text x="1015" y="355" text-anchor="middle" class="t n">go.mod · 문서</text>
+  <path d="M305 310H390" class="line"/><path d="M810 310H895" class="line"/>
+  <text x="600" y="555" text-anchor="middle" class="t s">공통 기능 패키징 → 서비스 검증 → 버전 배포</text>
+</svg>

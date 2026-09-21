@@ -12,6 +12,7 @@ status_label = "공개 운영"
 visual_image = "/images/products/molru/landing.png"
 site_url = "https://molru.net"
 site_label = "molru.net"
+stack = ["Next.js", "React", "TypeScript", "Tailwind CSS", "Playwright"]
 
 [[facts]]
 label = "상태"

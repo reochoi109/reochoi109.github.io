@@ -1,21 +1,5 @@
-{{- $home := site.Data.home -}}
-{{- if not $home -}}{{- $home = dict -}}{{- end -}}
-{{- $profile := $home.profile | default (dict) -}}
 {{- $brand := site.Params.brand | default site.Title -}}
 {{- $email := site.Params.email | default "" -}}
-{{- if not $email -}}
-  {{- with $profile.email -}}
-    {{- $email = . -}}
-  {{- end -}}
-{{- end -}}
-{{- if not $email -}}
-  {{- range ($home.social | default (slice)) -}}
-    {{- $u := .url | default "" -}}
-    {{- if and (not $email) (hasPrefix $u "mailto:") -}}
-      {{- $email = strings.TrimPrefix "mailto:" $u -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
 <div class="footer-inner">
   <div class="footer-top">
     <div class="footer-brand">
@@ -26,28 +10,11 @@
         </div>
       {{- end -}}
     </div>
-
-    <nav class="footer-links" aria-label="Footer links">
-      {{- range ($home.social | default (slice)) -}}
-        {{- $label := lower (.label | default "") -}}
-        {{- $url := .url | default "" -}}
-        {{- $isMail := or (hasPrefix $url "mailto:") (in $label "mail") (in $label "email") -}}
-        <a
-          class="footer-icon-link"
-          href="{{ $url }}"
-          {{- if not $isMail }} target="_blank" rel="noreferrer"{{- end -}}
-          aria-label="{{ .label }}"
-          title="{{ .label }}"
-        >
-          {{- partial "social-icon.html" . -}}
-        </a>
-      {{- end -}}
-    </nav>
   </div>
 
   <div class="footer-bottom">
     <div class="footer-meta">
-      © {{ now.Year }}. {{ if and (eq site.Language.Lang "en") $profile.name_en }}{{ $profile.name_en }}{{ else }}{{ with $profile.name }}{{ . }}{{ else }}{{ site.Title }}{{ end }}{{ end }}. All rights reserved.
+      © {{ now.Year }}. {{ site.Params.author | default site.Title }}. All rights reserved.
     </div>
   </div>
 </div>

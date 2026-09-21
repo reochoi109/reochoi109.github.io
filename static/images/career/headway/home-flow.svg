@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Headway·GAP 데이터 처리 흐름</title>
+  <desc id="desc">차량 검지 데이터를 보정하고 차량 쌍을 선별해 간격을 계산한 뒤 Tibero 데이터베이스에 제공하는 흐름</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#315be8"/></marker>
+    <style>.t{font-family:Pretendard,'Noto Sans KR',sans-serif;fill:#121a2f}.h{font-size:40px;font-weight:800}.s{font-size:29px;font-weight:700}.n{font-size:23px;fill:#697083}.box{fill:#fff;stroke:#cfd5df;stroke-width:2}.own{fill:#eef3ff;stroke:#315be8;stroke-width:4}.line{fill:none;stroke:#315be8;stroke-width:5;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1200" height="675" fill="#f7f8fa"/>
+  <text x="70" y="78" class="t h">검지 기록을 신호 최적화용 통계로 변환</text>
+  <rect x="65" y="230" width="235" height="165" rx="20" class="box"/>
+  <text x="182" y="292" text-anchor="middle" class="t s">차량 검지 DB</text><text x="182" y="332" text-anchor="middle" class="t n">시각 · 차로 · 속도</text><text x="182" y="362" text-anchor="middle" class="t n">신호 주기</text>
+  <rect x="385" y="155" width="430" height="315" rx="24" class="own"/>
+  <text x="600" y="215" text-anchor="middle" class="t h">Headway·GAP 분석</text>
+  <rect x="430" y="255" width="105" height="105" rx="16" class="box"/><text x="482" y="300" text-anchor="middle" class="t s">보정</text><text x="482" y="332" text-anchor="middle" class="t n">검지 시각</text>
+  <rect x="548" y="255" width="105" height="105" rx="16" class="box"/><text x="600" y="300" text-anchor="middle" class="t s">선별</text><text x="600" y="332" text-anchor="middle" class="t n">차량 쌍</text>
+  <rect x="665" y="255" width="105" height="105" rx="16" class="box"/><text x="717" y="300" text-anchor="middle" class="t s">계산</text><text x="717" y="332" text-anchor="middle" class="t n">간격 · 집계</text>
+  <rect x="900" y="230" width="235" height="165" rx="20" class="box"/>
+  <text x="1017" y="292" text-anchor="middle" class="t s">공동 Tibero DB</text><text x="1017" y="332" text-anchor="middle" class="t n">주기별 분석 통계</text><text x="1017" y="362" text-anchor="middle" class="t n">후속 시스템 제공</text>
+  <path d="M300 312H385" class="line"/><path d="M815 312H900" class="line"/>
+  <text x="600" y="555" text-anchor="middle" class="t s">보정된 연속 차량의 통과 간격만 집계·제공</text>
+</svg>

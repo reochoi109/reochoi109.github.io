@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{ $ko := eq site.Language.Lang "ko" }}
+<div class="portfolio-summary">
+  <header class="portfolio-summary-head">
+    <div class="portfolio-summary-title"><p>BACKEND ENGINEERING PORTFOLIO</p><h1>{{ .Title }}</h1><span>{{ .Params.intro | default (cond $ko "대표 프로젝트의 문제와 해결 과정을 한눈에 정리했습니다." "Problems, approaches, and outcomes from selected projects.") }}</span></div>
+    <dl class="portfolio-summary-facts">
+      <div><dt>{{ if $ko }}이름{{ else }}Name{{ end }}</dt><dd>{{ if $ko }}최신욱{{ else }}Sinuk Choi{{ end }}</dd></div>
+      <div><dt>{{ if $ko }}직무{{ else }}Role{{ end }}</dt><dd>Backend Engineer</dd></div>
+      <div><dt>{{ if $ko }}경력{{ else }}Experience{{ end }}</dt><dd>{{ if $ko }}2년 4개월{{ else }}2 years 4 months{{ end }}</dd></div>
+      <div><dt>{{ if $ko }}회사{{ else }}Company{{ end }}</dt><dd>{{ if $ko }}라온로드{{ else }}Laon Road{{ end }}</dd></div>
+    </dl>
+  </header>
+  <nav class="portfolio-summary-nav" aria-label="{{ if $ko }}대표 프로젝트{{ else }}Selected projects{{ end }}">{{ range .Params.cases }}<a href="#{{ .slug }}">{{ .title }}</a>{{ end }}</nav>
+  {{ range $i, $case := .Params.cases }}
+  <article class="portfolio-case" id="{{ .slug }}" aria-labelledby="{{ .slug }}-title">
+    <header class="portfolio-case-head"><div class="portfolio-case-title"><small>PROJECT 0{{ add $i 1 }} · {{ .period }}</small><h2 id="{{ .slug }}-title">{{ .title }}</h2><p><b>{{ if $ko }}담당{{ else }}Role{{ end }}</b>{{ .role }}</p><ul>{{ range .stack }}<li>{{ . }}</li>{{ end }}</ul></div>{{ with .image }}<figure><img src="{{ . | relURL }}" alt="{{ $case.title }} 구조 이미지" loading="lazy"></figure>{{ end }}</header>
+    <div class="portfolio-case-grid"><div class="portfolio-case-copy">
+      <section><h3><span>01</span>{{ if $ko }}문제{{ else }}Problem{{ end }}</h3><p>{{ .problem }}</p></section>
+      <section><h3><span>02</span>{{ if $ko }}해결방법{{ else }}Approach{{ end }}</h3><ol>{{ range .solution }}<li>{{ . }}</li>{{ end }}</ol></section>
+      <section class="portfolio-case-result"><h3><span>03</span>{{ if $ko }}결과{{ else }}Outcome{{ end }}</h3><p>{{ .result }}</p></section>
+      {{ with .lesson }}<aside class="portfolio-case-lesson"><small>{{ if $ko }}이 프로젝트에서 배운 것{{ else }}What I learned{{ end }}</small><p>{{ . }}</p></aside>{{ end }}
+    </div><figure class="portfolio-case-flow"><figcaption>{{ .caption }}</figcaption><ol>{{ range .flow }}<li>{{ . }}</li>{{ end }}</ol></figure></div>
+    {{ with site.GetPage (printf "/career/%s" .slug) }}<a class="portfolio-case-link" href="{{ .RelPermalink }}">{{ if $ko }}상세 기술 기록{{ else }}Technical details{{ end }} ↗</a>{{ end }}
+  </article>{{ end }}
+</div>
+{{ end }}

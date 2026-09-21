@@ -1,6 +1,6 @@
 +++
-title = "Career"
-description = "Professional work and projects organized by field."
+title = "Backend Engineering Experience"
+description = "Production backend systems, real-time data processing, and shared-platform development."
 type = "career"
 aliases = ["/en/engineering/", "/en/projects/"]
 +++

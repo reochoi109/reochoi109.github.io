@@ -17,7 +17,7 @@ company_url = "https://www.laonroad.com/"
 company_label = "회사 홈페이지"
 subtitle = "Backend Module | 2025.01 - 2025.07"
 description = "사내 공통 모듈 Goutils 개발 및 버전 관리·배포·적용 표준화"
-index = 4
+index = 6
 visual_text = ""
 visual_image = [
   "/images/career/goutils/overview.png",

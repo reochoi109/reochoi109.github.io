@@ -1,0 +1,51 @@
+title = "Backend Engineer Profile"
+transition = [
+  "I started theater to become less reserved. Standing in front of others was difficult at first, but I kept performing and addressing my weaknesses over roughly ten years. At university, I studied theater and film and worked in acting, lighting, and stage production.",
+  "Theater taught me that steady learning and practice can lead to change, even when the starting point is unfamiliar. That experience supported me as I began learning software development without a computer science background.",
+  "After completing a backend development program in 2022, I joined Laon Road as an intern. I investigated problems through research and asked colleagues for help when needed. I later converted to a full-time role, taking on production maintenance and the design and development of a new relay server."
+]
+
+type = "page"
+layout = "about"
+display_name = "Sinuk Choi"
+hero_title = "I understand operating systems\nbefore building the backend they need."
+status = "BACKEND ENGINEER"
+location = "Seoul, Korea"
+strengths = ["TMS backend maintenance", "Asynchronous and real-time systems", "Shared Go module development"]
+facts = [
+  { label = "Experience", value = "2 years, 4 months" },
+  { label = "Primary language", value = "Go" },
+  { label = "Focus", value = "Backend systems" },
+  { label = "Core tools", value = "Kafka · PostgreSQL · WebSocket" },
+]
+links = [
+  { label = "Email", url = "mailto:reochoi109@gmail.com" },
+]
+
+[[career]]
+company = "Laon Road"
+role = "Development Team 2 · Server Developer · Manager"
+period = "May 2023 – Aug 2025"
+duration = "2 years, 4 months"
+note = "Joined as an intern and converted to a full-time role; developed and maintained TMS backends."
+
+[[education]]
+school = "Daekyeung University"
+major = "Department of Theater and Film, School of Performing Arts"
+period = "Mar 2015 – Aug 2020"
+
+[[credentials]]
+title = "ADsP: Advanced Data Analytics Semi-Professional"
+date = "Mar 2026"
+description = "Certification administered by the Korea Data Agency"
+category = "Certification"
+
+[[credentials]]
+title = "Backend Developer Training Program"
+date = "Sep 2022 – Dec 2022"
+description = "Completed Sparta Coding Club's backend development program"
+category = "Education"
+
+[[awards]]
+title = "Grand Prize for Male Acting, Geochang National University Theater Festival"
+date = "Aug 2019"

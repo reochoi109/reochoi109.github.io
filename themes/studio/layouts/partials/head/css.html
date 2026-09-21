@@ -7,3 +7,13 @@
     {{- end }}
   {{- end }}
 {{- end }}
+{{- if eq .Layout "developer" }}
+  {{- with resources.Get "css/folio.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{- end }}
+{{- end }}
+{{- if eq .Layout "portfolio" }}
+  {{- with resources.Get "css/portfolio.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{- end }}
+{{- end }}

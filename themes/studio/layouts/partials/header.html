@@ -10,7 +10,7 @@
 </a>
 <div class="header-actions">
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-  {{- if gt (len site.Languages) 1 }}
+{{- if and (gt (len site.Languages) 1) (ne .Section "developer") }}
     <nav class="lang-nav" aria-label="Language">
       {{- $page := . -}}
       <button class="lang-toggle" type="button" aria-expanded="false" aria-controls="language-menu" aria-label="{{ if eq site.Language.Lang "ko" }}언어 선택{{ else }}Select language{{ end }}" data-language-toggle>

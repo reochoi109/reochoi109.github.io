@@ -1,6 +1,6 @@
 +++
-title = "Home"
-description = "A portfolio focused on campaign performance through technical and data experience"
+aliases = ["/en/about/"]
+title = "Sinuk Choi | Backend Engineer"
+description = "Backend engineer experienced in Go APIs, asynchronous processing, and real-time systems."
+layout = "developer"
 +++
-
-I am extending experience in engineering, independent products, and online retail into performance marketing.

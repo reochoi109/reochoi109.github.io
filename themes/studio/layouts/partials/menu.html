@@ -41,6 +41,9 @@ Renders a menu for the given menu ID.
       {{- $class = printf "%s is-ancestor" $class }}
     {{- end }}
     {{- $name := .Name }}
+    {{- if and $companyRoot (eq $companyRoot.Section "developer") (eq $name "개인 프로젝트") -}}
+      {{- $name = "개인 개발 프로젝트" -}}
+    {{- end -}}
     {{- with .Identifier }}
       {{- with T . }}
         {{- $name = . }}

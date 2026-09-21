@@ -1,0 +1,56 @@
+{{ define "main" }}
+{{ $ko := eq site.Language.Lang "ko" }}
+{{ $profile := index site.Data (printf "profile_%s" site.Language.Lang) }}
+<div class="folio">
+<section class="folio-intro">
+<p class="folio-label">BACKEND ENGINEER / PORTFOLIO</p>
+<div class="folio-intro-grid"><div>
+<h1>{{ if $ko }}안녕하세요.<br>개발자 <span>최신욱</span>입니다.{{ else }}Hello, I'm<br><span>Sinuk Choi.</span>{{ end }}</h1>
+<div class="folio-actions"><a class="folio-button" href="#selected-work">{{ if $ko }}경력 보기{{ else }}View experience{{ end }} ↘</a><a href="#contact">{{ if $ko }}연락처{{ else }}Contact{{ end }} ↘</a></div>
+</div><aside class="folio-identity"><img src="{{ "/images/profile/portrait.png" | relURL }}" alt="{{ if $ko }}최신욱{{ else }}Sinuk Choi{{ end }}" width="600" height="600" fetchpriority="high" decoding="async"></aside></div>
+<dl class="folio-facts"><div><dt>{{ if $ko }}백엔드 개발 경력{{ else }}Backend experience{{ end }}</dt><dd>{{ if $ko }}2년 4개월{{ else }}2 years, 4 months{{ end }}</dd></div><div><dt>{{ if $ko }}주요 기술{{ else }}Core technologies{{ end }}</dt><dd>Go · Kafka · PostgreSQL</dd></div><div><dt>{{ if $ko }}개발 분야{{ else }}Focus{{ end }}</dt><dd>API · WebSocket · Data Pipeline</dd></div></dl>
+</section>
+<section class="folio-section" id="selected-work"><header class="folio-heading"><div><h2>{{ if $ko }}경력{{ else }}Career{{ end }}</h2></div>{{ with site.GetPage "/career" }}<a href="{{ .RelPermalink }}">{{ if $ko }}전체 보기{{ else }}View all{{ end }} ↗</a>{{ end }}</header>
+<div class="folio-company">
+  <div><h3>{{ if $ko }}라온로드{{ else }}Laon Road{{ end }}</h3><p>{{ if $ko }}서버개발자 · 매니저{{ else }}Server Developer · Manager{{ end }}</p></div>
+  <p>2023.05 — 2025.08 <span>{{ if $ko }}2년 4개월{{ else }}2 years, 4 months{{ end }}</span></p>
+</div>
+<div class="folio-work">{{ range $slug := slice "tmsdtn" "headway" "goutils" }}{{ with site.GetPage (printf "/career/%s" $slug) }}
+<a class="folio-work-item" href="{{ .RelPermalink }}">
+  {{ with .Params.visual_image }}{{ $visual := . }}{{ if reflect.IsSlice . }}{{ $visual = index . 0 }}{{ end }}
+  <div class="folio-work-image"><img src="{{ $visual | relURL }}" alt="" loading="lazy" width="640" height="400"></div>
+  {{ end }}
+  <div class="folio-work-copy"><small>{{ .Params.period }}</small><h3>{{ if eq $slug "headway" }}Headway · GAP{{ else }}{{ .Params.list_title | default .Title }}{{ end }}</h3><p>{{ .Description }}</p><ul class="folio-tags">{{ range first 4 .Params.stack }}<li>{{ . }}</li>{{ end }}</ul></div><span class="folio-arrow" aria-hidden="true">↗</span>
+</a>{{ end }}{{ end }}</div></section>
+<section class="folio-section"><header class="folio-heading"><div><h2>{{ if $ko }}개인프로젝트{{ else }}Personal Projects{{ end }}</h2></div>{{ with site.GetPage "/products" }}<a href="{{ .RelPermalink }}">{{ if $ko }}전체 보기{{ else }}View all{{ end }} ↗</a>{{ end }}</header>
+<div class="folio-products">{{ $slugs := slice "nodalite" "photoai" "schemapad" }}{{ if not $ko }}{{ $slugs = slice "molru" "photoai" "schemapad" }}{{ end }}{{ range $slugs }}{{ with site.GetPage (printf "/products/%s" .) }}<a class="folio-product" href="{{ .RelPermalink }}"><div class="folio-product-image"><img src="{{ .Params.visual_image | relURL }}" alt="{{ .Title }}" loading="lazy" width="640" height="400"></div><small>{{ .Params.status_label }}</small><h3>{{ .Title }} <span aria-hidden="true">↗</span></h3><p>{{ .Params.list_description | default .Params.subtitle }}</p></a>{{ end }}{{ end }}</div></section>
+<section class="folio-profile" aria-labelledby="profile-background-title">
+  <div class="folio-profile-story">
+    <header><span class="folio-profile-kicker">PROFILE</span><h2 id="profile-background-title">{{ if $ko }}전환 배경{{ else }}Background{{ end }}</h2><div class="folio-profile-shift"><span>{{ if $ko }}연극{{ else }}Theater{{ end }}</span><span aria-hidden="true">→</span><strong>{{ if $ko }}백엔드 개발{{ else }}Backend engineering{{ end }}</strong></div></header>
+    <div class="folio-profile-story-text">{{ range $profile.transition }}<p>{{ . }}</p>{{ end }}</div>
+  </div>
+  <div class="folio-profile-records">
+    <section aria-labelledby="education-title">
+      <header><span>01</span><h3 id="education-title">{{ if $ko }}학력{{ else }}Education{{ end }}</h3></header>
+      <ol>{{ range $profile.education }}<li><span class="folio-record-date">{{ .period }}</span><strong>{{ .school }}</strong><p>{{ .major }}</p></li>{{ end }}</ol>
+    </section>
+    <section aria-labelledby="qualification-title">
+      <header><span>02</span><h3 id="qualification-title">{{ if $ko }}교육·자격{{ else }}Training & certifications{{ end }}</h3></header>
+      <ol>{{ range $profile.credentials }}<li><span class="folio-record-date">{{ .date }}</span><strong>{{ .title }}</strong><p>{{ .description }}</p></li>{{ end }}</ol>
+    </section>
+    <section aria-labelledby="award-title">
+      <header><span>03</span><h3 id="award-title">{{ if $ko }}수상{{ else }}Awards{{ end }}</h3></header>
+      <ol>{{ range $profile.awards }}<li><span class="folio-record-date">{{ .date }}</span><strong>{{ .title }}</strong></li>{{ end }}</ol>
+    </section>
+  </div>
+</section>
+<section class="folio-reach" id="contact" aria-labelledby="contact-title">
+  <div class="folio-reach-heading">
+    <span class="folio-reach-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
+    <h2 id="contact-title">{{ if $ko }}연락처{{ else }}Contact{{ end }}</h2>
+  </div>
+  <div class="folio-reach-details"><a class="folio-reach-address" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a><p>{{ $profile.display_name }} <span aria-hidden="true">/</span> Backend Engineer</p></div>
+  <a class="folio-reach-button" href="mailto:{{ site.Params.email }}">{{ if $ko }}메일 보내기{{ else }}Send email{{ end }} <span aria-hidden="true">↗</span></a>
+</section>
+</div>
+{{ end }}

@@ -21,7 +21,7 @@ blog_url = "https://laonpeople.com/blog/%EA%B7%B8%EB%9E%98%EC%84%9C-%EB%AD%90%EA
 blog_label = "Odin AI 공식 블로그"
 subtitle = "Backend Development | 2025.01 - 2025.04"
 description = "AI 영상관제 솔루션 Odin 서버 개발"
-index = 2
+index = 5
 visual_text = ""
 visual_image = [
   "/images/career/odin/overview.jpg",

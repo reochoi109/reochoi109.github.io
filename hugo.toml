@@ -2,12 +2,10 @@ baseURL = 'https://reochoi109.github.io/'
 languageCode = 'en-us'
 defaultContentLanguage = 'ko'
 defaultContentLanguageInSubdir = true
-title = 'Reo Portfolio'
+title = '최신욱 | Backend Engineer'
 theme = 'studio'
 enableRobotsTXT = true
 
-# Company-specific portfolio routes reuse the canonical Korean content while
-# keeping the company slug in every generated URL.
 [module]
   [[module.mounts]]
   source = 'content/ko'
@@ -19,66 +17,6 @@ enableRobotsTXT = true
   target = 'content'
   lang = 'en'
 
-  [[module.mounts]]
-  source = 'content/ko/products'
-  target = 'content/madup/products'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/career'
-  target = 'content/madup/career'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/about.md'
-  target = 'content/madup/about.md'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/products'
-  target = 'content/madup-ai/products'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/career'
-  target = 'content/madup-ai/career'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/about.md'
-  target = 'content/madup-ai/about.md'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/products'
-  target = 'content/chai/products'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/career'
-  target = 'content/chai/career'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/about.md'
-  target = 'content/chai/about.md'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/products'
-  target = 'content/dpurple/products'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/career'
-  target = 'content/dpurple/career'
-  lang = 'ko'
-
-  [[module.mounts]]
-  source = 'content/ko/about.md'
-  target = 'content/dpurple/about.md'
-  lang = 'ko'
-
 [pagination]
 pagerSize = 12
 
@@ -87,31 +25,34 @@ tag = 'tags'
 category = 'categories'
 
 [params]
-description = '기술과 데이터 경험을 바탕으로 고객의 유입과 전환을 다루는 최신욱의 퍼포먼스 마케팅 포트폴리오.'
+description = '최신욱의 개발 포트폴리오.'
 author = 'Reo'
 brand = 'Reo' # Header/footer brand label (defaults to `title`)
 email = 'reochoi109@gmail.com' # Optional: footer email under brand (falls back to data/home.toml)
 spacing = 'comfortable' # comfortable | compact
-company_routes = ['madup', 'madup-ai', 'chai', 'dpurple'] # Company-specific mirrors that preserve their URL prefix
 
 [languages]
   [languages.ko]
   weight = 1
   languageName = '한국어'
   languageCode = 'ko-kr'
-  title = 'Reo Portfolio'
+  title = '최신욱 | Backend Engineer'
   contentDir = 'content/ko'
     [languages.ko.params]
     brand = 'Reo'
-    description = '기술과 데이터 경험을 바탕으로 고객의 유입과 전환을 다루는 최신욱의 퍼포먼스 마케팅 포트폴리오.'
+    description = '최신욱의 개발 포트폴리오.'
     [languages.ko.menu]
+      [[languages.ko.menu.main]]
+      name = '포트폴리오'
+      pageRef = '/portfolio'
+      weight = 20
       [[languages.ko.menu.main]]
       name = '홈'
       pageRef = '/'
       weight = 10
 
       [[languages.ko.menu.main]]
-      name = '개인 프로젝트'
+      name = '개인프로젝트'
       pageRef = '/products'
       weight = 30
 
@@ -120,20 +61,16 @@ company_routes = ['madup', 'madup-ai', 'chai', 'dpurple'] # Company-specific mir
       pageRef = '/career'
       weight = 38
 
-      [[languages.ko.menu.main]]
-      name = '프로필'
-      pageRef = '/about'
-      weight = 40
 
   [languages.en]
   weight = 2
   languageName = 'English'
   languageCode = 'en-us'
-  title = 'Reo Portfolio'
+  title = 'Sinuk Choi | Backend Engineer'
   contentDir = 'content/en'
     [languages.en.params]
     brand = 'Reo'
-    description = 'A product-minded marketing portfolio connecting audience insight, message, and experience.'
+    description = "Sinuk Choi's software engineering portfolio."
     [languages.en.menu]
       [[languages.en.menu.main]]
       name = 'Home'
@@ -141,7 +78,7 @@ company_routes = ['madup', 'madup-ai', 'chai', 'dpurple'] # Company-specific mir
       weight = 10
 
       [[languages.en.menu.main]]
-      name = 'Independent Projects'
+      name = 'Personal Projects'
       pageRef = '/products'
       weight = 30
 
@@ -150,10 +87,6 @@ company_routes = ['madup', 'madup-ai', 'chai', 'dpurple'] # Company-specific mir
       pageRef = '/career'
       weight = 38
 
-      [[languages.en.menu.main]]
-      name = 'Profile'
-      pageRef = '/about'
-      weight = 40
 
 [markup]
   [markup.tableOfContents]

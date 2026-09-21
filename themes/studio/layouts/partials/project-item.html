@@ -3,6 +3,7 @@
 {{- $indexText := printf "%02d" (int ($page.Params.index | default $index)) -}}
 {{- $isKo := eq site.Language.Lang "ko" -}}
 {{- $displayTitle := $page.Params.list_title | default $page.LinkTitle -}}
+{{- $showStack := .showStack | default false -}}
 
 {{- $images := slice -}}
 {{- with $page.Params.visual_images -}}
@@ -31,6 +32,7 @@
     <div class="engineering-card-footer">
       <div class="engineering-card-meta">
         {{- with $page.Params.period }}<time>{{ . }}</time>{{ end -}}
+        {{- if and $showStack $page.Params.stack }}<span>{{ delimit $page.Params.stack " · " }}</span>{{- end }}
       </div>
     </div>
   </div>

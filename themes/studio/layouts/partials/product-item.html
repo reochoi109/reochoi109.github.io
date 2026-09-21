@@ -1,6 +1,7 @@
 {{- $page := .page -}}
 {{- $isKo := eq site.Language.Lang "ko" -}}
 {{- $visual := $page.Params.visual_image -}}
+{{- $showStack := .showStack | default false -}}
 {{- $visualSource := strings.TrimPrefix "/" ($visual | default "") -}}
 {{- $hasVisual := and $visual (fileExists (printf "static/%s" $visualSource)) -}}
 
@@ -21,5 +22,6 @@
       {{- with $page.Params.status_label }}<em>{{ . }}</em>{{- end }}
     </div>
     <p class="project-showcase-summary">{{ $page.Params.list_description | default $page.Params.subtitle | default $page.Description }}</p>
+    {{- if and $showStack $page.Params.stack }}<p class="project-showcase-stack">{{ delimit $page.Params.stack " · " }}</p>{{- end }}
   </div>
 </a>

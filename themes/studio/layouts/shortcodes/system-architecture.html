@@ -1,0 +1,15 @@
+{{- $architecture := transform.Unmarshal .Inner -}}
+<figure class="system-architecture" aria-label="{{ .Get "title" }}">
+  <figcaption><span>SERVICE ARCHITECTURE</span><strong>{{ .Get "title" }}</strong></figcaption>
+  <ol class="system-architecture-stages" style="--architecture-columns: {{ len $architecture.stages }}">
+    {{- range $architecture.stages }}
+      <li class="system-architecture-stage system-architecture-stage--{{ .scope | default "existing" }}">
+        <small>{{ if eq .scope "owned" }}담당 영역{{ else if eq .scope "external" }}외부 시스템{{ else if eq .scope "infra" }}인프라{{ else }}기존 시스템{{ end }}</small>
+        <span>{{ .title }}</span>
+        <ul>{{- range .items }}<li>{{ . }}</li>{{- end }}</ul>
+      </li>
+    {{- end }}
+  </ol>
+  <div class="system-architecture-legend" aria-label="범례"><span class="is-owned">담당 영역</span><span class="is-existing">기존 시스템</span><span class="is-external">외부 시스템</span><span class="is-infra">인프라</span></div>
+  {{- with $architecture.note }}<p>{{ . }}</p>{{- end }}
+</figure>

@@ -1,6 +1,6 @@
 {{- $desc := "" -}}
 {{- if .IsHome -}}
-  {{- $desc = site.Params.description -}}
+  {{- $desc = .Description | default site.Params.description -}}
 {{- else -}}
   {{- with .Description -}}
     {{- $desc = . -}}
@@ -21,12 +21,8 @@
   <meta property="og:description" content="{{ $desc }}">
   <meta name="twitter:description" content="{{ $desc }}">
 {{- end -}}
-{{- if in site.Params.company_routes .Section -}}
-  <meta name="robots" content="noindex, nofollow, noimageindex">
-{{- else -}}
-  {{- with .Params.robots }}
-    <meta name="robots" content="{{ . }}">
-  {{- end -}}
+{{- with .Params.robots }}
+  <meta name="robots" content="{{ . }}">
 {{- end -}}
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">

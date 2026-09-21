@@ -1,13 +1,13 @@
 +++
 aliases = ["/ko/engineering/headway/", "/ko/projects/headway/"]
-title = "교통관제시스템(TMS) 개발·유지보수"
+title = "TMS 차량 통과 간격(Headway·GAP) 분석 기능"
 date = 2026-04-28T00:00:00+09:00
 type = "career"
 field = "Backend Development"
 field_index = 1
 career_title = "백엔드 개발"
-list_title = "교통관제시스템(TMS)"
-period = "2023.05 - 2025.08"
+list_title = "Headway·GAP 분석"
+period = "2023.07 - 2023.09"
 org = "라온로드"
 employer = "라온로드"
 employer_index = 1
@@ -15,18 +15,20 @@ employer_url = "https://www.laonroad.com/"
 employment_period = "2023.05 - 2025.08"
 company_url = "https://www.laonroad.com/"
 company_label = "회사 홈페이지"
-subtitle = "Backend Development | 2023.05 - 2025.08"
-description = "자사 교통관제시스템(TMS) 백엔드 개발·유지보수 및 운영 이슈 대응"
-index = 3
+subtitle = "TMS Feature Development | 2023.07 - 2023.09"
+description = "차량 검지 데이터를 이용한 Headway·GAP 분석과 신호 주기별 결과 집계 기능 개발"
+index = 4
+solution_key = "tms"
+solution_role = "child"
 visual_text = ""
 visual_image = [
   "/images/career/headway/headway-gap.svg",
 ]
 
 tasks = [
-  { title = "백엔드 개발·유지보수", desc = "기존 서비스의 코드를 분석하고 요구사항 반영과 신규 기능 개발을 담당했습니다." },
-  { title = "운영 이슈 대응", desc = "운영 중 발생한 문제의 원인을 확인하고 수정 사항을 반영했습니다." },
-  { title = "교통 분석 기능 개발", desc = "대표 업무로 차량 검지 데이터를 활용한 Headway·GAP 분석과 데이터 연계를 개발했습니다." },
+  { title = "통과 간격 산출", desc = "차량 검지 데이터를 차로와 통과 시각순으로 정렬해 Headway와 GAP을 계산했습니다." },
+  { title = "검지 데이터 보정", desc = "실제 영상과 검지 결과를 대조해 카메라 환경과 차량 겹침에 따른 보정값을 조정했습니다." },
+  { title = "집계·데이터 연계", desc = "유효 결과를 차로·신호 주기별로 집계하고 공동 Tibero 데이터베이스에 제공했습니다." },
 ]
 stack = ["Go", "MySQL", "Tibero", "ODBC"]
 tags = ["project", "data-pipeline", "traffic"]
@@ -34,17 +36,15 @@ tags = ["project", "data-pipeline", "traffic"]
 
 ## 프로젝트 개요
 
-라온로드의 교통관제시스템(TMS) 백엔드를 개발·유지보수하며 기존 코드 분석, 요구사항 반영, 신규 기능 개발과 운영 이슈 대응을 담당했습니다.
-
-이 페이지에서는 당시 수행한 업무 중 차량 검지 데이터를 활용한 **Headway·GAP 분석 기능**을 대표 사례로 소개합니다. 검지 시각·속도·차종·차로·신호 주기를 결합해 유효한 차량 쌍을 선별하고, 분석 결과를 차로와 신호 주기 단위의 지표로 만들었습니다.
+교통관제시스템(TMS) 내부에서 차량 검지 데이터를 활용한 **Headway·GAP 분석 기능**을 개발했습니다. 검지 시각·속도·차종·차로·신호 주기를 결합해 유효한 차량 쌍을 선별하고, 분석 결과를 차로와 신호 주기 단위의 지표로 만들었습니다.
 
 ## 프로젝트 목적
 
-TMS를 안정적으로 운영하면서 현장 요구사항을 백엔드 기능으로 반영하는 것이 주요 목적이었습니다. 대표 신규 기능인 Headway·GAP 분석은 차량의 통과 시간 간격을 정량화해 신호 운영 및 최적화 분석에 사용할 기초 데이터를 만드는 작업이었습니다.
+차량의 통과 시간 간격을 정량화해 신호 운영과 최적화 분석에 사용할 기초 데이터를 만드는 것이 목적이었습니다.
 
 ## 담당 역할
 
-기존 서비스의 구조와 코드를 파악해 운영 문제를 해결하고 요구사항과 신규 기능을 반영했습니다. Headway·GAP 분석에서는 차량 검지 데이터의 분류·계산 로직, 신호 구간 처리, 카메라 설치 환경별 데이터 보정, 결과 집계와 Tibero 데이터베이스 연계를 개발했습니다.
+차량 검지 데이터의 분류·계산 로직, 신호 구간 처리, 카메라 설치 환경별 데이터 보정, 결과 집계와 Tibero 데이터베이스 연계를 개발했습니다.
 
 ## 주요 구현
 
@@ -124,7 +124,7 @@ GAP = Headway - 앞 차량 점유 시간
 
 ## 결과
 
-TMS의 기존 기능을 유지보수하고 운영 이슈와 신규 요구사항에 대응했습니다. 대표적으로 검지 데이터의 시간순 정렬부터 유효 차량 쌍 선별, 차량 유형별 GAP 계산, 데이터 보정, 차로·신호 주기별 집계까지 하나의 처리 흐름으로 구축해 후속 신호 최적화 분석에 필요한 데이터를 제공했습니다.
+검지 데이터의 시간순 정렬부터 유효 차량 쌍 선별, 차량 유형별 GAP 계산, 데이터 보정, 차로·신호 주기별 집계까지 하나의 처리 흐름으로 구축해 후속 신호 최적화 분석에 필요한 데이터를 제공했습니다.
 
 ## 참고
 
